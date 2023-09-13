@@ -58,7 +58,6 @@ sealed public partial class Player : MonoBehaviour
     private bool allowReachFirstGetOnVine;    //used to allow player to reach out on the same side after get on vine first time(after getting off the ground and get on the vine) 
                                               //Why? --> beacause if don't do this player can't do as the reason say
     private bool reachToRTriggered01, reachToRTriggered02, reachToRTriggered03, reachToLTriggered01, reachToLTriggered02;
-    private bool holdToRTriggered01, holdToRTriggered02;
     #endregion
 
     private bool canGetToAnotherVine;
@@ -539,7 +538,7 @@ sealed public partial class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if(currentState == PlayerState.TwoHanded)
             canChangeToReach = true;
-        if(currentState == PlayerState.DualHanded)
+        if (currentState == PlayerState.DualHanded)
             canGetToAnotherVine = true;
     }
     #endregion

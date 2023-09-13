@@ -67,15 +67,6 @@ sealed public partial class Player
         RaycastHit2D hitReachR = Physics2D.Raycast(vineCheckPosDualHand01.position, Vector2.right, rayDistanceGetCloseToVine, vineLayerMask);
         RaycastHit2D hitReachRWithNoVine = Physics2D.Raycast(vineCheckPosDualHand02.position, Vector2.right, rayDistanceGetCloseToVine, vineLayerMask);
        
-        /*if (hitReachR || hitReachRWithNoVine)
-        {
-            print("Other checker words");
-            if(hitReachR)
-            print(hitReachR.collider.name);
-            if(hitReachRWithNoVine)
-            print(hitReachRWithNoVine.collider.name);
-        }*/
-
         //float distanceL = hitReachL.collider.transform.position.x - vineCheckPosDualHand01.position.x;
         //layer 7 = vine
         //move player to L side
@@ -183,17 +174,19 @@ sealed public partial class Player
             {
                 if (transform.rotation == Quaternion.Euler(0, 0, 0))
                 {
-                    if (distance >= 0.2f && distance < 0.35f)
+                    if (distance >= 0.2f && distance < 0.4f)
                     {
                         print(distance);
                         return true;
                     }
+                    
                 }
                 
                 if (transform.rotation == Quaternion.Euler(0, -180, 0))
                 {
                     if (distance >= 0.5f)
                     {
+                        print(distance);
                         return true;
                     }
                 }
@@ -251,13 +244,11 @@ sealed public partial class Player
                 float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
                 if (distance >= 0.2f && distance < 0.4f)
                 {
-                    holdToRTriggered01 = true;
                     float move = -moveToR01Local + moveToL01;
                     return move;
                 }
                 else if (distance >= 0.4f)
                 {
-                    holdToRTriggered02 = true;
                     float move = -moveToR02Local + moveToL02; //-x
                     return move;
                 }
@@ -271,86 +262,15 @@ sealed public partial class Player
                 float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
                 if (distance >= 0.2f && distance < 0.4f)
                 {
-                    holdToRTriggered01 = true;
                     float move = moveToL01Local - moveToR01;
                     return move;
                 }
                 else if (distance >= 0.4f)
                 {
-                    holdToRTriggered02 = true;
                     float move = moveToL02Local - moveToR03;  //+x
                     return move;
                 }
             }
-            RaycastHit2D hitOnHeadL = Physics2D.Raycast(vineCheckPosOnHead.position, -transform.right, rayDistanceGetCloseToVine, vineLayerMask);
-
-
-            //move Two-handed R
-            /*if (hitOnHeadR && hitOnHeadR.collider.gameObject.layer == 7)
-            {
-                float distance = vineCheckPosOnHead.position.x - hitOnHeadR.collider.transform.position.x;
-                print(distance);
-                if (distance >= 0.3f && distance < 0.4f)
-                {
-                    print("Move to point R");
-                    holdToRTriggered01 = true;
-                    return moveToR01;
-                }
-                else if (distance >= 0.4f)
-                {
-                    print("Move to point R");
-                    holdToRTriggered02 = true;
-                    return moveToR02;
-                }
-                else if (distance <= -0.3f && distance > -0.5f)
-                {
-                    print("Move to point L");
-                    if (holdToRTriggered01)
-                    {
-                        print("holdToRTriggered01");
-                        holdToRTriggered01 = false;
-                        return moveToR01;
-                    }
-                    if (holdToRTriggered02)
-                    {
-                        print("holdToRTriggered02");
-                        holdToRTriggered02 = false;
-                        return moveToR02;
-                    }
-                }
-                else if (distance <= -0.5)
-                {
-                    print("Move to point L");
-                    if (holdToRTriggered01)
-                    {
-                        print("holdToRTriggered01");
-                        holdToRTriggered01 = false;
-                        return -moveToR01;
-                    }
-                    if (holdToRTriggered02)
-                    {
-                        print("holdToRTriggered02");
-                        holdToRTriggered02 = false;
-                        return -moveToR02;
-                    }
-                }
-                else if (distance <= -0.7f && distance > -0.75f)
-                {
-                    print("Move to point L");
-                    return 0.02f;
-                }
-                else if (distance <= -0.75f && distance > -0.85f)
-                {
-                    print("Move to point L");
-                    return 0.005f;
-                }
-                else if (distance <= -0.85f)
-                {
-                    print("Move to point L");
-                    return -0.005f;
-                }
-
-            }*/
         }
         
         return 0;
