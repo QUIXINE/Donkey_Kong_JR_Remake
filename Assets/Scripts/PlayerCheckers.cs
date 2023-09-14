@@ -27,8 +27,8 @@ sealed public partial class Player
         RaycastHit2D hitL;
         RaycastHit2D hitR;
         
-        hitL = Physics2D.Raycast(vineCheckPosBody.position, -transform.right, 1f, vineLayerMask);
-        hitR = Physics2D.Raycast(vineCheckPosBody.position, transform.right, 1f, vineLayerMask);
+        hitL = Physics2D.Raycast(vineCheckPosBody.position, -transform.right, 0.6f, vineLayerMask);
+        hitR = Physics2D.Raycast(vineCheckPosBody.position, transform.right, 0.6f, vineLayerMask);
         if (hitL && hitL.collider.gameObject.layer == 7)
         {
             return true;
@@ -42,7 +42,7 @@ sealed public partial class Player
     private bool CollideVineOnHead()
     {
         //check if player jump from under of vine
-        return Physics2D.Raycast(vineCheckPosOnHead.position, vineCheckPosBody.up, vineCheckRadius, vineLayerMask);
+        return Physics2D.OverlapBox(vineCheckPosOnHead.position, new Vector3(0.4f,0,0), 0,vineLayerMask);
     }
     private bool IsGroundedChecker()
     {
@@ -79,12 +79,12 @@ sealed public partial class Player
                 if (distance > 0.5f && distance <= 0.6)
                 {
                     reachToLTriggered01 = true;
-                    return moveToL01;
+                    return reachToL01;
                 }
                 if (distance > 0.6f)
                 {
                     reachToLTriggered02 = true;
-                    return moveToL02;
+                    return reachToL02;
                 }
             }
         }
@@ -98,12 +98,12 @@ sealed public partial class Player
                 if (distance >= 0.27f)
                 {
                     reachToRTriggered03 = true;
-                    return moveToR03;
+                    return reachToR03;
                 }
                 else if (distance < 0.27f)
                 {
                     reachToRTriggered01 = true;
-                    return moveToR01;
+                    return reachToR01;
                 }
             }
             else if (hitReachRWithNoVine && hitReachRWithNoVine.collider.gameObject.layer == 7)
@@ -112,13 +112,13 @@ sealed public partial class Player
                 if (distance >= 0.25f && distance <= 0.3f)
                 {
                     reachToRTriggered01 = true;
-                    return moveToR01;
+                    return reachToR01;
                 }
                 //move player to L because hand out to R
                 else if (distance > 0.3f)
                 {
                     reachToRTriggered02 = true;
-                    return moveToR02; //move L
+                    return reachToR02; //move L
                 }
             }
             
@@ -131,12 +131,12 @@ sealed public partial class Player
             if(reachToLTriggered01)
             {
                 reachToLTriggered01 = false;
-                return moveToL01;
+                return reachToL01;
             }
             else if (reachToLTriggered02)
             {
                 reachToLTriggered02 = false;
-                return moveToL02;
+                return reachToL02;
             }
             return 0;
         }
@@ -146,17 +146,17 @@ sealed public partial class Player
             if (reachToRTriggered01)
             {
                 reachToRTriggered01 = false;
-                return moveToR01;
+                return reachToR01;
             }
             else if (reachToRTriggered02)
             {
                 reachToRTriggered02 = false;
-                return moveToR02;
+                return reachToR02;
             }
             else if (reachToRTriggered03)
             {
                 reachToRTriggered03 = false;
-                return moveToR03;
+                return reachToR03;
             }
         }
         return 0;
@@ -244,12 +244,12 @@ sealed public partial class Player
                 float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
                 if (distance >= 0.2f && distance < 0.4f)
                 {
-                    float move = -moveToR01Local + moveToL01;
+                    float move = -moveToR01Local + reachToL01;
                     return move;
                 }
                 else if (distance >= 0.4f)
                 {
-                    float move = -moveToR02Local + moveToL02; //-x
+                    float move = -moveToR02Local + reachToL02; //-x, plus reachToL02 because Dual-Handed L minus postion with it
                     return move;
                 }
             }
@@ -262,12 +262,12 @@ sealed public partial class Player
                 float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
                 if (distance >= 0.2f && distance < 0.4f)
                 {
-                    float move = moveToL01Local - moveToR01;
+                    float move = moveToL01Local - reachToR01;
                     return move;
                 }
                 else if (distance >= 0.4f)
                 {
-                    float move = moveToL02Local - moveToR03;  //+x
+                    float move = moveToL02Local - reachToR03;  //+x, minus reachToR03 because Dual-Handed R plus postion with it
                     return move;
                 }
             }
@@ -355,6 +355,10 @@ sealed public partial class Player
     {
         if (col.gameObject.layer == 7)  //Vine
         {
+            isOnVine = false;
+            animator.SetBool("Jump", true);
+            animator.SetBool("TwoHanded", false);
+            animator.SetBool("StopJump", false);
             checkGravityVineExit = true;
         }
     }
@@ -393,64 +397,8 @@ sealed public partial class Player
         }
     }
 
-    //Draw cube at raycast box posiotion
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-        //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-        Gizmos.DrawWireCube(groundCheckPos.position, transform.localScale);
-    }
+
     #endregion
-
-    #region Caller of Checkers
-    private void DistanceToReachVineCloser()
-    {
-        //Get Close to vine check while Two-Handed to solve hand is not on the vine
-        if (transform.rotation == Quaternion.Euler(0, -180, 0) && isTwoHanded)    //Two-Handed L
-        {
-            Vector2 pos = transform.position;
-            pos.x += GetClose();
-            transform.position = pos;
-        }
-        else if (transform.rotation == Quaternion.Euler(0, 0, 0) && isTwoHanded)  //Two-Handed R
-        {
-            Vector2 pos = transform.position;
-            pos.x -= GetClose();
-            transform.position = pos;
-        }
-        else if (DistanceToReachVineCloserChecker() && checkDistanceToReachVineCloser && transform.rotation == Quaternion.Euler(0, 0, 0) && currentState == PlayerState.DualHanded)  //Two-Handed R
-        {
-            Vector2 pos = transform.position;
-            pos.x -= 0.15f;
-            transform.position = pos;
-            checkDistanceToReachVineCloser = false;
-        }
-        else if (DistanceToReachVineCloserChecker() && checkDistanceToReachVineCloser && transform.rotation == Quaternion.Euler(0, -180, 0) && currentState == PlayerState.DualHanded)  //Two-Handed R
-        {
-            Vector2 pos = transform.position;
-            pos.x += 0.15f;
-            transform.position = pos;
-            checkDistanceToReachVineCloser = false;
-        }
-    }
-
-    private void IsGrounded()
-    {
-        if (IsGroundedChecker())
-        {
-            animator.SetBool("StopJump", true);
-            animator.SetBool("Jump", false);
-            animator.SetBool("DualHand", false);
-            animator.SetBool("TwoHanded", false);
-            rb.gravityScale = 1;
-            vertical = 0;
-            allowReachFirstGetOnVine = true;
-            isOnVine = false;
-            isTwoHanded = false;
-        }
-    }
-
     private void HandleAnimation()
     {
         if (horizontal > 0 || horizontal < 0) //if move, player will get out of the first state
@@ -461,10 +409,11 @@ sealed public partial class Player
 
         //help to correct the jump animation, but maybe problem in future because if not on ground
         //jump animation will always play
-        if (!IsGroundedChecker())
+        if (!IsGroundedChecker() && !OnVineGravityChecker() && !isOnVine)
         {
-            animator.SetBool("Jump", true);
+            animator.SetBool("TwoHanded", false);
             animator.SetBool("StopJump", false);
+            horizontal = 0;
         }
 
         if (IsOnVine() || CollideVineOnHead())
@@ -475,17 +424,80 @@ sealed public partial class Player
             animator.SetBool("Jump", false);
         }
     }
+    #region Caller of Checkers
+    private void DistanceToReachVineCloser()
+    {
+        //Get Close to vine check while Two-Handed and Dual-Handed to solve hand is not on the vine
+        if (transform.rotation == Quaternion.Euler(0, -180, 0) && isTwoHanded && currentState == PlayerState.TwoHanded)    //Two-Handed L
+        {
+            Vector2 pos = transform.position;
+            pos.x += GetClose();
+            transform.position = pos;
+        }
+        else if (transform.rotation == Quaternion.Euler(0, 0, 0) && isTwoHanded && currentState == PlayerState.TwoHanded)  //Two-Handed R
+        {
+            Vector2 pos = transform.position;
+            pos.x -= GetClose();
+            transform.position = pos;
+        }
+        else if (DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, 0, 0) && currentState == PlayerState.DualHanded)  //Dual-Handed L
+        {
+            Vector2 pos = transform.position;
+            pos.x -= 0.15f;
+            transform.position = pos;
+            canReachVineCloser = false;
+        }
+        else if (DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, -180, 0) && currentState == PlayerState.DualHanded)  //Dual-Handed R
+        {
+            Vector2 pos = transform.position;
+            pos.x += 0.15f;
+            transform.position = pos;
+            canReachVineCloser = false;
+        }
+    }
+
+    private void IsGrounded()
+    {
+        if (IsGroundedChecker())
+        {
+            animator.SetBool("Jump", false);
+            animator.SetBool("DualHand", false);
+            animator.SetBool("TwoHanded", false);
+            animator.SetBool("StopJump", true);
+            rb.gravityScale = 1;
+            vertical = 0;
+            canReachFirstGetOnVine = true;
+            isOnVine = false;
+            isTwoHanded = false;
+            currentState = PlayerState.Idle;
+        }
+    }
+
+   
 
     private void OnVineGravityCheck()
     {
         if (!OnVineGravityChecker() && checkGravityVineExit)
         {
-            rb.gravityScale = 20;
+            rb.gravityScale = 10;
+            isOnVine = false;
             checkGravityVineExit = false;
         }
     }
 
     #endregion
+
+    //Draw cube at raycast box posiotion
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
+        Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(0.8f, 0, 0));
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(vineCheckPosOnHead.position, new Vector3(0.4f, 0, 0));
+    }
 }
 
 /*I test this code with jump pad
