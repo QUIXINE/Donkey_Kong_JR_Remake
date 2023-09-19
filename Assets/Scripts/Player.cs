@@ -50,10 +50,10 @@ sealed public partial class Player : MonoBehaviour
     [SerializeField] private LayerMask vineLayerMask;
     [SerializeField] private Transform vineCheckPosBody;
     [SerializeField] private Transform vineCheckPosOnHead;
-    [SerializeField] private float vineCheckRadius;
     [SerializeField] private Transform vineCheckPosDualHand01, vineCheckPosDualHand02;
-    [SerializeField] private float distanceCheckOnHand;
+    [SerializeField] private float rayDistanceOnBody;
     [SerializeField] private float radiusCheckOnHand;
+    [SerializeField] private float rayDistanceOnHand;
     [SerializeField] private float rayDistanceGetCloseToVine;
     private bool canChangeToReach;
     private bool canReachFirstGetOnVine;        //used to allow player to reach out on the same side after get on vine first time(after getting off the ground and get on the vine) 
@@ -61,7 +61,7 @@ sealed public partial class Player : MonoBehaviour
     private float reachToL01 = 0.2f, reachToL02 = 0.3f, reachToR01 = 0.26f, reachToR02 = 0.31f, reachToR03 = 0.35f;         //used to move position
     private bool reachToRTriggered01, reachToRTriggered02, reachToRTriggered03, reachToLTriggered01, reachToLTriggered02;   //check which reachToL and reachToR is used to move position
     private bool canGetToAnotherVine;           //used as a condition if player allowed to get, and to not immediately get to another vine
-    private bool isBackFromAnotherVine;         //used as a condition if player get back from another vine to check if player hands are off the vine
+    //private bool isBackFromAnotherVine;         //used as a condition if player get back from another vine to check if player hands are off the vine
     private bool canReachVineCloser;            //used as a condition to change DK jr. position to get closer to the vine while player is Dual-Handed
     private bool checkGravityVineExit;
     private bool canGetOffVine;
@@ -69,6 +69,8 @@ sealed public partial class Player : MonoBehaviour
 
     private bool isDualHanded;
     private bool canFlip;
+    private bool isBackFromAnotherVine;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -77,16 +79,18 @@ sealed public partial class Player : MonoBehaviour
         canChangeToReach = false;
         canReachFirstGetOnVine = true;
         canGetToAnotherVine = false;
-        isBackFromAnotherVine = false;
         canReachVineCloser = true;
         checkGravityVineExit = false;
         currentState = PlayerState.Idle;
         canFlip = true;
+        isBackFromAnotherVine = false;
+        isDualHanded = false;
     }
 
     void Update()
     {
         IsGrounded();
+        IsOnVine();
         GetInput();
         Jump();
         OnGroundFlip();
@@ -95,7 +99,7 @@ sealed public partial class Player : MonoBehaviour
         StateManager();
         DistanceToReachVineCloser();
         OnVineGravityCheck();
-       print("canFlip " + canFlip);
+        FallFromHeight();
     }
 
     private void FixedUpdate()
@@ -109,10 +113,20 @@ sealed public partial class Player : MonoBehaviour
 
     private void GetInput()
     {
+        if (currentState != PlayerState.DualHanded)
+        {
+            isDualHanded = false;
+        }
+        else if (currentState == PlayerState.DualHanded) { isDualHanded = true; }
         /* if (IsGrounded())*/ //Problem: only get input while on the ground, this makes when not on ground player move on itself because it takes the last input
-        if (!IsOnVine() && IsGroundedChecker())
+        if (!IsOnVineChecker() && IsGroundedChecker())
             horizontal = Input.GetAxisRaw("Horizontal"); //--> change to DKHorizontal
-        if (IsOnVine() || FoundAnotherVine() && IsTwoHanded() && isTwoHanded && currentState == PlayerState.TwoHanded)
+        else if (!IsGroundedChecker())
+        {
+            horizontal = 0;
+        }
+
+        if (IsOnVineChecker() || FoundAnotherVine() && IsTwoHanded() && isTwoHanded && currentState == PlayerState.TwoHanded)
         {
             horizontalOnVine = Input.GetAxis("Horizontal"); //--> change to DKHorizontal
         }
@@ -121,7 +135,7 @@ sealed public partial class Player : MonoBehaviour
             horizontalOnVine = 0;
         }
 
-        if (isDualHanded || IsOnVine() || FoundAnotherVine())
+        if (isDualHanded && IsOnVineChecker())
         {
             horizontalOnVine02 = Input.GetAxis("Horizontal"); //--> change to DKHorizontal
         }
@@ -130,21 +144,24 @@ sealed public partial class Player : MonoBehaviour
             horizontalOnVine02 = 0;
         }
         
-        if (currentState != PlayerState.DualHanded)
-        {
-            isDualHanded = false;
-        }
-        else { isDualHanded = true; }
+        
 
-
-        if (IsOnVine() || FoundAnotherVine())
+        if (IsOnVineChecker() && currentState == PlayerState.TwoHanded)
         {
             vertical = Input.GetAxisRaw("Vertical");
         }
-        else if (!FoundAnotherVine() || !isOnVine)
+        else if (FoundAnotherVine() && currentState == PlayerState.DualHanded)
+        {
+            vertical = Input.GetAxisRaw("Vertical");
+        }
+        else if (!FoundAnotherVine() && IsOnVineChecker() && currentState == PlayerState.DualHanded)
         {
             vertical = 0;   //prevents value that is still stuck on 1/-1 when got out of the condition
         }
+
+
+      
+        
     }
 
     private void OnGroundFlip()
@@ -172,7 +189,7 @@ sealed public partial class Player : MonoBehaviour
     private void MovePosGetOnVine()
     {
         //Collide from L/R side
-        if (IsOnVine())
+        if (IsOnVineChecker())
         {
             //Condition to make Dk jr's hands don't go off the vine while OnVine, but is in the boundary of the vine
             if (isOnVine == false)
@@ -199,22 +216,22 @@ sealed public partial class Player : MonoBehaviour
         }
         
         //Cllide by head
-        else if (CollideVineOnHead())   //Next --> Problem: The hands get off sometimes, check x,y
-        {
+       else if (CollideVineOnHead())   //Next --> Problem: The hands get off sometimes, check x,y
+       {
             //Condition to make Dk jr's hands don't go off the vine while OnVine, but is in the boundary of the vine
             if (isOnVine == false)
             {
                 if (transform.rotation == Quaternion.Euler(0, -180, 0))
                 {
                     Vector2 pos = transform.position;
-                    pos.x -= 0.2f;
+                    pos.x -= 0.1f;
                     pos.y += 0.4f;
                     transform.position = pos;
                 }
                 else if (transform.rotation == Quaternion.Euler(0, 0, 0))
                 {
                     Vector2 pos = transform.position;
-                    pos.x += 0.2f;
+                    pos.x += 0.1f;
                     pos.y += 0.4f;
                     transform.position = pos;
                 }
@@ -225,7 +242,7 @@ sealed public partial class Player : MonoBehaviour
                 //Get into Two-handed state
                 currentState = PlayerState.TwoHanded;
             }
-        }
+       }
     }
 
 
@@ -236,9 +253,9 @@ sealed public partial class Player : MonoBehaviour
         //if there's no IsGrounded, the move while not on ground, move will be last value, the jump will be able to get left and right
         //if there is, when not on ground, will use the last value
         
-        if(IsGroundedChecker() && !IsOnVine())
+        if(IsGroundedChecker() && !IsOnVineChecker())
         rb.velocity = new Vector2(horizontal * moveSpeed * Time.deltaTime, rb.velocity.y);
-        else if (IsOnVine())
+        else if (IsOnVineChecker())
         {
             horizontal = 0;
             rb.velocity = new Vector2(horizontal * moveSpeed * Time.deltaTime, rb.velocity.y);
@@ -260,158 +277,15 @@ sealed public partial class Player : MonoBehaviour
         }
     }
     
-    
-    private void StateManager()
-    {
-        print(currentState);
-        /*if (!isTwoHanded && !canReach && isOnVine && currentState != PlayerState.DualHanded)
-        {
-            isTwoHanded = true;
-            currentState = PlayerState.TwoHanded;
-        }*/
-        switch (currentState)
-        {
-            case PlayerState.TwoHanded:
-                    isTwoHanded = true;
-                animator.SetBool("Jump", false);
-                horizontal = 0;
-                    TwoHandedState();
-                break;
-            
-            case PlayerState.DualHanded:
-                    isDualHanded = true;
-                animator.SetBool("Jump", false);
-                horizontal = 0;
-                DualHandedState();
-                break;
-        }
-    }
-
-    private void TwoHandedState()
-    {
-        if (isNewState && isTwoHanded)
-        {
-            StopAllCoroutines();
-            WaitToChangeState(currentState, true);
-            isNewState = false;
-        }
-
-
-        /*//Check if hands off the vine after GetToAnotherVine
-        if (transform.rotation == Quaternion.Euler(0, -180, 0) && isBackFromAnotherVine)   //Hold L
-        {
-            Vector2 posAfterGetToAnotherVine = transform.position;
-            posAfterGetToAnotherVine.x += GetDistanceToHoldVineCloser();
-            transform.position = posAfterGetToAnotherVine;
-            isBackFromAnotherVine = false;
-        }
-        else if (transform.rotation == Quaternion.Euler(0, 0, 0) && isBackFromAnotherVine)  //Hold R
-        {
-            Vector2 posAfterGetToAnotherVine = transform.position;
-            posAfterGetToAnotherVine.x += GetDistanceToHoldVineCloser();
-            transform.position = posAfterGetToAnotherVine;
-            isBackFromAnotherVine = false;
-        }*/
-        //Flip from the another side
-        //used with horizontalOnVine to flip DK jr. from one side to another while OnVine
-        //isOnVine will be true after being sure that DK jr hands don't go off
-        //Problem: pos doesn't based on offset of vine and player
-        if (horizontalOnVine > 0 && transform.rotation == Quaternion.Euler(0, -180, 0) && !canChangeToReach && canFlip)
-        {
-            if (IsOnVine() && facingRight && isTwoHanded)
-            {
-                if (isOnVine)
-                {
-                    Flip();
-                    Vector2 pos = transform.position;
-                    pos.x += 0.4f;
-                    transform.position = pos;
-                    StartCoroutine(WaitToChangeState(currentState)); //canChangeToReach = true, after 0.5f sec.
-                }
-                
-            }
-        }
-        else if (horizontalOnVine < 0 && transform.rotation == Quaternion.Euler(0, 0, 0) && !canChangeToReach && canFlip)
-        {
-            if (IsOnVine() && !facingRight && isTwoHanded)
-            {
-                if (isOnVine)
-                {
-                    Flip();
-                    Vector2 pos = transform.position;
-                    pos.x -= 0.4f;
-                    transform.position = pos;
-                    StartCoroutine(WaitToChangeState(currentState)); //canChangeToReach = ture, after 0.5f sec.
-                }
-            }
-        }
-
-         //Used for reaching when get on the vine every first time after get off the ground, 9/14/2023 now used for transit to reach
-         if (/*Input.GetKeyDown(KeyCode.LeftArrow)*/horizontalOnVine < 0 && transform.rotation == Quaternion.Euler(0, -180, 0) && canReachFirstGetOnVine && !canChangeToReach )
-         {
-             if (IsOnVine() && facingRight && isTwoHanded)
-             {
-                 canReach = true;
-                 canChangeToReach = true;
-                 canReachFirstGetOnVine = false;
-                //TransitState(PlayerState.DualHanded);
-                StartCoroutine(WaitAndTransitState());
-            }
-         }
-         else if (/*Input.GetKeyDown(KeyCode.RightArrow)*/horizontalOnVine > 0 && transform.rotation == Quaternion.Euler(0, 0, 0) && canReachFirstGetOnVine && !canChangeToReach)
-         {
-             if (IsOnVine() && !facingRight && isTwoHanded)
-             {
-                 canReach = true;
-                 canChangeToReach = true;
-                 canReachFirstGetOnVine = false;
-                //TransitState(PlayerState.DualHanded);
-                StartCoroutine(WaitAndTransitState());
-            }
-         }
-
-        print(canChangeToReach);
-
-        //use when if don't reach out, canChangeToReach will be false, and Use after get back from dual-handed and want to flip to another side of the vine
-        if (horizontalOnVine > 0 && transform.rotation == Quaternion.Euler(0, -180, 0) && canChangeToReach)
-        {
-            //StopAllCoroutines();
-            canChangeToReach = false;   //false so that player can flip to another side after get back from dual-handed
-        }
-        else if (horizontalOnVine < 0 && transform.rotation == Quaternion.Euler(0, 0, 0) && canChangeToReach)
-        {
-            //StopAllCoroutines();
-            canChangeToReach = false;   //false so that player can flip to another side after get back from dual-handed
-        }
-
-       //Transit to dual-handed
-        else if (horizontalOnVine > 0 && transform.rotation == Quaternion.Euler(0, 0, 0) && !canReach && isTwoHanded && canChangeToReach)
-        {
-            canReach = true;
-            StopAllCoroutines();
-            StartCoroutine(WaitAndTransitState());
-            TransitState(PlayerState.DualHanded);
-            //StartCoroutine(WaitState());
-        }
-        else if (horizontalOnVine < 0 && transform.rotation == Quaternion.Euler(0, -180, 0) && !canReach && isTwoHanded && canChangeToReach)
-        {
-            canReach = true;
-            StopAllCoroutines();
-            StartCoroutine(WaitAndTransitState());
-            TransitState(PlayerState.DualHanded);
-            //StartCoroutine(WaitState());
-        }
-    }
     private void TwoHandedClimb()
     {
-        if (IsOnVine() && isOnVine && currentState == PlayerState.TwoHanded)
+        if (IsOnVineChecker() && isOnVine && currentState == PlayerState.TwoHanded)
         {
             rb.velocity = new Vector2(rb.velocity.x, (vertical == 1 ? vertical * climbUpSpeed : vertical * climbDownSpeed) * Time.deltaTime);
         }
-        
+
     }
 
-    
     private void DualHandedClimb()
     {
         //Climb up with faster speed
@@ -456,11 +330,11 @@ sealed public partial class Player : MonoBehaviour
             isTwoHanded = true;
             canReachFirstGetOnVine = true;
             canGetToAnotherVine = false;
-            isBackFromAnotherVine = true;
+            //isBackFromAnotherVine = true;
             canReachVineCloser = true;
             canGetOffVine = false;
             canReach = false;
-           
+            canFlip = true;
             if (isOnVine)
             {
                 newState = PlayerState.TwoHanded;
@@ -491,8 +365,7 @@ sealed public partial class Player : MonoBehaviour
     private IEnumerator WaitToChangeState(PlayerState currentState, bool check)
     {
         yield return new WaitForSeconds(0.5f);
-        canFlip = check;
-        print("WaitToChangeState called");
+        //canFlip = check;
         if (this.currentState == PlayerState.DualHanded)
         {
             canGetOffVine = true;
@@ -501,7 +374,7 @@ sealed public partial class Player : MonoBehaviour
         else if (this.currentState == PlayerState.TwoHanded)
         {
             print("canFlip");
-            canFlip = true;
+            //canFlip = true;
             
         }
 
@@ -511,6 +384,15 @@ sealed public partial class Player : MonoBehaviour
 
     #endregion
 
+
+    //Fall from height
+    private void FallFromHeight()
+    {
+        if (rb.velocity.y < -3.95f && IsGroundedChecker())
+        {
+            animator.SetBool("Die", true);
+        }
+    }
 }
 
 
@@ -534,6 +416,12 @@ sealed public partial class Player : MonoBehaviour
 14.Get to another vine x,y pos
 15.After getting on another vine, if hold the btn, player will move to another side of the vine immediately, for ex, from Two-Handed L holding RightArrow after Dual-Handed R to get to another vine player move to the R of the another vine immediately
 //instead of L(only see it in slight time, player can't really tell it's go to L before R) before to R, in the original game player will see L side and longer than this situation
+16.Fall from height check rb.velocity.y when get down from the vine  rb.velocity.y = -float, leads to dead
+17.get to Dual-Handed after flip from Two_handed just on press
+18.get on vine with only 1 vine and get to Dual-Handed, the hand is off
+19.get off the vine, get from one shorter to longer and don't get off
+20.DualHanded Right to tow-handed L hands off and can't get back
+21.Fall from height uses Rigidbody, if on vine and use vertical down rb will negative and lesser than the dying fixed height variable, leads to dead which is wrong
 */
 
 /*Solved
@@ -555,6 +443,12 @@ when Raycast hits the vine (Vector2.right -- there's no any vines on Vector2.rig
 //--> solved by adding more condition in GetDistanceToGetCloseVine() using hitReachRWithNoVine Raycast
 //Solved: -=, += always apply, means position will always change and if they don't + and - each other, the hand position will not be on the vine
 //Solved: Reach R checker (GetDistanceToGetCloseVine()) doesn't check
+//Solved: IsOnVine() || FoundAnotherVine() doesn't work (set condition wrong)
+
+*/
+
+/*Cuations
+1.if use horizontalOnVine > 0 in Reaching first time player will get to Dual-Handed immediately
 
 */
 
@@ -566,6 +460,18 @@ when Raycast hits the vine (Vector2.right -- there's no any vines on Vector2.rig
 //1.Fall from vine (!FoundAnotherVine() && push btn of the reach side again (L then L again))
 //2.Player life
 //3.Score
+
+//9/18/2023 
+//To-do-list
+//1.Falling height check
+//2.Score - jump above enemy to get point, enemy stacking points. fruit collide with enemy get points, fruit stacking points 
+
+//9/19/2023 
+//To-do-list
+//1.Falling height check
+//2.Score - jump above enemy to get point, enemy stacking points. fruit collide with enemy get points, fruit stacking points 
+//3.jump get on vine with little touch of hand - use vineDualHandPos01.up or other direction to check
+//4.check ground-vine mixed (1st secene 1st platform) bottom is on ground but still dual/two-handed, if Two-Handed or Dual-Handed && IsGrouded() && IsOnVine() && FoundAnotherVine() player will be Two-handed or Dual-Handed state
 
 /*Check layermask
 private LayerMask GetLayerMask()
