@@ -1,4 +1,4 @@
 ﻿public interface IGetPoint
 {
-    void GetPoint();
+    void GetPoint(int score);
 }

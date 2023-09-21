@@ -1,9 +1,10 @@
-﻿using UnityEngine;   
+﻿using UnityEngine;  
+using System.Collections;
 public partial class Player
 {
     private void StateManager()
     {
-        print(currentState);
+        print("Get in to first state");
         /*if (!isTwoHanded && !canReach && isOnVine && currentState != PlayerState.DualHanded)
         {
             isTwoHanded = true;
@@ -12,6 +13,7 @@ public partial class Player
         switch (currentState)
         {
             case PlayerState.TwoHanded:
+                canGetPointFromEnemy = false;
                 isTwoHanded = true;
                 animator.SetBool("Jump", false);
                 horizontal = 0;
@@ -152,7 +154,6 @@ public partial class Player
         }
     }
 
-
     private void DualHandedState()
     {
         animator.SetBool("IsGrounded", false);
@@ -282,5 +283,86 @@ public partial class Player
 
 
     }
+
+    #region Handle States Methods
+    private void TransitState(PlayerState newState)
+    {
+        if (newState != currentState)
+        {
+            currentState = newState;
+            isNewState = true;
+        }
+    }
+    
+    private IEnumerator WaitAndTransitState()
+    {
+        yield return new WaitForSeconds(0.2f);
+        PlayerState newState = new PlayerState();
+        if (currentState == PlayerState.TwoHanded)
+        {
+            newState = PlayerState.DualHanded;
+            canFlip = false;
+           
+        }
+        else if (currentState == PlayerState.DualHanded)
+        {
+            isDualHanded = false;
+            canChangeToReach = false;
+            isTwoHanded = true;
+            canReachFirstGetOnVine = true;
+            canGetToAnotherVine = false;
+            //isBackFromAnotherVine = true;
+            canReachVineCloser = true;
+            canGetOffVine = false;
+            canReach = false;
+            canFlip = true;
+            if (isOnVine)
+            {
+                newState = PlayerState.TwoHanded;
+            }
+            else if (!isOnVine)
+                newState = PlayerState.Idle;
+
+            
+        }
+        
+        TransitState(newState);
+    }
+
+    private IEnumerator WaitToChangeState(PlayerState currentState)
+    {
+        yield return null;
+        if (currentState == PlayerState.TwoHanded)
+        {
+            yield return new WaitForSeconds(0.5f);
+            canChangeToReach = true;
+        }
+        if (currentState == PlayerState.DualHanded)
+        {
+            yield return new WaitForSeconds(0.5f);
+            canGetToAnotherVine = true;
+        }
+    }
+    private IEnumerator WaitToChangeState(PlayerState currentState, bool check)
+    {
+        yield return new WaitForSeconds(0.5f);
+        //canFlip = check;
+        if (this.currentState == PlayerState.DualHanded)
+        {
+            canGetOffVine = true;
+            
+        }
+        else if (this.currentState == PlayerState.TwoHanded)
+        {
+            print("canFlip");
+            //canFlip = true;
+            
+        }
+
+        //if(currentState == PlayerState.TwoHanded)
+        
+    }
+
+    #endregion
 
 }

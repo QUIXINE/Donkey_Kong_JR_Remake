@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
+using System.Collections;
 
 sealed public partial class Player
 {
@@ -73,18 +70,20 @@ sealed public partial class Player
         }
         return false;
     }
+    
+    private bool IsGroundedChecker()
+    {
+        //return Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, groundLayerMask);
+        return Physics2D.OverlapBox(groundCheckPos.position, new Vector3(0.8f, 0f, 0f), 0, groundLayerMask);
+    }
     private bool CollideVineOnHead()
     {
         //check if player jump from under of vine
         return Physics2D.OverlapBox(vineCheckPosOnHead.position, new Vector3(0.1f,0,0), 0,vineLayerMask);
     }
-    private bool IsGroundedChecker()
-    {
-        //return Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, groundLayerMask);
-        return Physics2D.OverlapBox(groundCheckPos.position, new Vector2(0.8f, 0f), 0, groundLayerMask);
-    }
-
-
+    #endregion
+    
+    #region Checkers to move player closer to the vine
     private float GetDistanceToReachVineCloser()
     {
         //Addition: Find raycast that can ignore DK jr hand so that I can put vineCheckPosDualHand01 on hand and when player is on the highest of vine he still can climb up/down
@@ -323,7 +322,6 @@ sealed public partial class Player
         //print("check");//
 
         RaycastHit2D hitOnBody;
-        RaycastHit2D hitOnBodyR;
         if (currentState == PlayerState.TwoHanded)
         {
             if (transform.rotation == Quaternion.Euler(0, -180, 0) || transform.rotation == Quaternion.Euler(0, 180, 0)) //Move from Dual-Handed L to Two-handed R
@@ -399,7 +397,7 @@ sealed public partial class Player
     #region Caller of Checkers
 
     //Change IsOnVine() hitDualhand02 rayDis, GetClose() 2Handede rayDis to 5f
-    private void DistanceToReachVineCloser()
+    private void ReachVineCloser()
     {
         //print("check");//
         //Problem: Player always move close to the vine
@@ -445,7 +443,6 @@ sealed public partial class Player
     {
         if (IsGroundedChecker())
         {
-            print("checked");
             animator.SetBool("Jump", false);
             animator.SetBool("DualHand", false);
             animator.SetBool("TwoHanded", false);
@@ -461,6 +458,7 @@ sealed public partial class Player
         }
     }
 
+    //Q: What is this method for?
     private void IsOnVine()
     {
         if(isOnVine)
@@ -469,7 +467,6 @@ sealed public partial class Player
 
     private void OnVineGravityCheck()
     {
-        print(rb.velocity.y);
         if (!OnVineGravityChecker() && checkGravityVineExit)
         {
             rb.gravityScale = 2;
@@ -488,27 +485,141 @@ sealed public partial class Player
     
     #endregion
 
+    #region Check enemy to earn point
+    
+    void CallEnemyStack()
+    {
+        if(canGetPointFromEnemy)
+        {
+            if(enemyList.Count != 0)
+            {
+                Score.TotalScore = Score.TotalScore + score; // Score.TotalScore = Score.TotalScore + EnemyStack:int();
+                canGetPointFromEnemy = false;
+            }
+        }
+        /* if(enemyList.Count != 0)
+        enemyList.Clear(); */
+
+    }
+
+    void EnemyStack()
+    {
+        //FIXME:22.Jump doesn't check enemy to get point when jump side to side, but check after jump straight 
+        //Try putting it in Update()
+        //Why  check after jump straight --> because ray will be created after press jump btn (I put the Call EnemyStack() inside Jump()), if 
+        //there's no any condition met, this method will return 0 and the ray will stop after return value. 
+        //Raycast hits enemy
+        RaycastHit2D[] Hits = new RaycastHit2D[2];
+        Collider2D[] colliders = new Collider2D[2];
+        int hit = Physics2D.RaycastNonAlloc(groundCheckPos.position, -groundCheckPos.up, Hits, 2f, enemyLayerMask);
+
+        //Try to fix checking to not only enemy in the same position to be casted on
+        int hit2 = Physics2D.OverlapBoxNonAlloc(groundCheckPos.position, new Vector2(0.5f, 1f), 0, colliders, enemyLayerMask);
+        Enemy enemy01;
+        Enemy enemy02;
+        
+        /* //RaycastHit2D[]
+        if(hit == 1 && enemyList.Count == 0)
+        {
+            enemy01 = Hits[0].collider.gameObject.GetComponent<Enemy>();     //out of index --> learn how to use RaycastHit2D[]
+            enemyList.Add(enemy01);
+            print(enemyList);
+            
+        }
+        else if(hit == 2 && enemyList.Count == 0)
+        {
+            //Try to check use this method for 2 objs at once(hits 2 enemies at the same time)
+            enemy01 = Hits[0].collider.gameObject.GetComponent<Enemy>(); 
+            enemyList.Add(enemy01);
+            enemy02 = Hits[1].collider.gameObject.GetComponent<Enemy>();
+            enemyList.Add(enemy02);
+            print(enemyList);
+        } 
+        */
+
+        //Collider[] 
+        if(hit2 == 1 && enemyList.Count == 0)
+        {
+            //enemy01 = Hits[0].collider.gameObject.GetComponent<Enemy>();     //out of index --> learn how to use RaycastHit2D[]
+            enemy01 = colliders[0].gameObject.GetComponent<Enemy>();     
+            enemyList.Add(enemy01);
+        }
+        else if(hit2 == 2 && enemyList.Count == 0)
+        {
+            //Try to check use this method for 2 objs at once(hits 2 enemies at the same time)
+            //enemy01 = Hits[0].collider.gameObject.GetComponent<Enemy>(); 
+            enemy01 = colliders[0].gameObject.GetComponent<Enemy>();
+            enemyList.Add(enemy01);
+            //enemy02 = Hits[1].collider.gameObject.GetComponent<Enemy>();
+            enemy02 = colliders[1].gameObject.GetComponent<Enemy>();
+            enemyList.Add(enemy02);
+        }
+        
+        if(hit2 != 0)
+        {
+            //print(enemyList.Count);
+            if (hit2 == 1)
+            {
+            //canGetPointFromEnemy = false;
+                score = 100;
+            }
+            else if (hit2 == 2)
+            {
+                //canGetPointFromEnemy = false;
+                score = 300;
+            }
+        }
+        if(hit2 != 0)    //Just checking in console
+        { 
+            /* for(int i = 0; i < 2; i++)
+            {
+                if(Hits[i] != false)
+                print(Hits[i].collider.gameObject.name); //result: if 2 at the time, print 2 enemies, if 1 print 1
+            } */
+            for(int i = 0; i < 2; i++)
+            {
+                if(colliders[i] != false)
+                //print(colliders[i].gameObject.name); //result: if 2 at the time, print 2 enemies, if 1 print 1
+                AccuratePoint();
+            }
+            /* if(enemy01 == null)
+            {
+                print("null"); //enemy = null, Why?
+            } */
+        }
+            //StartCoroutine(waitToAccuratePoint());
+    
+    }
+
+    IEnumerator waitToAccuratePoint()
+    {
+        yield return new WaitForSeconds(0.5f);
+        CallEnemyStack();
+    } 
+    private void AccuratePoint()
+    {
+        if(enemyList.Count == 2)
+        {
+            score = 300;
+        }
+        else if(enemyList.Count == 1)
+        {
+            score = 100;
+        }
+        CallEnemyStack();
+    }
+    
+    #endregion
+    
     #region Collision
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.layer == 4)  //Water
         {
-            animator.SetBool("Die", true);
             rb.gravityScale = 0;
             horizontal = 0;
             rb.velocity = new Vector2(0, 0);
-            Destroy(gameObject, 1f);
-        }
-
-        if (col.gameObject.CompareTag("Fruit"))
-        {
-            IGetPoint getPoint = col.gameObject.GetComponent<IGetPoint>();
-            if(getPoint != null)
-            getPoint.GetPoint();
-        }
-        if (col.gameObject.CompareTag("Enemy"))
-        {
-            animator.SetBool("Die", true);
+            playerTakeDamage.TakeDamage();
         }
 
     }
@@ -516,6 +627,7 @@ sealed public partial class Player
     {
         if (col.gameObject.layer == 7)  //Vine
         {
+            rb.velocity = Vector2.zero;
             animator.SetBool("Jump", true);
             animator.SetBool("TwoHanded", false);
             animator.SetBool("StopJump", false);
@@ -590,17 +702,20 @@ sealed public partial class Player
         Gizmos.color = Color.blue;
         //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
         //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-        Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(0.8f, 0, 0));
+        Gizmos.DrawCube(groundCheckPos.position, new Vector3(0.8f, 0, 0));
+        Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(0.5f, 1f, 0));
+        //Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(vineCheckPosOnHead.position, new Vector3(0.1f, 0, 0));
 
         Gizmos.DrawRay(vineCheckPosBody.position, vineCheckPosBody.right * 0.3f);
+        Gizmos.DrawRay(groundCheckPos.position, -groundCheckPos.up * 2f);
     }
 }
 
 /*I test this code with jump pad
- 
+
 private void IsPushed()
 {
     if (isPushed)

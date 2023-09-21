@@ -136,8 +136,8 @@ GameObject:
   - component: {fileID: 435555455472877908}
   - component: {fileID: 6377140764401393239}
   - component: {fileID: 370309196205097169}
-  - component: {fileID: 6429427990985943975}
   - component: {fileID: 7945421251172110489}
+  - component: {fileID: 8267985749443661287}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -279,7 +279,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6429427990985943975
+--- !u!95 &7945421251172110489
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148971490947819957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 82c79c15f2ae0194ebddf7600db7f30a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8267985749443661287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,33 +328,15 @@ MonoBehaviour:
     m_Bits: 128
   vineCheckPosBody: {fileID: 4981475384291147700}
   vineCheckPosOnHead: {fileID: 7426983358444145226}
-  vineCheckRadius: 0.1
   vineCheckPosDualHand01: {fileID: 8548594517603090095}
   vineCheckPosDualHand02: {fileID: 8713081734939175960}
-  distanceCheckOnHand: 0.5
-  radiusCheckOnHand: 0.5
-  rayDistanceGetCloseToVine: 5
---- !u!95 &7945421251172110489
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8148971490947819957}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 82c79c15f2ae0194ebddf7600db7f30a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  rayDistanceOnBody: 0.5
+  radiusCheckOnHand: 0.1
+  rayDistanceOnHand: 0.5
+  rayDistanceGetCloseToVine: 1
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8601987314663611620
 GameObject:
   m_ObjectHideFlags: 0

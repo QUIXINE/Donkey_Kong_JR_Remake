@@ -2,55 +2,84 @@
 using UnityEngine;
 using TMPro;
 
-namespace Assets.Scripts
+
+[RequireComponent(typeof(Rigidbody2D))]
+[SelectionBase]
+public class Fruit : MonoBehaviour
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class Fruit : MonoBehaviour, IGetPoint
+    private Rigidbody2D rb;
+    private bool isCrashedEnemy01, isCrashedEnemy02, isCrashedEnemy03; //used to check how many enemies is collided
+    private int fruitScore;
+    private bool canCollidePlayer;
+    private void Start()
     {
-        private Rigidbody2D rb;
-        private bool isCrashedEnemy01, isCrashedEnemy02, isCrashedEnemy03; //used to check how many enemies is collided
-        private int fruitScore;
-        private void Start()
+        fruitScore = 400;
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        canCollidePlayer = true;
+    }
+    public void GetPoint()
+    {
+        Score.TotalScore = Score.TotalScore + fruitScore;
+        rb.gravityScale = 0.5f;
+    }
+    private void Update()
+    {
+        Vector2 pos = new Vector2(-3.87f, -6.69f);
+        if (transform.position.y <= pos.y)
         {
-            fruitScore = 400;
-            rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
+            rb.velocity = Vector2.zero;
         }
-        public void GetPoint()
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.layer == 9 && canCollidePlayer)
         {
-            Score.TotalScore = Score.TotalScore + fruitScore;
-            rb.gravityScale = 1;
-        }
-        private void Update()
-        {
-            Vector2 pos = new Vector2(-3.87f, -6.69f);
-            if (transform.position.y <= pos.y)
-            {
-                rb.gravityScale = 0;
-                rb.velocity = Vector2.zero;
-            }
+            GetPoint();
+            canCollidePlayer = false;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        if(col.gameObject.layer == 8)
         {
-            /*if(Collides enemy)
+            IGetPoint get = col.gameObject.GetComponent<IGetPoint>();
+            if(!isCrashedEnemy01)
             {
-                IGetPoint get = col.gameObj.GetComponent<>;
-            if(!isCrashedEnemy01)    
-                get.GetPoint();
+                fruitScore += 400; 
+                get.GetPoint(fruitScore);
                 isCrashedEnemy01 = true;
-
-            if(isCrashedEnemy01 && !isCrashedEnemy02)    
-                get.GetPoint();
+            }
+            else if(isCrashedEnemy01 && !isCrashedEnemy02)
+            {
+                fruitScore += 400; 
+                get.GetPoint(fruitScore);
                 isCrashedEnemy02 = true;
             }
-
-            if(isCrashedEnemy01 && isCrashedEnemy02 && !isCrashedEnemy03)    
-                get.GetPoint();
+            else if(isCrashedEnemy01 && isCrashedEnemy02 && !isCrashedEnemy03)
+            {
+                fruitScore += 400; 
+                get.GetPoint(fruitScore);
                 isCrashedEnemy03 = true;
             }
-            */
+        }
+        /*if(Collides enemy)
+        {
+            IGetPoint get = col.gameObj.GetComponent<>;
+        if(!isCrashedEnemy01)    
+            get.GetPoint();
+            isCrashedEnemy01 = true;
+
+        if(isCrashedEnemy01 && !isCrashedEnemy02)    
+            get.GetPoint();
+            isCrashedEnemy02 = true;
         }
 
+        if(isCrashedEnemy01 && isCrashedEnemy02 && !isCrashedEnemy03)    
+            get.GetPoint();
+            isCrashedEnemy03 = true;
+        }
+        */
     }
+
 }
