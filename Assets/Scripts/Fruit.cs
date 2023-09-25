@@ -21,6 +21,7 @@ public class Fruit : MonoBehaviour
     public void GetPoint()
     {
         Score.TotalScore = Score.TotalScore + fruitScore;
+        Score.ScoreText.text = $"{Score.TotalScore}";
         rb.gravityScale = 0.5f;
     }
     private void Update()

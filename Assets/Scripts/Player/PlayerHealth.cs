@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     //Other class
     private Player player;
     private Canvas canvas;
-    public Camera mainCamera;
+    [SerializeField] private Camera mainCamera;
     static PlayerHealth()
     {
         health = 3;
@@ -49,13 +49,14 @@ public class PlayerHealth : MonoBehaviour
         {
             livesImg[i].sprite = lifeSprite;
         }
+        /*Call after loadind scene 
         if(lifeSpriteAmount >= 0)
         {
             //Not allow player to move
             //23.Player only stop first time the game start, after reloading scene player doesn't stop
             player = (Player)FindObjectOfType(typeof(Player));
             player.enabled = false;
-        }
+        } */
         StartCoroutine(ChangeLifeSpriteAmount());
     }
 
@@ -63,9 +64,12 @@ public class PlayerHealth : MonoBehaviour
     {
         mainCamera = Camera.main;
         canvas.worldCamera = mainCamera;
+
+        //Show health, lifeSpriteAmount in inspector
         healthShow = health;
         lifeSpriteAmountShow = lifeSpriteAmount;
-        //put player and animator in Update() because these two will missing after reload the scene
+
+        //put player in Update() because it will be missing after reload the scene
         player = (Player)FindObjectOfType(typeof(Player));
         
         
@@ -103,6 +107,8 @@ public class PlayerHealth : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+
+    //Enable player and change lifeSpriteAmount
     private IEnumerator ChangeLifeSpriteAmount()
     {
         yield return new WaitForSeconds(3f);

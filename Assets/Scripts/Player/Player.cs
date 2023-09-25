@@ -115,9 +115,6 @@ sealed public partial class Player : MonoBehaviour
         StateManager();
         ReachVineCloser();
         OnVineGravityCheck();
-        FallFromHeight();
-        EnemyStack();
-        AccuratePoint();
     }
 
     private void FixedUpdate()
@@ -298,6 +295,7 @@ sealed public partial class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
             animator.SetBool("Jump", true);
             canGetPointFromEnemy = true;
+            EnemyStack();
             //transform.Translate(0, jumpHeight, 0);
         }
 
@@ -334,15 +332,7 @@ sealed public partial class Player : MonoBehaviour
     }
     #endregion
 
-    //Fall from height
-    private void FallFromHeight()
-    {
-        if (rb.velocity.y < -3.95f && IsGroundedChecker())
-        {
-            playerTakeDamage.TakeDamage();
-            rb.velocity = Vector2.zero;
-        }
-    }
+    
 }
 
 

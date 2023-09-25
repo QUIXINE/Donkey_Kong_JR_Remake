@@ -22,11 +22,13 @@
 17.get to Dual-Handed after flip from Two_handed just on press
 18.get on vine with only 1 vine and get to Dual-Handed, the hand is off
 19.get off the vine, get from one shorter to longer and don't get off
-20.DualHanded Right to tow-handed L hands off and can't get back
-21.Flipping and DualHanded and Fall, DualHanded immediately instead of flip(while Two-Handed) to another side after pressing btn to flip, and sometime Get off the vine without stoping by DualHanded animation first immediately
-FIXME:22.Jump doesn't check enemy to get point when jump side to side, but check after jump straight 
-23.Player only stop first time the game start, after reloading scene player doesn't stop
-24.Player collides with platform 1st and can't move up on the vine
+20.DualHanded Right to two-handed L hands off and can't get back
+21.Player-Movement: Flipping and DualHanded and Fall, DualHanded immediately instead of flip(while Two-Handed) to another side after pressing btn to flip, and sometime Get off the vine without stoping by DualHanded animation first immediately
+
+23.Player-life: Player only stop first time the game start, after reloading scene player doesn't stop
+24.Player-Movement: Player collides with platform 1st and can't move up on the vine (if collide with ground vertical won't receive input)
+25.Score is not Don'tDestroyed or stored as PlayerPrefs 
+
 
 ## Solved
 1.Solved: gravity after jump, when collide with vine player float up
@@ -50,7 +52,8 @@ when Raycast hits the vine (Vector2.right -- there's no any vines on Vector2.rig
 Fall from height uses Rigidbody, if on vine and use vertical down rb will negative and lesser than the dying fixed height variable, leads to dead which is wrong
 10.Fall from height uses Rigidbody, if on vine and use vertical down rb will negative and lesser than the dying fixed height variable, leads to dead which is wrong
 --> solved by changing rb.velocity to Vector2.zero; in OnTriggeredExit after get off the vine  
-
+11.Jump doesn't check enemy to get point when jump side to side, but check after jump straight 
+--> solved by using Physics2D.CircleCaastNonAlloc();
 
 ## Cuations
 1.if use horizontalOnVine > 0 in Reaching first time player will get to Dual-Handed immediately
@@ -83,3 +86,7 @@ Fall from height uses Rigidbody, if on vine and use vertical down rb will negati
 2.Player Life --> collide with enemy, water, and fall from height, --health. ✅
 3.Score - Highscore store and loadscene 
 
+//9/25/2023
+1.Jump avoid enemy get point ✅
+2.Bonus score
+3.Scene loading 

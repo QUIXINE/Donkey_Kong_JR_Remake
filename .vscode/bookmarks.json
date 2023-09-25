@@ -1,20 +1,10 @@
 {
 	"files": [
 		{
-			"path": "Assets/Scripts/Player/PlayerCheckers.cs",
-			"bookmarks": [
-				{
-					"line": 506,
-					"column": 111,
-					"label": ""
-				}
-			]
-		},
-		{
 			"path": "Assets/Scripts/Player/PlayerHealth.cs",
 			"bookmarks": [
 				{
-					"line": 54,
+					"line": 55,
 					"column": 14,
 					"label": ""
 				}

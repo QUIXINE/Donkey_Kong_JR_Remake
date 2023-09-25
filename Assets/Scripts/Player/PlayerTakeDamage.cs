@@ -5,14 +5,19 @@ using System.Collections;
 public class PlayerTakeDamage : MonoBehaviour, ITakeDamage
 {
     private Animator animator;
+    private Player player;
+    private Rigidbody2D rb;
 
     private void Start() 
     {
         animator = GetComponent<Animator>();
+        player = GetComponent<Player>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update() 
     {
+        FallFromHeight();
         //Test
         /* if(Input.GetKeyDown(KeyCode.E) && PlayerHealth.lifeSpriteAmount <= 2)
         {
@@ -51,6 +56,7 @@ public class PlayerTakeDamage : MonoBehaviour, ITakeDamage
             {
                 fruit.enabled = false;
             }
+            player.enabled = false;
             PlayerHealth.health--;
             PlayerHealth.lifeSpriteAmount--;
             StartCoroutine(LoadSceneAfterDead());
@@ -75,6 +81,16 @@ public class PlayerTakeDamage : MonoBehaviour, ITakeDamage
         }
     }
 
+    //Fall from height
+    private void FallFromHeight()
+    {
+        if (rb.velocity.y < -3.95f && player.IsGroundedChecker())
+        {
+            TakeDamage();
+            rb.velocity = Vector2.zero;
+        }
+    }
+    
     private IEnumerator LoadSceneAfterDead()
     {
         yield return new WaitForSeconds(0.5f);

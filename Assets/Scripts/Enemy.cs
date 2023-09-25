@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour , IGetPoint
     [SerializeField] private float desireDuration;
     private Transform firstPos;
     private Transform lastPos;
-    private bool changePos = false;
     [SerializeField] private float speed;
 
 
@@ -42,6 +41,7 @@ public class Enemy : MonoBehaviour , IGetPoint
     public void GetPoint(int score)
     {
         Score.TotalScore = Score.TotalScore + score;
+        Score.ScoreText.text = $"{Score.TotalScore}";
         rb.gravityScale = 0.5f;
         collider.enabled = false;
     }
