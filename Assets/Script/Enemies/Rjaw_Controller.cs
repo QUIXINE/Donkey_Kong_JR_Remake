@@ -161,5 +161,10 @@ public class Rjaw_Controller : MonoBehaviour
             isBott = true;
             isDown = false;
         }
+
+        if (collision.CompareTag("End"))
+        {
+            transform.position = transform.position + new Vector3(transform.position.x * (-1 * WalkSpeed * Time.deltaTime), 0, 0); ;
+        }
     }
 }

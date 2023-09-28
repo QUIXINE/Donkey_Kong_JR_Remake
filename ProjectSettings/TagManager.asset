@@ -7,6 +7,9 @@ TagManager:
   - TopRope
   - BottRope
   - Fruit
+  - End
+  - Trigger
+  - Enemy
   layers:
   - Default
   - TransparentFX

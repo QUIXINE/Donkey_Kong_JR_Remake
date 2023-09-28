@@ -14,6 +14,7 @@ public class Bjaw_Controller : MonoBehaviour
     public Animation anim;
     //variable
     private GameObject ObjectRope;
+
     private float TimeLaunch;
     public float WalkSpeed;
     private int RndNumLF;
@@ -22,6 +23,7 @@ public class Bjaw_Controller : MonoBehaviour
     private bool isMove = false;
     private bool isDown = false;
     private bool isBott = false;
+
 
     void Start()
     {
