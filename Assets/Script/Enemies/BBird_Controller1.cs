@@ -12,6 +12,7 @@ public class BBird_Controller1 : MonoBehaviour
     public Animation anim;
     //variable
     public float WalkSpeed;
+    private bool flip = false;
 
     //variableWaypoints
     public GameObject[] waypoint1;
@@ -29,7 +30,19 @@ public class BBird_Controller1 : MonoBehaviour
 
         MoveToWaypoint(currentWaypointIndex);
 
-            if (waypoint1.Length > 0)
+        if (flip == false && this.transform.position.x >= waypoint1[currentWaypointIndex].transform.position.x)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            flip = true;
+        }
+
+        if (flip == true && this.transform.position.x <= waypoint1[currentWaypointIndex].transform.position.x)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            flip = false;
+        }
+
+        if (waypoint1.Length > 0)
             {
 
                 if (Vector3.Distance(transform.position, waypoint1[currentWaypointIndex].transform.position) < 0.1f)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class BBird_Controller2 : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class BBird_Controller2 : MonoBehaviour
     public Animation anim;
     //variable
     public float WalkSpeed;
+    private bool flip;
+    private bool down =false;
 
     //variableWaypoints
     public GameObject[] waypoint2;
@@ -26,10 +29,21 @@ public class BBird_Controller2 : MonoBehaviour
     private void Update()
     {
         GameMaster GS = GetComponent<GameMaster>();
-
         MoveToWaypoint(currentWaypointIndex);
 
+ 
 
+        if (flip == false && this.transform.position.x >= waypoint2[currentWaypointIndex].transform.position.x)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            flip = true;
+        }
+
+        if (flip == true && this.transform.position.x <= waypoint2[currentWaypointIndex].transform.position.x)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            flip = false;
+        }
 
         if (waypoint2.Length > 0)
         {
