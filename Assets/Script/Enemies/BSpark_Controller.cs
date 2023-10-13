@@ -1,14 +1,25 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BSpark_Controller : MonoBehaviour
-
 {
     public Transform[] waypoints;
+    public GameObject way;
+    private int wayhold;
     public float moveSpeed = 5f;
     private int currentWaypointIndex = 0;
 
+
+    private void Start()
+    {
+        wayhold = way.transform.childCount;
+        waypoints = new Transform[wayhold];
+        for (int i = 0; i < wayhold; i++)
+        {
+            waypoints[i] = way.transform.GetChild(i).transform;
+        }
+    }
     private void Update()
     {
         MoveToWaypoint(currentWaypointIndex);
@@ -33,5 +44,3 @@ public class BSpark_Controller : MonoBehaviour
         }
     }
 }
-
-

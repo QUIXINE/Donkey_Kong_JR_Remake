@@ -1,8 +1,9 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedSpark_Controller : MonoBehaviour
+public class RSpark_Controller1 : MonoBehaviour
 {
     //Rigidbody
     Rigidbody2D rb;
@@ -43,24 +44,24 @@ public class RedSpark_Controller : MonoBehaviour
         }
 
         if (waypoint1.Length > 0)
-            {
+        {
 
-                if (Vector3.Distance(transform.position, waypoint1[currentWaypointIndex].transform.position) < 0.1f)
-                {
-                    currentWaypointIndex = (currentWaypointIndex + 1) % waypoint1.Length;
-                }
+            if (Vector3.Distance(transform.position, waypoint1[currentWaypointIndex].transform.position) < 0.1f)
+            {
+                currentWaypointIndex = (currentWaypointIndex + 1) % waypoint1.Length;
             }
+        }
 
     }
 
-        private void MoveToWaypoint(int index)
+    private void MoveToWaypoint(int index)
     {
-        
-        
-        
+
+
+
         waypoint1 = GameMaster.Instance.waypoints1;
-        
-            transform.position = Vector3.MoveTowards(transform.position, waypoint1[index].transform.position, WalkSpeed * Time.deltaTime);
+
+        transform.position = Vector3.MoveTowards(transform.position, waypoint1[index].transform.position, WalkSpeed * Time.deltaTime);
 
 
     }

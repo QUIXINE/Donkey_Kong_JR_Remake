@@ -9,11 +9,16 @@ public class Mario_Controller : MonoBehaviour
     public GameObject Spawner;
     public GameObject Prefab;
     public GameObject Prefab1;
+    public GameObject Prefab2;
+    public GameObject Prefab3;
     //Variable
     public int Pattern = 1;
     public float timer = 0.0f;
     public float Timeremain = 2f;
     public bool Spawnyet = false;
+    private int RndNum;
+    public bool ActiveBbird;
+    public bool ActiveSpark;
 
     private void Start()
     {
@@ -22,7 +27,14 @@ public class Mario_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Wait();
+        if (ActiveBbird)
+        {
+            Wait();
+        }
+        if (ActiveSpark)
+        {
+            WaitSpark();
+        }
     }
 
     void Wait()
@@ -50,6 +62,36 @@ public class Mario_Controller : MonoBehaviour
 
     }
 
+    void WaitSpark()
+    {
+        timer += Time.deltaTime;
+
+        RndNum = Random.Range(1, 4);
+
+        if (timer >= Timeremain && RndNum == 1)
+        {
+            SpawnEnemy();
+            timer = 0.0f;
+        }
+
+        if (timer >= Timeremain && RndNum == 2)
+        {
+            SpawnEnemy1();
+            timer = 0.0f;
+        }
+        if (timer >= Timeremain && RndNum == 3)
+        {
+            SpawnEnemy2();
+            timer = 0.0f;
+        }
+        if (timer >= Timeremain && RndNum == 4)
+        {
+            SpawnEnemy3();
+            timer = 0.0f;
+        }
+
+    }
+
     void SpawnEnemy()
     {
         Instantiate(Prefab, Spawner.transform.position, Quaternion.identity);
@@ -62,6 +104,16 @@ public class Mario_Controller : MonoBehaviour
         Spawnyet = true;
     }
 
+    void SpawnEnemy2()
+    {
+        Instantiate(Prefab2, Spawner.transform.position, Quaternion.identity);
+        Spawnyet = true;
+    }
+    void SpawnEnemy3()
+    {
+        Instantiate(Prefab3, Spawner.transform.position, Quaternion.identity);
+        Spawnyet = true;
+    }
 
 
 }
