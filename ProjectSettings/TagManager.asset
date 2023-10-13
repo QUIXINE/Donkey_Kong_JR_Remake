@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - JumpPad
+  - Fruit
+  - Enemy
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -14,9 +17,9 @@ TagManager:
   - UI
   - Ground
   - Vine
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Item
   - 
   - 
   - 

@@ -1,0 +1,49 @@
+{
+	"files": [
+		{
+			"path": "Assets/Scripts/Game/Score_Singleton.cs",
+			"bookmarks": [
+				{
+					"line": 9,
+					"column": 0,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Assets/Scripts/Player/PlayerTakeDamage.cs",
+			"bookmarks": [
+				{
+					"line": 26,
+					"column": 25,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Assets/Scripts/Game/Menu_Scene.cs",
+			"bookmarks": [
+				{
+					"line": 40,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 41,
+					"column": 94,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Assets/Scripts/Game/GameState.cs",
+			"bookmarks": [
+				{
+					"line": 111,
+					"column": 20,
+					"label": ""
+				}
+			]
+		}
+	]
+}
