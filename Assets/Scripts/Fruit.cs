@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using TMPro;
+using ScoreManagement;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -20,8 +21,8 @@ public class Fruit : MonoBehaviour
     }
     public void GetPoint()
     {
-        Score.TotalScore = Score.TotalScore + fruitScore;
-        Score.ScoreText.text = $"{Score.TotalScore}";
+        Score.ScorePlayer01 = Score.ScorePlayer01 + fruitScore;
+        // Score.ScoreText.text = $"{Score.ScorePlayer01}";
         rb.gravityScale = 0.5f;
     }
     private void Update()

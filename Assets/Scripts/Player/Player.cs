@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TakeDamage;
+using ScoreManagement;
 
+namespace PlayerSpace
+{
 [RequireComponent(typeof(Rigidbody2D))]
 [SelectionBase]
 sealed public partial class Player : MonoBehaviour
@@ -42,13 +46,12 @@ sealed public partial class Player : MonoBehaviour
     private bool isOnVine;
     private bool canReach;
 
-    [Header("Jump and Ground Check")]
+    [Header("Jump")]
     [SerializeField] private Transform groundCheckPos;
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private int jumpHeight;
     [SerializeField] private int jumpPadForce;
-    private bool canGetPointFromEnemy;
 
 
     [Header("Vine Check")]
@@ -72,18 +75,16 @@ sealed public partial class Player : MonoBehaviour
     private bool canGetOffVine;
     
     [Header("Enemy Check")]
-    private List<Enemy> enemyList = new List<Enemy>();
     [SerializeField] private LayerMask enemyLayerMask;
+    private bool canGetPointFromEnemy;
+    private List<EnemyScore> enemyList = new List<EnemyScore>();
+    private int scoreOfEnemy;
 
+    public bool collideWithWater {get; private set;} //Water colliding check
 
     #endregion
 
     private bool canFlip;
-
-    private int jumpTimes;
-    private int score;
-
-    private bool isGrounded;
 
     private void Start()
     {
@@ -100,7 +101,8 @@ sealed public partial class Player : MonoBehaviour
         canFlip = true;
         isDualHanded = false;
         canGetPointFromEnemy = false;
-        jumpTimes = 1;
+        gameObject.layer = 9;
+        collideWithWater = false;
     }
 
     void Update()
@@ -173,6 +175,7 @@ sealed public partial class Player : MonoBehaviour
         {
             vertical = 0;   //prevents value that is still stuck on 1/-1 when got out of the condition
         }
+        
 
 
       
@@ -282,28 +285,15 @@ sealed public partial class Player : MonoBehaviour
     
     private void Jump()
     {
-        if(IsGroundedChecker() && rb.velocity.y <= 0)
-        {
-            canGetPointFromEnemy = false;
-            enemyList.Clear();
-        }
+        
         if (Input.GetKeyDown(KeyCode.X) && IsGroundedChecker()) 
         {
-            //moveSpeed = onJumpMoveSpeed;    //for jump straight the get 0 speed
-            jumpTimes = 0;
             animator.SetBool("StopJump", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
             animator.SetBool("Jump", true);
             canGetPointFromEnemy = true;
             EnemyStack();
-            //transform.Translate(0, jumpHeight, 0);
         }
-
-        /* if(canGetPointFromEnemy)
-        {
-            CallEnemyStack();
-        } */
-
     }
     
     private void TwoHandedClimb()
@@ -334,7 +324,7 @@ sealed public partial class Player : MonoBehaviour
 
     
 }
-
+}
 
 /*Check layermask
 private LayerMask GetLayerMask()

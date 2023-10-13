@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
+
+namespace PlayerSpace
+{
 sealed public partial class Player
 {
     #region Checkers
@@ -456,6 +459,11 @@ sealed public partial class Player
             rayDistanceGetCloseToVine = 0.1f;
             currentState = PlayerState.Idle;
         }
+        if(IsGroundedChecker() && rb.velocity.y <= 0)
+        {
+            canGetPointFromEnemy = false;
+            enemyList.Clear();
+        }
     }
 
     //Q: What is this method for?
@@ -477,91 +485,7 @@ sealed public partial class Player
     
     #endregion
 
-    #region Check enemy to earn point
-    
-    void CallEnemyStack()
-    {
-        if(canGetPointFromEnemy)
-        {
-            if(enemyList.Count != 0)
-            {
-                Score.TotalScore = Score.TotalScore + score; // Score.TotalScore = Score.TotalScore + EnemyStack:int();
-                Score.ScoreText.text = $"{Score.TotalScore}";
-                canGetPointFromEnemy = false;
-            }
-        }
-        /* if(enemyList.Count != 0)
-        enemyList.Clear(); */
-
-    }
-
-    private void EnemyStack()
-    {
-        
-        //Why  check after jump straight --> because ray will be created after press jump btn (I put the Call EnemyStack() inside Jump()), if 
-        //Raycast hits enemy
-        RaycastHit2D[] Hits = new RaycastHit2D[2];
-        int hit = Physics2D.CircleCastNonAlloc(groundCheckPos.position, 0.7f, -groundCheckPos.up, Hits, 1f, enemyLayerMask);
-
-        Enemy enemy01;
-        Enemy enemy02;
-        
-        //RaycastHit2D[] Hits2
-        if(hit == 1 && enemyList.Count == 0)
-        {
-            enemy01 = Hits[0].collider.gameObject.GetComponent<Enemy>();     //out of index --> learn how to use RaycastHit2D[]
-            enemyList.Add(enemy01);
-            print(enemyList);
-            
-        }
-        else if(hit == 2 && enemyList.Count == 0)
-        {
-            //Try to check use this method for 2 objs at once(hits 2 enemies at the same time)
-            enemy01 = Hits[0].collider.gameObject.GetComponent<Enemy>(); 
-            enemyList.Add(enemy01);
-            enemy02 = Hits[1].collider.gameObject.GetComponent<Enemy>();
-            enemyList.Add(enemy02);
-            print(enemyList);
-        } 
-     
-        if(hit != 0)
-        {
-            if (hit == 1)
-            {
-                score = 100;
-            }
-            else if (hit == 2)
-            {
-                score = 300;
-            }
-            CallEnemyStack();
-        }
-        /* if(hit != 0)    //Just checking in console
-        { 
-            for(int i = 0; i < 2; i++)
-            {
-                if(Hits[i] != false)
-                //print(colliders[i].gameObject.name); //result: if 2 at the time, print 2 enemies, if 1 print 1
-                AccuratePoint();
-            }
-        } */
-    }
-
-    private void AccuratePoint()
-    {
-        if(enemyList.Count == 2)
-        {
-            score = 300;
-        }
-        else if(enemyList.Count == 1)
-        {
-            score = 100;
-        }
-        CallEnemyStack();
-    }
-    
-    #endregion
-    
+  
     #region Collision
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -570,6 +494,7 @@ sealed public partial class Player
             rb.gravityScale = 0;
             horizontal = 0;
             rb.velocity = new Vector2(0, 0);
+            collideWithWater = true;
             playerTakeDamage.TakeDamage();
         }
 
@@ -665,7 +590,7 @@ sealed public partial class Player
         Gizmos.DrawRay(groundCheckPos.position, -groundCheckPos.up * 2f);
     }
 }
-
+}
 /*I test this code with jump pad
 
 private void IsPushed()

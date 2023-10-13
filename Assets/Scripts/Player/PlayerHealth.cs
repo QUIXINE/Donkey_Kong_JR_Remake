@@ -3,16 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace PlayerSpace
+{
 public class PlayerHealth : MonoBehaviour
 {   
+    //Singleton
+    private static PlayerHealth instance;
+
+    public static PlayerHealth Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = new PlayerHealth();
+            }
+            return instance;
+        }
+    }
+    
     //Health
-    public static PlayerHealth instance;
     public List<Image> livesImg = new List<Image>();
     [SerializeField] private Sprite  lifeSprite;
 
     //When player health is decreased anywhere, lifeSpriteAmount also decreased at the same place in code
-    public static int lifeSpriteAmount;
-    public static int health;
+    public int lifeSpriteAmount;
+    public int health;
     [SerializeField] private int healthShow;
     [SerializeField] private int lifeSpriteAmountShow;
     
@@ -20,11 +36,6 @@ public class PlayerHealth : MonoBehaviour
     private Player player;
     private Canvas canvas;
     [SerializeField] private Camera mainCamera;
-    static PlayerHealth()
-    {
-        health = 3;
-        lifeSpriteAmount = health;
-    }
 
     private void Awake() 
     {
@@ -33,31 +44,26 @@ public class PlayerHealth : MonoBehaviour
         {
             instance = this;
         }
-        else if(instance != this)
+        if (instance != this)
         {
-            Destroy(gameObject);
+            print("Destrot");
+            Destroy(this.gameObject);
         }
+        DontDestroyOnLoad(this);
        
     }
 
     private void Start() 
     {
-        health = 3;
-        lifeSpriteAmount = health;
+        
+        Instance.health = 3;
+        Instance.lifeSpriteAmount = Instance.health;
         canvas = GetComponent<Canvas>();
-        for(int i = 0; i < lifeSpriteAmount; i++)
+        /* for(int i = 0; i < Instance.lifeSpriteAmount; i++)
         {
             livesImg[i].sprite = lifeSprite;
-        }
-        /*Call after loadind scene 
-        if(lifeSpriteAmount >= 0)
-        {
-            //Not allow player to move
-            //23.Player only stop first time the game start, after reloading scene player doesn't stop
-            player = (Player)FindObjectOfType(typeof(Player));
-            player.enabled = false;
         } */
-        StartCoroutine(ChangeLifeSpriteAmount());
+        // StartCoroutine(ChangeLifeSpriteAmount());
     }
 
     private void Update() 
@@ -66,18 +72,14 @@ public class PlayerHealth : MonoBehaviour
         canvas.worldCamera = mainCamera;
 
         //Show health, lifeSpriteAmount in inspector
-        healthShow = health;
-        lifeSpriteAmountShow = lifeSpriteAmount;
+        healthShow = Instance.health;
+        lifeSpriteAmountShow = Instance.lifeSpriteAmount;
 
-        //put player in Update() because it will be missing after reload the scene
-        player = (Player)FindObjectOfType(typeof(Player));
-        
-        
         //Remove img from list and set actiove player life img
-        if(lifeSpriteAmount < livesImg.Count)
+        if(Instance.lifeSpriteAmount < livesImg.Count)
         {
-            livesImg[lifeSpriteAmount].gameObject.SetActive(false);
-            livesImg.RemoveAt(lifeSpriteAmount);
+            livesImg[Instance.lifeSpriteAmount].gameObject.SetActive(false);
+            // livesImg.RemoveAt(Instance.lifeSpriteAmount);
         }
 
         /* //Test
@@ -104,21 +106,18 @@ public class PlayerHealth : MonoBehaviour
         }
         */
 
-        DontDestroyOnLoad(this);
     }
 
 
     //Enable player and change lifeSpriteAmount
-    private IEnumerator ChangeLifeSpriteAmount()
+    public IEnumerator ChangeLifeSpriteAmount()
     {
-        yield return new WaitForSeconds(3f);
-        lifeSpriteAmount = 2;
-        player.enabled = true;
+        yield return new WaitForSeconds(GameState.gameStartStateTime);
+        Instance.lifeSpriteAmount = 2;
         
-        StopCoroutine(ChangeLifeSpriteAmount());
     }
 }
-
+}
 
 /*show lifeSprite 
 for(int i = 0; i < lifeSpriteAmount; i++)

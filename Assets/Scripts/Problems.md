@@ -25,10 +25,12 @@
 20.DualHanded Right to two-handed L hands off and can't get back
 21.Player-Movement: Flipping and DualHanded and Fall, DualHanded immediately instead of flip(while Two-Handed) to another side after pressing btn to flip, and sometime Get off the vine without stoping by DualHanded animation first immediately
 
-23.Player-life: Player only stop first time the game start, after reloading scene player doesn't stop
+
 24.Player-Movement: Player collides with platform 1st and can't move up on the vine (if collide with ground vertical won't receive input)
 25.Score is not Don'tDestroyed or stored as PlayerPrefs 
-
+26.if GameState is not Don'tDestroyed, i have to add GameState obj every scenes. if Don'tDestroyed //put player in Update() because it will be missing after reload the scene
+27.Player health: doesn’t get reset (get back to 3) after player die(-3 life) and start a new game, it’s DontDestroyOnLoad(). 
+28.Score: bonus and lap amount don’t reset after game over.
 
 ## Solved
 1.Solved: gravity after jump, when collide with vine player float up
@@ -54,9 +56,16 @@ Fall from height uses Rigidbody, if on vine and use vertical down rb will negati
 --> solved by changing rb.velocity to Vector2.zero; in OnTriggeredExit after get off the vine  
 11.Jump doesn't check enemy to get point when jump side to side, but check after jump straight 
 --> solved by using Physics2D.CircleCaastNonAlloc();
+12.Game State: Player only stop first time the game start, after reloading scene player doesn't stop
+--> solved by putting the code in GameState script which is not Don'tDestroyed, instead of PlayerHealth script;
+13.Player-Life: Collide with 2 enemies take 2 life
+--> solved by changing player layer to Default from Player(enemy will collide with Player layer) after taking damage from one enemy;
+
+
 
 ## Cuations
 1.if use horizontalOnVine > 0 in Reaching first time player will get to Dual-Handed immediately
+2.if ScoreRankJson doesn't load when is not reached the Rank_Scene yet try change LoadHighScore() in ScoreRankTable script to static and call in GameState script or anywhere
 
 
 ## TODO:
@@ -81,7 +90,7 @@ Fall from height uses Rigidbody, if on vine and use vertical down rb will negati
 //3.jump get on vine with little touch of hand - use vineDualHandPos01.up or other direction to check✅ --> use vineCheckPosBody with rayDistanceOnBody instead
 //4.check ground-vine mixed (1st secene 1st platform) bottom is on ground but still dual/two-handed, if Two-Handed or Dual-Handed && IsGrouded() && IsOnVine() && FoundAnotherVine() player will be Two-handed or Dual-Handed state
 
-//9/21/2023
+//9/21/2023 
 1.Score - jump above enemy to get point, enemy stacking points ❌. fruit collide with enemy get points ✅, fruit stacking points ✅
 2.Player Life --> collide with enemy, water, and fall from height, --health. ✅
 3.Score - Highscore store and loadscene 
@@ -90,3 +99,12 @@ Fall from height uses Rigidbody, if on vine and use vertical down rb will negati
 1.Jump avoid enemy get point ✅
 2.Bonus score
 3.Scene loading 
+
+//9/26/2023
+1.Bonus score
+2.Scene Loading
+    - Game over 
+        - every -1 life wait 4 sec. to load new scene✅
+3.Game State - every time there is reloading scene Dh jr will not active for 1 sec then active ✅
+4.Score board scene
+    - find a way to do it

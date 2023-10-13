@@ -1,5 +1,8 @@
 ﻿using UnityEngine;  
 using System.Collections;
+
+namespace PlayerSpace
+{
 public partial class Player
 {
     private void StateManager()
@@ -365,4 +368,5 @@ public partial class Player
 
     #endregion
 
+}
 }
