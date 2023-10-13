@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags: 
+  - JumpPad
+  - Fruit
+  - Enemy
+  - Key
+  - End
   layers:
   - Default
   - TransparentFX
@@ -11,12 +16,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Vine
+  - Enemy
+  - Player
+  - Item
   - 
   - 
   - 
