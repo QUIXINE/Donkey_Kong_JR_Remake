@@ -22,12 +22,12 @@ public class Bjaw_Controller : MonoBehaviour
     private bool runyet = false;
     private bool isMove = false;
     private bool isDown = false;
-    private bool isBott = false;
 
 
     void Start()
     {
         anim = GetComponent<Animation>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
@@ -103,6 +103,8 @@ public class Bjaw_Controller : MonoBehaviour
         if (RndNumUD >= 3)
         {
             isDown = true;
+            GetComponent<BoxCollider2D>().isTrigger = true;
+            rb.isKinematic = true;
             Debug.Log("Down");
         }
     }
