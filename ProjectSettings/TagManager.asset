@@ -12,6 +12,7 @@ TagManager:
   - TopRope
   - BottRope
   - Trigger
+  - Sling
   layers:
   - Default
   - TransparentFX

@@ -19,5 +19,13 @@ public class Locker_Collision : MonoBehaviour
             //change sprite
             spR.color = Color.green;
         }
+        if(col.gameObject.layer == 9)
+        {
+            print("collide");
+            Destroy(col.gameObject);
+            //increase 200 point per each
+            //change sprite
+            spR.color = Color.green;
+        }
     }
 }

@@ -13,7 +13,7 @@ public partial class Player
             isTwoHanded = true;
             currentState = PlayerState.TwoHanded;
         }*/
-        switch (currentState)
+        switch (CurrentState)
         {
             case PlayerState.TwoHanded:
                 canGetPointFromEnemy = false;
@@ -39,7 +39,7 @@ public partial class Player
         if (isNewState && isTwoHanded)
         {
             StopAllCoroutines();
-            WaitToChangeState(currentState, true);
+            WaitToChangeState(CurrentState, true);
             isNewState = false;
         }
 
@@ -73,7 +73,7 @@ public partial class Player
                     Vector2 pos = transform.position;
                     pos.x += 0.4f;
                     transform.position = pos;
-                    StartCoroutine(WaitToChangeState(currentState)); //canChangeToReach = true, after 0.5f sec.
+                    StartCoroutine(WaitToChangeState(CurrentState)); //canChangeToReach = true, after 0.5f sec.
                 }
 
             }
@@ -88,7 +88,7 @@ public partial class Player
                     Vector2 pos = transform.position;
                     pos.x -= 0.4f;
                     transform.position = pos;
-                    StartCoroutine(WaitToChangeState(currentState)); //canChangeToReach = ture, after 0.5f sec.
+                    StartCoroutine(WaitToChangeState(CurrentState)); //canChangeToReach = ture, after 0.5f sec.
                 }
             }
         }
@@ -179,8 +179,8 @@ public partial class Player
             pos.x += GetDistanceToReachVineCloser();
             transform.position = pos;
             canReach = false;
-            StartCoroutine(WaitToChangeState(currentState, true));
-            StartCoroutine(WaitToChangeState(currentState));
+            StartCoroutine(WaitToChangeState(CurrentState, true));
+            StartCoroutine(WaitToChangeState(CurrentState));
         }
         else if (canReach && horizontalOnVine02 < 0 && transform.rotation == Quaternion.Euler(0, -180, 0)) //Two-Handed L to Reach L
         {
@@ -191,8 +191,8 @@ public partial class Player
             pos.x -= GetDistanceToReachVineCloser();
             transform.position = pos;
             canReach = false;
-            StartCoroutine(WaitToChangeState(currentState, true));
-            StartCoroutine(WaitToChangeState(currentState));
+            StartCoroutine(WaitToChangeState(CurrentState, true));
+            StartCoroutine(WaitToChangeState(CurrentState));
         }
 
         //check if dual-handed and try to get back to two-handed
@@ -290,9 +290,9 @@ public partial class Player
     #region Handle States Methods
     private void TransitState(PlayerState newState)
     {
-        if (newState != currentState)
+        if (newState != CurrentState)
         {
-            currentState = newState;
+            CurrentState = newState;
             isNewState = true;
         }
     }
@@ -301,13 +301,13 @@ public partial class Player
     {
         yield return new WaitForSeconds(0.2f);
         PlayerState newState = new PlayerState();
-        if (currentState == PlayerState.TwoHanded)
+        if (CurrentState == PlayerState.TwoHanded)
         {
             newState = PlayerState.DualHanded;
             canFlip = false;
            
         }
-        else if (currentState == PlayerState.DualHanded)
+        else if (CurrentState == PlayerState.DualHanded)
         {
             isDualHanded = false;
             canChangeToReach = false;
@@ -350,12 +350,12 @@ public partial class Player
     {
         yield return new WaitForSeconds(0.5f);
         //canFlip = check;
-        if (this.currentState == PlayerState.DualHanded)
+        if (this.CurrentState == PlayerState.DualHanded)
         {
             canGetOffVine = true;
             
         }
-        else if (this.currentState == PlayerState.TwoHanded)
+        else if (this.CurrentState == PlayerState.TwoHanded)
         {
             print("canFlip");
             //canFlip = true;

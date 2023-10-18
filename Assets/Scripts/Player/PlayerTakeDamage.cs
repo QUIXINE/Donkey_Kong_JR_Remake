@@ -12,6 +12,7 @@ namespace TakeDamage
         private Player player;
         private Rigidbody2D rb;
         private CapsuleCollider2D capsuleCollider;
+        [SerializeField] private float dieHeight = -3.95f;
 
         private void Start() 
         {
@@ -39,9 +40,9 @@ namespace TakeDamage
             if(PlayerHealth.Instance.health > 0 && PlayerHealth.Instance.health > 1)
             {
                 animator.SetBool("Die", true);
-                Enemy[] enemies = FindObjectsOfType<Enemy>();   //Script that makes enemy moves
+                Enemy_Moving[] enemies = FindObjectsOfType<Enemy_Moving>();   //Script that makes enemy moves
                 Fruit[] fruits = FindObjectsOfType<Fruit>();
-                foreach(Enemy enemy in enemies)
+                foreach(Enemy_Moving enemy in enemies)
                 {
                     enemy.enabled = false;
                 }
@@ -59,10 +60,10 @@ namespace TakeDamage
             else if(PlayerHealth.Instance.health == 1) //life at 1 to 0
             {
                 animator.SetBool("Die", true);
-                Enemy[] enemies = FindObjectsOfType<Enemy>();   //Script that makes enemy moves
+                Enemy_Moving[] enemies = FindObjectsOfType<Enemy_Moving>();   //Script that makes enemy moves
                 Fruit[] fruits = FindObjectsOfType<Fruit>();
                 Player player = (Player)FindObjectOfType(typeof(Player));
-                foreach(Enemy enemy in enemies)
+                foreach(Enemy_Moving enemy in enemies)
                 {
                     enemy.enabled = false;
                 }
@@ -80,8 +81,9 @@ namespace TakeDamage
         //Fall from height
         private void FallFromHeight()
         {
-            if (rb.velocity.y < -3.95f && player.IsGroundedChecker())
+            if (rb.velocity.y < dieHeight && player.IsGroundedChecker())
             {
+                print(rb.velocity.y);
                 TakeDamage();
                 rb.velocity = Vector2.zero;
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [SelectionBase]
 
-public class Enemy : MonoBehaviour
+public class Enemy_Moving : MonoBehaviour
 {
     public Transform posUnderPlayer;
     [SerializeField] private float elapsedTime;

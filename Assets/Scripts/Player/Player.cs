@@ -30,7 +30,7 @@ sealed public partial class Player : MonoBehaviour
     private bool facingRight;       //Flipping
 
     //State
-    PlayerState currentState;
+    public PlayerState CurrentState {get; private set;}
     private bool isTwoHanded;
     private bool isDualHanded;
 
@@ -60,7 +60,10 @@ sealed public partial class Player : MonoBehaviour
     [SerializeField] private Transform vineCheckPosOnHead;
     [SerializeField] private Transform vineCheckPosDualHand01, vineCheckPosDualHand02;
     [SerializeField] private float rayDistanceOnBody;
-    [SerializeField] private float radiusCheckOnHand;
+    [Tooltip("length of x axis, has 'Vine Check Position On Head' as the center pivot")]
+    [SerializeField] private float xlengthCheckOnHead;
+    [Tooltip("radius of 'Vine Check Position On DualHand02' used in OverlapCircle to check if player is two-handed")]
+    [SerializeField] private float radiusCheckOnDualHand02; //used in IsTwoHanded()
     [SerializeField] private float rayDistanceOnHand;
     [SerializeField] private float rayDistanceGetCloseToVine;
     private bool canChangeToReach;
@@ -97,7 +100,7 @@ sealed public partial class Player : MonoBehaviour
         canGetToAnotherVine = false;
         canReachVineCloser = true;
         checkGravityVineExit = false;
-        currentState = PlayerState.Idle;
+        CurrentState = PlayerState.Idle;
         canFlip = true;
         isDualHanded = false;
         canGetPointFromEnemy = false;
@@ -122,19 +125,19 @@ sealed public partial class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        if(currentState == PlayerState.TwoHanded)
+        if(CurrentState == PlayerState.TwoHanded)
             TwoHandedClimb();
-        if(currentState == PlayerState.DualHanded)
+        if(CurrentState == PlayerState.DualHanded)
             DualHandedClimb();
     }
 
     private void GetInput()
     {
-        if (currentState != PlayerState.DualHanded)
+        if (CurrentState != PlayerState.DualHanded)
         {
             isDualHanded = false;
         }
-        else if (currentState == PlayerState.DualHanded) { isDualHanded = true; }
+        else if (CurrentState == PlayerState.DualHanded) { isDualHanded = true; }
         /* if (IsGrounded())*/ //Problem: only get input while on the ground, this makes when not on ground player move on itself because it takes the last input
         if (!IsOnVineChecker() && IsGroundedChecker())
             horizontal = Input.GetAxisRaw("Horizontal"); //--> change to DKHorizontal
@@ -143,7 +146,7 @@ sealed public partial class Player : MonoBehaviour
             horizontal = 0;
         }
 
-        if (IsOnVineChecker() || FoundAnotherVine() && IsTwoHanded() && isTwoHanded && currentState == PlayerState.TwoHanded)
+        if (IsOnVineChecker() || FoundAnotherVine() && IsTwoHanded() && isTwoHanded && CurrentState == PlayerState.TwoHanded)
         {
             horizontalOnVine = Input.GetAxis("Horizontal"); //--> change to DKHorizontal
         }
@@ -163,15 +166,15 @@ sealed public partial class Player : MonoBehaviour
         
         
 
-        if (IsOnVineChecker() && currentState == PlayerState.TwoHanded)
+        if (IsOnVineChecker() && CurrentState == PlayerState.TwoHanded)
         {
             vertical = Input.GetAxisRaw("Vertical");
         }
-        else if (FoundAnotherVine() && currentState == PlayerState.DualHanded)
+        else if (FoundAnotherVine() && CurrentState == PlayerState.DualHanded)
         {
             vertical = Input.GetAxisRaw("Vertical");
         }
-        else if (!FoundAnotherVine() && IsOnVineChecker() && currentState == PlayerState.DualHanded)
+        else if (!FoundAnotherVine() && IsOnVineChecker() && CurrentState == PlayerState.DualHanded)
         {
             vertical = 0;   //prevents value that is still stuck on 1/-1 when got out of the condition
         }
@@ -229,7 +232,7 @@ sealed public partial class Player : MonoBehaviour
                 animator.SetBool("TwoHanded", true);
 
                 //Get into Two-handed state
-                currentState = PlayerState.TwoHanded;
+                CurrentState = PlayerState.TwoHanded;
             }
         }
         
@@ -258,7 +261,7 @@ sealed public partial class Player : MonoBehaviour
                 animator.SetBool("TwoHanded", true);
 
                 //Get into Two-handed state
-                currentState = PlayerState.TwoHanded;
+                CurrentState = PlayerState.TwoHanded;
             }
        }
     }
@@ -298,7 +301,7 @@ sealed public partial class Player : MonoBehaviour
     
     private void TwoHandedClimb()
     {
-        if (IsOnVineChecker() && isOnVine && currentState == PlayerState.TwoHanded)
+        if (IsOnVineChecker() && isOnVine && CurrentState == PlayerState.TwoHanded)
         {
             rb.velocity = new Vector2(rb.velocity.x, (vertical == 1 ? vertical * climbUpSpeed : vertical * climbDownSpeed) * Time.deltaTime);
         }
@@ -308,13 +311,13 @@ sealed public partial class Player : MonoBehaviour
     private void DualHandedClimb()
     {
         //Climb up with faster speed
-        if (FoundAnotherVine() && isOnVine && currentState == PlayerState.DualHanded)
+        if (FoundAnotherVine() && isOnVine && CurrentState == PlayerState.DualHanded)
         {
             
             rb.velocity = new Vector2(rb.velocity.x, (vertical * climbDualHandSpeed) * Time.deltaTime);
             //Problem: if there is this code player can't get off the vine???
         }
-        else if (!FoundAnotherVine() && isOnVine && currentState == PlayerState.DualHanded)
+        else if (!FoundAnotherVine() && isOnVine && CurrentState == PlayerState.DualHanded)
         {
             vertical = 0;
             rb.velocity = new Vector2(rb.velocity.x, (vertical * climbDualHandSpeed) * Time.deltaTime);

@@ -19,13 +19,13 @@ sealed public partial class Player
             //print("hitOnBodyL Check");
             return true;
         }
-        else if(!hitOnBodyL && hitOnBodyR && hitOnBodyR.collider.gameObject.layer == 7 && currentState == PlayerState.TwoHanded)
+        else if(!hitOnBodyL && hitOnBodyR && hitOnBodyR.collider.gameObject.layer == 7 && CurrentState == PlayerState.TwoHanded)
         {
             //print("hitOnBodyR Check");
 
             return true;
         }
-        if (currentState == PlayerState.DualHanded && hitOnHand && hitOnHand.collider.gameObject.layer == 7)
+        if (CurrentState == PlayerState.DualHanded && hitOnHand && hitOnHand.collider.gameObject.layer == 7)
         {
             //print("IsOnVine2 Check");
             return true;
@@ -45,7 +45,7 @@ sealed public partial class Player
     private bool IsTwoHanded()
     {
         //Here DualHanded02
-        if (Physics2D.OverlapCircle(vineCheckPosDualHand02.position, radiusCheckOnHand, vineLayerMask))
+        if (Physics2D.OverlapCircle(vineCheckPosDualHand02.position, radiusCheckOnDualHand02, vineLayerMask))
         {
             //print("Check");
             return true;
@@ -77,12 +77,12 @@ sealed public partial class Player
     public bool IsGroundedChecker()
     {
         //return Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, groundLayerMask);
-        return Physics2D.OverlapBox(groundCheckPos.position, new Vector3(0.8f, 0f, 0f), 0, groundLayerMask);
+        return Physics2D.OverlapBox(groundCheckPos.position, new Vector2(0.2f, 0.05f), 0, groundLayerMask);
     }
     private bool CollideVineOnHead()
     {
         //check if player jump from under of vine
-        return Physics2D.OverlapBox(vineCheckPosOnHead.position, new Vector3(0.1f,0,0), 0,vineLayerMask);
+        return Physics2D.OverlapBox(vineCheckPosOnHead.position, new Vector3(xlengthCheckOnHead,0,0), 0,vineLayerMask);
     }
     #endregion
     
@@ -209,7 +209,7 @@ sealed public partial class Player
     private bool DistanceToReachVineCloserChecker()
     {
         RaycastHit2D hitInfo;
-        if (currentState == PlayerState.DualHanded)
+        if (CurrentState == PlayerState.DualHanded)
         {
             hitInfo = Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceGetCloseToVine, vineLayerMask);
             float distance = hitInfo.distance;
@@ -325,7 +325,7 @@ sealed public partial class Player
         //print("check");//
 
         RaycastHit2D hitOnBody;
-        if (currentState == PlayerState.TwoHanded)
+        if (CurrentState == PlayerState.TwoHanded)
         {
                 //Two-Handed L
             if (transform.rotation == Quaternion.Euler(0, -180, 0) || transform.rotation == Quaternion.Euler(0, 180, 0)) //Move from Dual-Handed L to Two-handed R
@@ -365,7 +365,7 @@ sealed public partial class Player
                 }*/
             }
         }
-        else if (currentState == PlayerState.DualHanded)
+        else if (CurrentState == PlayerState.DualHanded)
         {
             if (transform.rotation == Quaternion.Euler(0, -180, 0) || transform.rotation == Quaternion.Euler(0, 180, 0)) //Move from  Two-handed R to Dual-Handed R 
             {
@@ -408,7 +408,7 @@ sealed public partial class Player
 
 
         //Get Close to vine check while Two-Handed and Dual-Handed to solve hand is not on the vine
-        if (transform.rotation == Quaternion.Euler(0, -180, 0) && isTwoHanded && currentState == PlayerState.TwoHanded && IsOnVineChecker())    //Two-Handed L
+        if (transform.rotation == Quaternion.Euler(0, -180, 0) && isTwoHanded && CurrentState == PlayerState.TwoHanded && IsOnVineChecker())    //Two-Handed L
         {
             print("back03");
 
@@ -416,7 +416,7 @@ sealed public partial class Player
             pos.x += GetClose();
             transform.position = pos;
         }
-        else if (transform.rotation == Quaternion.Euler(0, 0, 0) && isTwoHanded && currentState == PlayerState.TwoHanded && IsOnVineChecker())  //Two-Handed R
+        else if (transform.rotation == Quaternion.Euler(0, 0, 0) && isTwoHanded && CurrentState == PlayerState.TwoHanded && IsOnVineChecker())  //Two-Handed R
         {
             print("back04");
 
@@ -424,7 +424,7 @@ sealed public partial class Player
             pos.x -= GetClose();
             transform.position = pos;
         }
-        else if (DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, 0, 0) && currentState == PlayerState.DualHanded && animator.GetBool("DualHand")) //Dual-Handed L
+        else if (DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, 0, 0) && CurrentState == PlayerState.DualHanded && animator.GetBool("DualHand")) //Dual-Handed L
         {
             print("back01");
             Vector2 pos = transform.position;
@@ -432,7 +432,7 @@ sealed public partial class Player
             transform.position = pos;
             canReachVineCloser = false;
         }
-        else if (DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, -180, 0) && currentState == PlayerState.DualHanded && animator.GetBool("DualHand"))  //Dual-Handed R
+        else if (DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, -180, 0) && CurrentState == PlayerState.DualHanded && animator.GetBool("DualHand"))  //Dual-Handed R
         {
             print("back02");
             Vector2 pos = transform.position;
@@ -446,6 +446,7 @@ sealed public partial class Player
     {
         if (IsGroundedChecker())
         {
+            print("On Ground");
             animator.SetBool("Jump", false);
             animator.SetBool("DualHand", false);
             animator.SetBool("TwoHanded", false);
@@ -457,7 +458,7 @@ sealed public partial class Player
             isOnVine = false;
             isTwoHanded = false;
             rayDistanceGetCloseToVine = 0.1f;
-            currentState = PlayerState.Idle;
+            CurrentState = PlayerState.Idle;
         }
         if(IsGroundedChecker() && rb.velocity.y <= 0)
         {
@@ -469,8 +470,8 @@ sealed public partial class Player
     //Q: What is this method for?
     private void IsOnVine()
     {
-        if(isOnVine)
-        rayDistanceGetCloseToVine = 0.6f;
+        if(isOnVine && !FoundAnotherVine())
+        rayDistanceGetCloseToVine = 0.5f;
     }
 
     private void OnVineGravityCheck()
@@ -525,7 +526,7 @@ sealed public partial class Player
             animator.SetBool("StopJump", true);
             animator.SetBool("Jump", false);
             //Vector2 value depends on height of moving platform in scene 2
-            rb.AddForce(((new Vector2(facingRight ? 1 : -1, 6)) * jumpPadForce) * Time.deltaTime);
+            rb.AddForce(new Vector2(facingRight ? 2 : -2, 6) * jumpPadForce);
             /*//rb.AddForce(((Vector2.up * jumpPadForce)) * Time.deltaTime , ForceMode2D.Impulse) ;
             //rb.AddForce((anglePoint * jumpPadForce) * Time.deltaTime, ForceMode2D.Impulse);
             //rb.AddForce(((anglePoint * jumpPadForce)) * Time.deltaTime , ForceMode2D.Impulse);
@@ -578,16 +579,19 @@ sealed public partial class Player
         Gizmos.color = Color.blue;
         //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
         //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-        Gizmos.DrawCube(groundCheckPos.position, new Vector3(0.8f, 0, 0));
+        Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(0.2f, 0, 0));
         // Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(1f, 1f, 0));
-        Gizmos.DrawWireSphere(groundCheckPos.position, 0.7f);
+        //Gizmos.DrawWireSphere(groundCheckPos.position, 0.7f);
         //Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(vineCheckPosOnHead.position, new Vector3(0.1f, 0, 0));
+        Gizmos.DrawWireCube(vineCheckPosOnHead.position, new Vector3(xlengthCheckOnHead, 0, 0));
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(vineCheckPosDualHand01.position, Vector2.right * rayDistanceGetCloseToVine);
 
         Gizmos.DrawRay(vineCheckPosBody.position, vineCheckPosBody.right * 0.3f);
-        Gizmos.DrawRay(groundCheckPos.position, -groundCheckPos.up * 2f);
+        //Gizmos.DrawRay(groundCheckPos.position, -groundCheckPos.up * 2f);
     }
 }
 }

@@ -59,11 +59,11 @@ public class GameState : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         //inactivate Mario, fruits, enemies, DK jr.
-        Enemy[] enemies =   FindObjectsOfType<Enemy>(); 
+        Enemy_Moving[] enemies =   FindObjectsOfType<Enemy_Moving>(); 
         Fruit[] fruits  =   FindObjectsOfType<Fruit>(); 
         Player  player  =   FindObjectOfType<Player>();
         Mario mario     =   FindObjectOfType<Mario>();
-        foreach(Enemy enemy in enemies)
+        foreach(Enemy_Moving enemy in enemies)
         {
             enemy.gameObject.SetActive(false);
         }
