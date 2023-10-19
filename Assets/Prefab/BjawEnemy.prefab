@@ -88,10 +88,10 @@ GameObject:
   - component: {fileID: 3449391124033210459}
   - component: {fileID: 189584289784059799}
   - component: {fileID: 7890784546514980615}
-  - component: {fileID: 7551116982264113154}
+  - component: {fileID: 3301214872611183008}
   - component: {fileID: 2968408460994234130}
   m_Layer: 0
-  m_Name: RjawEnemy
+  m_Name: BjawEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.875}
   m_EdgeRadius: 0
---- !u!114 &7551116982264113154
+--- !u!114 &3301214872611183008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,16 +219,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7781890384665624691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42299fcf12eb784ab9373117b2bf678, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a3edf29971c20645b84b67aa031cf49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 64
-  box2d: {fileID: 5738102010937494093}
-  Timeremain: 0.25
+    m_Bits: 0
+  box2d: {fileID: 0}
+  Timeremain: 2
   anim: {fileID: 0}
-  WalkSpeed: 2
+  WalkSpeed: 0
 --- !u!50 &2968408460994234130
 Rigidbody2D:
   serializedVersion: 4

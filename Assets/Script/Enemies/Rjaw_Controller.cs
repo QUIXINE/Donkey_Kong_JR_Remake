@@ -154,6 +154,7 @@ public class Rjaw_Controller : MonoBehaviour
              Debug.Log("Down");
              GetComponent<BoxCollider2D>().isTrigger = true;
 
+
          }
          /*if (RndNumUD <= 3)
          {
