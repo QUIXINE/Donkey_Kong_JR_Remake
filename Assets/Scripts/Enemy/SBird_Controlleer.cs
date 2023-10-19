@@ -67,6 +67,7 @@ public class SBird_Controlleer : MonoBehaviour
             isDown = false;
             isMoveL = true;
             collision.gameObject.SetActive(false);
+            
         }
 
         if (collision.CompareTag("BottRope"))
@@ -104,6 +105,7 @@ public class SBird_Controlleer : MonoBehaviour
     private void LEFT()
     {
         transform.position = transform.position + new Vector3(-1 * WalkSpeed * Time.deltaTime, 0, 0);
+        transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
     }
 
 }

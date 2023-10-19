@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 10b713b61de403648b510eba118a8d55
+=======
+guid: f7877b71dbe4d8c45be32ac704a9bb4a
+>>>>>>> Enemies
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,8 +128,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 802e71e120ba8e0488b350b5e9028162
       internalID: 1499261052
+=======
+      spriteID: deb62ef662e10584fae498ce2f5d7699
+      internalID: -1368580946
+>>>>>>> Enemies
       vertices: []
       indices: 
       edges: []
@@ -145,8 +154,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 79cfde17d30bd6649a9d760aebba6731
       internalID: 2000591733
+=======
+      spriteID: f1559788f3ee1b9428ee8c35df842f81
+      internalID: -1485089957
+>>>>>>> Enemies
       vertices: []
       indices: 
       edges: []
@@ -162,8 +176,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+<<<<<<< HEAD
       Cage_Papa_0: 1499261052
       Cage_Papa_1: 2000591733
+=======
+      Cage_Papa_0: -1368580946
+      Cage_Papa_1: -1485089957
+>>>>>>> Enemies
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

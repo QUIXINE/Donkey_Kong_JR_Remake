@@ -6,8 +6,12 @@ using UnityEngine;
 
 public class Rjaw_Controller : MonoBehaviour
 {
+    //Layer
+    [SerializeField] private LayerMask GroundLayer;
+    //Box
+    public BoxCollider2D box2d;
     //Rigidbody
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
     //Timer
     public float Timeremain = 2;
     //Animation
@@ -22,13 +26,22 @@ public class Rjaw_Controller : MonoBehaviour
     private bool isMove = false;
     private bool isDown = false;
     private bool isBott = false;
-    private bool isEnd = false;
+    private bool isUp = false;
+    private bool isUpper = false;
 
     void Start()
     {
         anim = GetComponent<Animation>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (!IsGround())
+        {
+            Back();
+        }
+    }
     private void FixedUpdate()
     {
         if(runyet == false)
@@ -51,6 +64,11 @@ public class Rjaw_Controller : MonoBehaviour
             {
                 Up();
             }
+            if (isUp == true)
+            {
+                Up();
+            }
+
             
         }
         
@@ -74,16 +92,16 @@ public class Rjaw_Controller : MonoBehaviour
 
         {
 
-                if (RndNumLF >= 1)
+                if (RndNumLF == 1)
                 {
                     transform.position = transform.position + new Vector3(-1 * WalkSpeed * Time.deltaTime, 0, 0);
-                
+                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
 
-                }
+            }
                 if (RndNumLF == 0)
                 {
                     transform.position = transform.position + new Vector3(1 * WalkSpeed * Time.deltaTime, 0, 0);
-                
+                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
             }
         }
 
@@ -102,10 +120,24 @@ public class Rjaw_Controller : MonoBehaviour
 
     private void Up()
     {
-        if (isBott == true)
+        if (isBott == true || isUp == true)
         {
             isMove = false;
             transform.position = new Vector3(ObjectRope.transform.position.x, transform.position.y + (0.5f * (WalkSpeed * Time.deltaTime)), ObjectRope.transform.position.z);
+        }
+    }
+
+    private void Back() 
+    {
+       if (RndNumLF == 1)
+        {
+            RndNumLF = 0;
+
+        }
+        else
+        {
+            RndNumLF = 1;
+
         }
     }
 
@@ -115,12 +147,40 @@ public class Rjaw_Controller : MonoBehaviour
     }
     private void RndUD()
     {
-        RndNumUD = Random.Range(0, 6);
-        if (RndNumUD >= 4)
+            RndNumUD = Random.Range(0, 10);
+         if (RndNumUD >= 7)
+         {
+             isDown = true;
+             Debug.Log("Down");
+             GetComponent<BoxCollider2D>().isTrigger = true;
+
+
+         }
+         /*if (RndNumUD <= 3)
+         {
+        isUp = true;
+             GetComponent<BoxCollider2D>().isTrigger = true;
+             Debug.Log("Up");
+         }*/
+    }
+
+    private bool IsGround()
+    {
+        float Height = 1f;
+
+        RaycastHit2D rayhit = Physics2D.Raycast(box2d.bounds.center, Vector2.down, box2d.bounds.extents.y + Height, GroundLayer);
+        Color rayColor;
+        if (rayhit.collider != null)
         {
-            isDown = true;
-            Debug.Log("Down");
+            rayColor = Color.green;
+            
+        }else
+        {
+            rayColor= Color.red;
         }
+
+        Debug.DrawRay(box2d.bounds.center, Vector2.down * (box2d.bounds.extents.y + Height), rayColor);
+        return rayhit.collider != null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -133,7 +193,7 @@ public class Rjaw_Controller : MonoBehaviour
                 RndUD();
                 Debug.Log("UD" + RndNumUD);
                 Debug.Log("LF" + RndNumLF);
-
+                isMove = true;
                 ObjectRope = collision.gameObject;
                 Debug.Log(ObjectRope);
             }
@@ -146,6 +206,7 @@ public class Rjaw_Controller : MonoBehaviour
             }
 
 
+
         }
 
         if (collision.CompareTag("Fruit"))
@@ -156,15 +217,28 @@ public class Rjaw_Controller : MonoBehaviour
 
         }
 
-        if (collision.CompareTag("BottRope"))
+        if (collision.CompareTag("BottRope") && !IsGround())
         {
             isBott = true;
             isDown = false;
         }
-
-        if (collision.CompareTag("End"))
+       /* if (collision.CompareTag("Trigger") && IsGround())
         {
-            transform.position = transform.position + new Vector3(transform.position.x * (-1 * WalkSpeed * Time.deltaTime), 0, 0); ;
+            if (isUp == true)
+            {
+                ObjectRope = collision.gameObject;
+                transform.position = new Vector3(ObjectRope.transform.position.x, ObjectRope.transform.position.y, ObjectRope.transform.position.z);
+                isUp = false;
+                isMove = true;
+                isUpper = false;
+            }
+            if (isUp == false)
+            {
+                ObjectRope = collision.gameObject;
+                isDown = true;
+                isMove = false;
+            }*/
+
         }
+
     }
-}

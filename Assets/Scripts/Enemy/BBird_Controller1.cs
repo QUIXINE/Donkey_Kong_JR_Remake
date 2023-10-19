@@ -59,8 +59,8 @@ public class RedSpark_Controller : MonoBehaviour
         
         
         waypoint1 = GameMaster.Instance.waypoints1;
-        
-            transform.position = Vector3.MoveTowards(transform.position, waypoint1[index].transform.position, WalkSpeed * Time.deltaTime);
+
+        transform.position = Vector3.MoveTowards(transform.position, waypoint1[index].transform.position, WalkSpeed * Time.deltaTime);
 
 
     }

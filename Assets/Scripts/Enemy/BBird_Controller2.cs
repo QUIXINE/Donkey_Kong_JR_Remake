@@ -60,7 +60,6 @@ public class BBird_Controller2 : MonoBehaviour
 
         waypoint2 = GameMaster.Instance.waypoints2;
 
-
         transform.position = Vector3.MoveTowards(transform.position, waypoint2[index].transform.position, WalkSpeed * Time.deltaTime);
 
     }
