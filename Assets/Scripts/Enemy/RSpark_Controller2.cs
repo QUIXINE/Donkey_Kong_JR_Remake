@@ -23,11 +23,12 @@ public class RSpark_Controller2 : MonoBehaviour
     private void Start()
     {
         mc = FindObjectOfType<Mario_Controller>();
+        GameMaster GS = GetComponent<GameMaster>();
     }
 
     private void Update()
     {
-        GameMaster GS = GetComponent<GameMaster>();
+
 
         MoveToWaypoint(currentWaypointIndex);
 
@@ -72,13 +73,6 @@ public class RSpark_Controller2 : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.CompareTag("Fruit"))
-        {
 
-            /* StartCoroutine(WaitAnim());*/
-            Destroy(gameObject);
-
-        }
     }
-
 }

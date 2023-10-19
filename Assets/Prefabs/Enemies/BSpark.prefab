@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8290707481490504163}
   - component: {fileID: 189876933982005259}
+  - component: {fileID: 1075110200886176295}
   - component: {fileID: 3130845185338917279}
-  - component: {fileID: 4973660474700551420}
   - component: {fileID: 2259088000039550099}
   m_Layer: 0
   m_Name: BSpark
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.46, y: 1.08, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,6 +87,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1075110200886176295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5017209011645746203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058fdf0929b599f4397d00d924e9ce40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Timeremain: 2
+  anim: {fileID: 0}
+  WalkSpeed: 1.5
+  waypoint1: []
 --- !u!58 &3130845185338917279
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -122,22 +138,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4375
---- !u!114 &4973660474700551420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5017209011645746203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5861904f6dec3428b09154a3f70f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Timeremain: 2
-  anim: {fileID: 0}
-  WalkSpeed: 5
-  waypoint1: []
 --- !u!50 &2259088000039550099
 Rigidbody2D:
   serializedVersion: 4

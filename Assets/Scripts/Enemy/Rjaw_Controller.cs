@@ -17,6 +17,7 @@ public class Rjaw_Controller : MonoBehaviour
     //Animation
     public Animation anim;
     //variable
+    private int dirX ;
     private GameObject ObjectRope;
     private float TimeLaunch;
     public float WalkSpeed;
@@ -25,14 +26,16 @@ public class Rjaw_Controller : MonoBehaviour
     private bool runyet = false;
     private bool isMove = false;
     private bool isDown = false;
-    private bool isBott = false;
+    public bool isBott = false;
     private bool isUp = false;
     private bool isUpper = false;
+    private bool isflip = false;
 
     void Start()
     {
         anim = GetComponent<Animation>();
         rb = GetComponent<Rigidbody2D>();
+        RndLF();
     }
 
     private void Update()
@@ -52,9 +55,11 @@ public class Rjaw_Controller : MonoBehaviour
 
         if (runyet == true)
         {
+            
             if(isMove == true)
             {
                 LeftRight();
+                flip();
             }
             if(isDown == true)
             {
@@ -94,14 +99,16 @@ public class Rjaw_Controller : MonoBehaviour
 
                 if (RndNumLF == 1)
                 {
-                    transform.position = transform.position + new Vector3(-1 * WalkSpeed * Time.deltaTime, 0, 0);
-                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                dirX = 1;
+                 rb.velocity = new Vector2 (dirX * WalkSpeed, rb.velocity.y);
+                isflip = false;
 
             }
                 if (RndNumLF == 0)
                 {
-                    transform.position = transform.position + new Vector3(1 * WalkSpeed * Time.deltaTime, 0, 0);
-                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                dirX = -1;
+                rb.velocity = new Vector2(dirX * WalkSpeed, rb.velocity.y);
+                isflip = true;
             }
         }
 
@@ -113,7 +120,8 @@ public class Rjaw_Controller : MonoBehaviour
         if (isBott == false)
         {
             isMove = false;
-            transform.position = new Vector3(ObjectRope.transform.position.x, transform.position.y + (-1.5f * (WalkSpeed * Time.deltaTime)), ObjectRope.transform.position.z);
+            transform.position = new Vector2(ObjectRope.transform.position.x, transform.position.y + (-1.5f * (WalkSpeed * Time.deltaTime)));
+            Debug.Log("Dowm");
         }
 
     }
@@ -123,7 +131,7 @@ public class Rjaw_Controller : MonoBehaviour
         if (isBott == true || isUp == true)
         {
             isMove = false;
-            transform.position = new Vector3(ObjectRope.transform.position.x, transform.position.y + (0.5f * (WalkSpeed * Time.deltaTime)), ObjectRope.transform.position.z);
+            transform.position = new Vector3(ObjectRope.transform.position.x, transform.position.y + (1f * (WalkSpeed * Time.deltaTime)), transform.position.z);
         }
     }
 
@@ -138,6 +146,20 @@ public class Rjaw_Controller : MonoBehaviour
         {
             RndNumLF = 1;
 
+        }
+    }
+
+    void flip()
+    {
+        if (!isflip)
+        {
+            if (transform.localScale.x < 0)
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
+        if (isflip)
+        {
+            if (transform.localScale.x > 0)
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
     }
 
@@ -166,7 +188,7 @@ public class Rjaw_Controller : MonoBehaviour
 
     private bool IsGround()
     {
-        float Height = 1f;
+        float Height = 0.3f;
 
         RaycastHit2D rayhit = Physics2D.Raycast(box2d.bounds.center, Vector2.down, box2d.bounds.extents.y + Height, GroundLayer);
         Color rayColor;
@@ -187,6 +209,7 @@ public class Rjaw_Controller : MonoBehaviour
     {
         if (collision.CompareTag("TopRope"))
         {
+            Debug.Log("HIT");
             if (isBott == false)
             {
                 RndLF();
@@ -200,7 +223,7 @@ public class Rjaw_Controller : MonoBehaviour
 
             if(isBott == true && isDown == false)
             {
-                transform.position = new Vector3(ObjectRope.transform.position.x, ObjectRope.transform.position.y, ObjectRope.transform.position.z);
+                transform.position = new Vector3(ObjectRope.transform.position.x, ObjectRope.transform.position.y, transform.position.z);
                 isBott = false;
                 isMove = true;
             }
@@ -209,13 +232,7 @@ public class Rjaw_Controller : MonoBehaviour
 
         }
 
-        if (collision.CompareTag("Fruit"))
-        {
 
-            /* StartCoroutine(WaitAnim());*/
-           Destroy(gameObject);
-
-        }
 
         if (collision.CompareTag("BottRope") && !IsGround())
         {

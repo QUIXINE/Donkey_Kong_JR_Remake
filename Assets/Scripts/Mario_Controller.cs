@@ -16,10 +16,12 @@ public class Mario_Controller : MonoBehaviour
     public float timer = 0.0f;
     public float Timeremain = 2f;
     public bool Spawnyet = false;
+    public bool SpawnRedyet = false;
     private int RndNum;
     public bool ActiveBbird;
     public bool ActiveSpark;
     public bool ActiveSpawnOnePattern;
+    public bool ActiveThree;
 
     private void Start()
     {
@@ -39,6 +41,10 @@ public class Mario_Controller : MonoBehaviour
         if (ActiveSpawnOnePattern)
         {
             OneWait();
+        }
+        if (ActiveThree)
+        {
+            ThreeWait();
         }
     }
 
@@ -82,6 +88,30 @@ public class Mario_Controller : MonoBehaviour
         }
 
     }
+    void ThreeWait()
+    {
+        timer += Time.deltaTime;
+        if (timer >= Timeremain && Pattern == 1)
+        {
+            SpawnEnemy();
+            timer = 0.0f;
+            Pattern = 2;
+        }
+
+        if (timer >= Timeremain && Pattern == 2)
+        {
+            SpawnEnemy1();
+            timer = 0.0f;
+            Pattern = 1;
+        }
+        if (SpawnRedyet == false)
+        {
+            SpawnEnemy2();
+            SpawnRedyet = true;
+        }
+
+    }
+
 
     void WaitSpark()
     {

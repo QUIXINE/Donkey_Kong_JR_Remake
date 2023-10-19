@@ -13,12 +13,18 @@ public class SBird_Controlleer : MonoBehaviour
     public Animation anim;
     //variable
     public GameObject SpawnEgg;
+    private int dirX;
+    private int dirY;
     public float WalkSpeed;
     private bool runyet = false;
     public bool isMoveR = false;
     private bool isMoveL = false;
     private bool isDown = false;
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
@@ -76,11 +82,6 @@ public class SBird_Controlleer : MonoBehaviour
             isMoveL = true;
             Instantiate(SpawnEgg, transform.position, Quaternion.identity);
         }
-
-        if (collision.CompareTag("Fruit"))
-        {
-            Destroy(gameObject);
-        }
         if (collision.CompareTag("End"))
         {
             Destroy(gameObject);
@@ -91,7 +92,9 @@ public class SBird_Controlleer : MonoBehaviour
     {
         if(isDown == false)
         {
-            transform.position = transform.position + new Vector3(1 * WalkSpeed * Time.deltaTime, 0, 0);
+            dirX = 1;
+            rb.velocity = new Vector2(dirX * WalkSpeed, rb.velocity.y);
+            Debug.Log("Go");
         }
 
         runyet = true;
@@ -99,13 +102,17 @@ public class SBird_Controlleer : MonoBehaviour
 
     private void DOWN()
     {
-        transform.position = transform.position + new Vector3(0, -1 * WalkSpeed * Time.deltaTime, 0);
+        dirX = 0;
+        rb.velocity = new Vector2(dirX * WalkSpeed, rb.velocity.y);
+        transform.position = new Vector2(transform.position.x, transform.position.y + (-1.5f * (WalkSpeed * Time.deltaTime)));
         isMoveR = false;
     }
     private void LEFT()
     {
-        transform.position = transform.position + new Vector3(-1 * WalkSpeed * Time.deltaTime, 0, 0);
-        transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        dirX = -1;
+        rb.velocity = new Vector2(dirX * WalkSpeed, rb.velocity.y);
+        if(transform.localScale.x >= 0)
+        transform.localScale = new Vector3(transform.localScale.x * - 1, transform.localScale.y, transform.localScale.z);
     }
 
 }

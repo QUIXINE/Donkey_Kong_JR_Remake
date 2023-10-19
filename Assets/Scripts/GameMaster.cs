@@ -7,6 +7,7 @@ public class GameMaster : MonoBehaviour
 {
     public bool onepattern;
     public bool twopattern;
+    public bool threepattern;
     public bool fourpattern;
     public GameObject[] waypoints1;
     public GameObject W1;
@@ -64,7 +65,29 @@ public class GameMaster : MonoBehaviour
                 waypoints2[i] = W2.transform.GetChild(i).gameObject;
             }
         }
-        if(fourpattern)
+        if (threepattern)
+        {
+            totalway1 = W1.transform.childCount;
+            totalway2 = W2.transform.childCount;
+            totalway3 = W3.transform.childCount;
+            waypoints1 = new GameObject[totalway1];
+            waypoints2 = new GameObject[totalway2];
+            waypoints3 = new GameObject[totalway3];
+            for (int i = 0; i < totalway1; i++)
+            {
+                waypoints1[i] = W1.transform.GetChild(i).gameObject;
+            }
+
+            for (int i = 0; i < totalway2; i++)
+            {
+                waypoints2[i] = W2.transform.GetChild(i).gameObject;
+            }
+            for (int i = 0; i < totalway3; i++)
+            {
+                waypoints3[i] = W3.transform.GetChild(i).gameObject;
+            }
+        }
+        if (fourpattern)
         {
             totalway1 = W1.transform.childCount;
             totalway2 = W2.transform.childCount;

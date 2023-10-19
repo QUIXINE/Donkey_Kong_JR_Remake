@@ -72,13 +72,6 @@ public class RSpark_Controller : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.CompareTag("Fruit"))
-        {
-
-            /* StartCoroutine(WaitAnim());*/
-            Destroy(gameObject);
-
-        }
     }
 
 }

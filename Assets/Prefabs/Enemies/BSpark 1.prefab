@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8290707481490504163}
   - component: {fileID: 189876933982005259}
-  - component: {fileID: 6155168904333396604}
+  - component: {fileID: 886699548584690090}
   - component: {fileID: 8798911353138369340}
   - component: {fileID: 8511207627980584290}
   m_Layer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.46, y: 1.08, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6155168904333396604
+--- !u!114 &886699548584690090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,12 +96,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5017209011645746203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca724c3e686392a42b5d386f8b553113, type: 3}
+  m_Script: {fileID: 11500000, guid: c2fe1b5cab9103b4aabbb798bf1345e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Timeremain: 2
   anim: {fileID: 0}
-  WalkSpeed: 5
+  WalkSpeed: 1.5
   waypoint2: []
 --- !u!58 &8798911353138369340
 CircleCollider2D:
