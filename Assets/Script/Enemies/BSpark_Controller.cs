@@ -25,7 +25,7 @@ public class BSpark_Controller : MonoBehaviour
         MoveToWaypoint(currentWaypointIndex);
         if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
         {
-            //currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             MoveToWaypoint(currentWaypointIndex);
         }
     }
