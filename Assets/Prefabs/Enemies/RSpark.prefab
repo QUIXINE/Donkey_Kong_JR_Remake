@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 993162383202503303}
   - component: {fileID: 1177510758406279342}
-  - component: {fileID: 3184713316824684613}
   - component: {fileID: 3826319055613298027}
   - component: {fileID: 3381710563180716169}
   - component: {fileID: 8389226636674758450}
-  m_Layer: 0
+  - component: {fileID: 3184713316824684613}
+  - component: {fileID: 5910013327015261858}
+  m_Layer: 8
   m_Name: RSpark
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,21 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3184713316824684613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4330321105624712698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03716c46ace3ed44f845ce416f72367a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints: []
-  way: {fileID: 0}
-  moveSpeed: 2
 --- !u!50 &3826319055613298027
 Rigidbody2D:
   serializedVersion: 4
@@ -200,3 +186,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.0625, y: 0.8125}
   m_Direction: 0
+--- !u!114 &3184713316824684613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330321105624712698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03716c46ace3ed44f845ce416f72367a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  way: {fileID: 0}
+  moveSpeed: 2
+--- !u!114 &5910013327015261858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330321105624712698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102d28c4a54bb5a498eef5db360774cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

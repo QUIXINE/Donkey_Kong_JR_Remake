@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2309101610555514787}
   - component: {fileID: 4570692221081962004}
+  - component: {fileID: 7640083090700762112}
   - component: {fileID: 4274245618684012528}
   - component: {fileID: 5021300428927257445}
-  - component: {fileID: 7640083090700762112}
-  m_Layer: 0
+  - component: {fileID: 482189906722272825}
+  m_Layer: 8
   m_Name: SBirdEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -87,6 +88,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &7640083090700762112
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973256689982447634}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &4274245618684012528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,30 +177,15 @@ MonoBehaviour:
   SpawnEgg: {fileID: 6286060720106648206, guid: aa707cd0c92897f4d897ebba14439bb1, type: 3}
   WalkSpeed: 2
   isMoveR: 0
---- !u!50 &7640083090700762112
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &482189906722272825
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973256689982447634}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102d28c4a54bb5a498eef5db360774cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

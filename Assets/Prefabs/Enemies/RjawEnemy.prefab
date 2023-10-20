@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RjawEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7781890384665624691, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781890384665624691, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7890784546514980615, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1
@@ -72,6 +80,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7781890384665624691, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
       insertIndex: 2
       addedObject: {fileID: 9085543703759519}
+    - targetCorrespondingSourceObject: {fileID: 7781890384665624691, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4288688103565464930}
   m_SourcePrefab: {fileID: 100100000, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
 --- !u!61 &6537647404343471980 stripped
 BoxCollider2D:
@@ -102,3 +113,16 @@ MonoBehaviour:
   Timeremain: 2
   anim: {fileID: 0}
   WalkSpeed: 1
+  isBott: 0
+--- !u!114 &4288688103565464930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143823327142487378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102d28c4a54bb5a498eef5db360774cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -2728,7 +2728,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.40613103, y: 0}
+  m_Offset: {x: -0.4061308, y: 0.50320536}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2739,7 +2739,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 15.26774, y: 1.97}
+  m_Size: {x: 15.26774, y: 0.9635894}
   m_EdgeRadius: 0
 --- !u!212 &550886694
 SpriteRenderer:
@@ -5675,6 +5675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onepattern: 0
   twopattern: 0
+  threepattern: 0
   fourpattern: 1
   waypoints1: []
   W1: {fileID: 1878819371}
@@ -7620,7 +7621,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.40613103, y: 0}
+  m_Offset: {x: -0.4061308, y: 0.6370681}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7631,7 +7632,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 15.26774, y: 1.97}
+  m_Size: {x: 15.26774, y: 0.69586384}
   m_EdgeRadius: 0
 --- !u!212 &1677948023
 SpriteRenderer:
@@ -10348,9 +10349,11 @@ MonoBehaviour:
   timer: 0
   Timeremain: 2
   Spawnyet: 0
+  SpawnRedyet: 0
   ActiveBbird: 0
   ActiveSpark: 1
   ActiveSpawnOnePattern: 0
+  ActiveThree: 0
 --- !u!1 &1958036513
 GameObject:
   m_ObjectHideFlags: 0
@@ -11457,11 +11460,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.25
+      value: -7.28
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.352
+      value: -4.38
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11508,6 +11511,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8267985749443661287, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
+      propertyPath: Sphereradius
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267985749443661287, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: rayDistanceOnHand
       value: 0.1
       objectReference: {fileID: 0}
@@ -11552,7 +11559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2226812717404829779, guid: f13c1deedc22e49449f5d7897949fd45, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3461195854342132363, guid: f13c1deedc22e49449f5d7897949fd45, type: 3}
       propertyPath: m_UiScaleMode
@@ -11854,7 +11861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6586086825810652183, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7240569834453201365, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -11923,7 +11930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6293424765186822428, guid: fb830f3557dbaf5418f47cb23ca95227, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

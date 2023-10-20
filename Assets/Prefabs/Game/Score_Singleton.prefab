@@ -1339,7 +1339,7 @@ MonoBehaviour:
   bonus_Count_Canvas: {fileID: 6494541864533174636}
   player01ScoreTextUI: {fileID: 3664826127741526003}
   bonusScoreTextUI: {fileID: 954120358897850580}
-  lapAmountTextUI: {fileID: 0}
+  lapAmountTextUI: {fileID: 4368550542149646721}
   highScoreTextUI: {fileID: 4320177024100527993}
   ScoreRankJson: {fileID: 4900000, guid: dc0cbbd9c56861a458b58346005d8920, type: 3}
   player_list_in_inspector: []

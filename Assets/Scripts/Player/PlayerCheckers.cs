@@ -573,6 +573,7 @@ sealed public partial class Player
         }
     }
 
+    [SerializeField] private float Sphereradius;
     //Draw cube at raycast box posiotion
     void OnDrawGizmos()
     {
@@ -582,7 +583,7 @@ sealed public partial class Player
         Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(0.2f, 0, 0));
         // Gizmos.DrawWireCube(groundCheckPos.position, new Vector3(1f, 1f, 0));
         //Gizmos.DrawWireSphere(groundCheckPos.position, 0.7f);
-        //Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(groundCheckPos.position, Sphereradius);
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(vineCheckPosOnHead.position, new Vector3(xlengthCheckOnHead, 0, 0));
