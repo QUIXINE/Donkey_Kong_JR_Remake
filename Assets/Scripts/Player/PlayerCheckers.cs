@@ -87,6 +87,9 @@ sealed public partial class Player
     #endregion
     
     #region Checkers to move player closer to the vine
+    
+    //Used to provide float for reaching the vine closer, used with DualHanded state
+    //needed
     private float GetDistanceToReachVineCloser()
     {
         //Addition: Find raycast that can ignore DK jr hand so that I can put vineCheckPosDualHand01 on hand and when player is on the highest of vine he still can climb up/down
@@ -206,21 +209,22 @@ sealed public partial class Player
         return 0;
     }
 
+    //Used to check while player is DualHanded, check if the ditance between player and the vine is not valid(DK hands are off the vine)
     private bool DistanceToReachVineCloserChecker()
     {
+        //change direction from  vineCheckPosBody.right to  -vineCheckPosBody.right
         RaycastHit2D hitInfo;
         if (CurrentState == PlayerState.DualHanded)
         {
-            hitInfo = Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceGetCloseToVine, vineLayerMask);
+            hitInfo = Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceGetCloseToVine, vineLayerMask);
             float distance = hitInfo.distance;
             
             if (hitInfo && hitInfo.collider.gameObject.layer == 7)
             {
                 if (transform.rotation == Quaternion.Euler(0, 0, 0))
                 {
-                    if (distance >= 0.2f && distance < 0.4f)
+                    if (distance >= 0.2f && distance < 1f)
                     {
-                        //print(distance);
                         return true;
                     }
                     
@@ -230,7 +234,6 @@ sealed public partial class Player
                 {
                     if (distance >= 0.5f)
                     {
-                        //print(distance);
                         return true;
                     }
                 }
@@ -240,7 +243,7 @@ sealed public partial class Player
     }
 
 
-    //Move player pos after get on vine so that the hands won't go off the vine
+    //Move player pos after get on vine the first time so that the hands won't go off the vine
     private float GetDistanceToGetOnVineCloser()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(vineCheckPosBody.position, -transform.right, rayDistanceGetCloseToVine, vineLayerMask);
@@ -272,87 +275,61 @@ sealed public partial class Player
 
     private float GetDistanceToHoldVineCloser()
     {
-        RaycastHit2D hitOnBody;
-
-        float moveToR01Local = 0.45f;
-        float moveToR02Local = 0.55f;
-        
-        float moveToL01Local = 0.45f;
-        float moveToL02Local = 0.55f;
-
-        if (transform.rotation == Quaternion.Euler(0, 0, 0)) //Move from Dual-Handed L to Two-handed R
-        {
-            hitOnBody = Physics2D.Raycast(vineCheckPosBody.position, -transform.right, rayDistanceGetCloseToVine, vineLayerMask);
-            if (hitOnBody && hitOnBody.collider.gameObject.layer == 7)
-            {
-                float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
-                if (distance >= 0.2f && distance < 0.4f)
-                {
-                    float move = -moveToR01Local + reachToL01;
-                    return move;
-                }
-                else if (distance >= 0.4f)
-                {
-                    float move = -moveToR02Local + reachToL02; //-x, plus reachToL02 because Dual-Handed L minus postion with it
-                    return move;
-                }
-            }
-        }
-        else if (transform.rotation == Quaternion.Euler(0, -180, 0)) //Move from Dual-Handed R to Two-handed L
-        {
-            hitOnBody = Physics2D.Raycast(vineCheckPosBody.position, transform.right, rayDistanceGetCloseToVine, vineLayerMask);
-            if (hitOnBody && hitOnBody.collider.gameObject.layer == 7)
-            {
-                float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
-                if (distance >= 0.2f && distance < 0.4f)
-                {
-                    float move = moveToL01Local - reachToR01;
-                    return move;
-                }
-                else if (distance >= 0.4f)
-                {
-                    float move = moveToL02Local - reachToR03;  //+x, minus reachToR03 because Dual-Handed R plus postion with it
-                    return move;
-                }
-            }
-        }
-        
-        return 0;
-    }
-    
-    private float GetClose()
-    {
         //print("check");//
 
-        RaycastHit2D hitOnBody;
+        RaycastHit2D hitOnBodyL;
+
+        //Why used hitOnBodyR --> at first there's only hitOnBodyL, but there's a problem. Problem: Player hands are off with the wrong side sprite
+        //I solved the problem - check the Solved 14. in Problems.md 
+        RaycastHit2D hitOnBodyR;
         if (CurrentState == PlayerState.TwoHanded)
         {
                 //Two-Handed L
             if (transform.rotation == Quaternion.Euler(0, -180, 0) || transform.rotation == Quaternion.Euler(0, 180, 0)) //Move from Dual-Handed L to Two-handed R
             {
-                hitOnBody = Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask);
-                if (hitOnBody && hitOnBody.collider.gameObject.layer == 7)
+                hitOnBodyL = Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask);
+                if (hitOnBodyL && hitOnBodyL.collider.gameObject.layer == 7)
                 {
-                    float distance = hitOnBody.collider.transform.position.x - vineCheckPosBody.position.x;
+                    float distance = hitOnBodyL.collider.transform.position.x - vineCheckPosBody.position.x;
                     if (distance >= 0.06)
                     {
-                        print("check");
                         return 0.05f;
+                    }
+                }
+
+                hitOnBodyR = Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask); //used when DK hands are off because immediately flip to the wrong side after jump from the platform
+                if (hitOnBodyR && !hitOnBodyL && hitOnBodyR.collider.gameObject.layer == 7)
+                {
+                    float distance = vineCheckPosBody.position.x - hitOnBodyR.collider.transform.position.x;
+                    if (distance >= 0.06)
+                    {
+                        return -0.05f;
                     }
                 }
             }
                 //Two-Handed R
             else if (transform.rotation == Quaternion.Euler(0, 0, 0)) //Move from Dual-Handed L to Two-handed R
             {
-                hitOnBody = Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask);
+                print("ready to get close");
+                hitOnBodyL = Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask);
                 //hitOnBodyR = Physics2D.Raycast(vineCheckPosBody.position, transform.right, 1f, vineLayerMask);
-                if (hitOnBody && hitOnBody.collider.gameObject.layer == 7)
+                if (hitOnBodyL && hitOnBodyL.collider.gameObject.layer == 7)
                 {
-                    float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
+                    float distance = vineCheckPosBody.position.x - hitOnBodyL.collider.transform.position.x;
                     if (distance >= 0.06)
                     {
-                        print("check");
                         return 0.05f;
+                    }
+                }
+
+                
+                hitOnBodyR = Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask); //used when DK hands are off because immediately flip to the wrong side after jump from the platform
+                if (hitOnBodyR && !hitOnBodyL && hitOnBodyR.collider.gameObject.layer == 7)
+                {
+                    float distance = hitOnBodyR.collider.transform.position.x - vineCheckPosBody.position.x;
+                    if (distance >= 0.06)
+                    {
+                        return -0.05f;
                     }
                 }
                 /*if (hitOnBodyR && hitOnBodyR.collider.gameObject.layer == 7)
@@ -365,7 +342,7 @@ sealed public partial class Player
                 }*/
             }
         }
-        else if (CurrentState == PlayerState.DualHanded)
+        /* else if (CurrentState == PlayerState.DualHanded)
         {
             if (transform.rotation == Quaternion.Euler(0, -180, 0) || transform.rotation == Quaternion.Euler(0, 180, 0)) //Move from  Two-handed R to Dual-Handed R 
             {
@@ -391,7 +368,7 @@ sealed public partial class Player
                     }
                 }
             }
-        }
+        } */
 
         return 0;
     }
@@ -399,7 +376,7 @@ sealed public partial class Player
 
     #region Caller of Checkers
 
-    //Change IsOnVine() hitDualhand02 rayDis, GetClose() 2Handede rayDis to 5f
+    //Change IsOnVine() hitDualhand02 rayDis, GetClose() 2Handed rayDis to 5f
     private void ReachVineCloser()
     {
         //print("check");//
@@ -408,35 +385,36 @@ sealed public partial class Player
 
 
         //Get Close to vine check while Two-Handed and Dual-Handed to solve hand is not on the vine
-        if (transform.rotation == Quaternion.Euler(0, -180, 0) && isTwoHanded && CurrentState == PlayerState.TwoHanded && IsOnVineChecker())    //Two-Handed L
+        if (CurrentState == PlayerState.TwoHanded && transform.rotation == Quaternion.Euler(0, -180, 0) && isTwoHanded && IsOnVineChecker())    //Two-Handed L
         {
             print("back03");
 
             Vector2 pos = transform.position;
-            pos.x += GetClose();
+            pos.x += GetDistanceToHoldVineCloser();
             transform.position = pos;
         }
-        else if (transform.rotation == Quaternion.Euler(0, 0, 0) && isTwoHanded && CurrentState == PlayerState.TwoHanded && IsOnVineChecker())  //Two-Handed R
+        else if (CurrentState == PlayerState.TwoHanded && transform.rotation == Quaternion.Euler(0, 0, 0) && isTwoHanded && IsOnVineChecker())  //Two-Handed R
         {
             print("back04");
 
             Vector2 pos = transform.position;
-            pos.x -= GetClose();
+            pos.x -= GetDistanceToHoldVineCloser();
             transform.position = pos;
         }
-        else if (DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, 0, 0) && CurrentState == PlayerState.DualHanded && animator.GetBool("DualHand")) //Dual-Handed L
+        else if (CurrentState == PlayerState.DualHanded && DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, 0, 0) && animator.GetBool("DualHand")) //Dual-Handed L
         {
             print("back01");
             Vector2 pos = transform.position;
-            pos.x -= 0.05f;
+            pos.x -= 0.03f;
             transform.position = pos;
             canReachVineCloser = false;
         }
-        else if (DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, -180, 0) && CurrentState == PlayerState.DualHanded && animator.GetBool("DualHand"))  //Dual-Handed R
+        else if (CurrentState == PlayerState.DualHanded && DistanceToReachVineCloserChecker() && canReachVineCloser && transform.rotation == Quaternion.Euler(0, -180, 0) && animator.GetBool("DualHand"))  //Dual-Handed R
         {
+            //never used because DistanceToReachVineCloserChecker() only check on the right side of CheckPosOnBody, fix this by adding left side ray
             print("back02");
             Vector2 pos = transform.position;
-            pos.x -= 0.05f;
+            pos.x += 0.05f;
             transform.position = pos;
             canReachVineCloser = false;
         }
@@ -471,16 +449,28 @@ sealed public partial class Player
     private void IsOnVine()
     {
         if(isOnVine && !FoundAnotherVine())
-        rayDistanceGetCloseToVine = 0.5f;
+        rayDistanceGetCloseToVine = 1f;
     }
 
+    //Why called OnVineGravityCheck()
     private void OnVineGravityCheck()
     {
-        if (!OnVineGravityChecker() && checkGravityVineExit)
+        //Set gravity Fall from vine after "Fall from vine" condition in DualHandedState() works
+        //why rb.gravityScale = 2;   --> to fall fast 
+        if (!OnVineGravityChecker() && checkGravityVineExit)    //this condition relates with DualHandedState()
         {
             rb.gravityScale = 2;
             isOnVine = false;
             checkGravityVineExit = false;
+        }
+
+        //used this for setting the gravity if player press L/R arrow again after already is DualHanded (reach out)
+        //What the reason? because after press L/R arrow again after reach out gravity is 0, this makes player won't fall off the vine
+        //Setting condition as below --> I used this condition only for falling off the vine while isOnVine = true and not on ground
+        //if isOnVine is false, MovePosGetOnVine() will work which means player state will be TwoHanded and there will be an unplesant situatuion occur
+        else if(CurrentState == PlayerState.Idle && !IsGroundedChecker() && isOnVine)   //this condition relates with DualHandedState()       
+        {
+            rb.gravityScale = 2;
         }
     }
     
@@ -618,3 +608,54 @@ private IEnumerator JumpPadPush(bool isPushed)
     }
             
 */
+/* private float GetDistanceToHoldVineCloser()
+    {
+        RaycastHit2D hitOnBody;
+
+        float moveToR01Local = 0.45f;
+        float moveToR02Local = 0.55f;
+        
+        float moveToL01Local = 0.45f;
+        float moveToL02Local = 0.55f;
+
+        if (transform.rotation == Quaternion.Euler(0, 0, 0)) //Move from Dual-Handed L to Two-handed R
+        {
+            hitOnBody = Physics2D.Raycast(vineCheckPosBody.position, -transform.right, rayDistanceGetCloseToVine, vineLayerMask);
+            if (hitOnBody && hitOnBody.collider.gameObject.layer == 7)
+            {
+                float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
+                if (distance >= 0.2f && distance < 0.4f)
+                {
+                    float move = -moveToR01Local + reachToL01;
+                    return move;
+                }
+                else if (distance >= 0.4f)
+                {
+                    float move = -moveToR02Local + reachToL02; //-x, plus reachToL02 because Dual-Handed L minus postion with it
+                    return move;
+                }
+            }
+        }
+        else if (transform.rotation == Quaternion.Euler(0, -180, 0)) //Move from Dual-Handed R to Two-handed L
+        {
+            hitOnBody = Physics2D.Raycast(vineCheckPosBody.position, transform.right, rayDistanceGetCloseToVine, vineLayerMask);
+            if (hitOnBody && hitOnBody.collider.gameObject.layer == 7)
+            {
+                float distance = vineCheckPosBody.position.x - hitOnBody.collider.transform.position.x;
+                if (distance >= 0.2f && distance < 0.4f)
+                {
+                    float move = moveToL01Local - reachToR01;
+                    return move;
+                }
+                else if (distance >= 0.4f)
+                {
+                    float move = moveToL02Local - reachToR03;  //+x, minus reachToR03 because Dual-Handed R plus postion with it
+                    return move;
+                }
+            }
+        }
+        
+        return 0;
+    }
+     */
+    
