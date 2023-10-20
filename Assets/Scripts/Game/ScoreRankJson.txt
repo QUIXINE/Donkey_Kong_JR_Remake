@@ -1,1 +1,1 @@
-{"ScoreRank":[{"Name":"","Score":11000},{"Name":"JAN","Score":5600},{"Name":"","Score":5000},{"Name":"FEB","Score":4800},{"Name":"MAR","Score":3200}]}
+{"ScoreRank":[{"Name":"SAN","Score":11000},{"Name":"JAN","Score":5600},{"Name":"ANN","Score":5000},{"Name":"FEB","Score":4800},{"Name":"MAR","Score":100}]}

@@ -1186,7 +1186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &344082555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2035,6 +2035,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605566660}
   m_CullTransparentMesh: 1
+--- !u!1 &617961823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 617961824}
+  m_Layer: 0
+  m_Name: 'Enemy_On_Vine (1) (Missing Prefab with guid: 2a88fab6874877743a0be4c5f6e8cd66)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &617961824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617961823}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.318, y: -4.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &652186187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,13 +3046,14 @@ GameObject:
   - component: {fileID: 906061561}
   - component: {fileID: 906061562}
   - component: {fileID: 906061566}
+  - component: {fileID: 906061567}
   m_Layer: 8
   m_Name: Enemy_On_Vine
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &906061561
 Rigidbody2D:
   serializedVersion: 4
@@ -3188,6 +3220,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102d28c4a54bb5a498eef5db360774cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &906061567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906061560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaad3c3e1894674e961178b5603c301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &926054014 stripped
@@ -4585,13 +4629,14 @@ GameObject:
   - component: {fileID: 1449281603}
   - component: {fileID: 1449281604}
   - component: {fileID: 1449281608}
+  - component: {fileID: 1449281609}
   m_Layer: 8
   m_Name: Enemy_On_Vine
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1449281603
 Rigidbody2D:
   serializedVersion: 4
@@ -4758,6 +4803,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102d28c4a54bb5a498eef5db360774cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1449281609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449281602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaad3c3e1894674e961178b5603c301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1452198748
@@ -9208,11 +9265,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.174
+      value: -5.78
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.492
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9528,67 +9585,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
---- !u!1001 &8244175729169410782
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2705509736646424046, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 2115875461}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.318
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3257661019993082578, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8785934815052851601, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
-      propertyPath: m_Name
-      value: Enemy_On_Vine (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2a88fab6874877743a0be4c5f6e8cd66, type: 3}
 --- !u!1001 &8549355862821559127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9688,7 +9684,7 @@ SceneRoots:
   - {fileID: 1687269379}
   - {fileID: 906061565}
   - {fileID: 1449281607}
-  - {fileID: 8244175729169410782}
+  - {fileID: 617961824}
   - {fileID: 1973122142}
   - {fileID: 1939035495}
   - {fileID: 992397199}

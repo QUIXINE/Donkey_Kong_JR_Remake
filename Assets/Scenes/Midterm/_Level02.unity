@@ -711,7 +711,7 @@ Transform:
   m_GameObject: {fileID: 194831724}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.457, y: 5.299, z: 0.09992743}
+  m_LocalPosition: {x: 1.457, y: 5.05, z: 0.09992743}
   m_LocalScale: {x: 0.04271156, y: 0.25224707, z: 0.11946434}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3446,6 +3446,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &945805476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6586086825810652183, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
+  m_PrefabInstance: {fileID: 8009203519183439755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &945805477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945805476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d423aad3cbfb541b129aac09ab5ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetScorePlayer: 6200
+  SetScoreHigh: 6200
 --- !u!114 &975559683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8291326052899241935, guid: f13c1deedc22e49449f5d7897949fd45, type: 3}
@@ -9068,8 +9087,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 1499261052, guid: 10b713b61de403648b510eba118a8d55, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 1060008852, guid: 10b713b61de403648b510eba118a8d55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9077,7 +9096,7 @@ SpriteRenderer:
   m_Size: {x: 2.55, y: 1.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1859549080
@@ -9762,9 +9781,11 @@ MonoBehaviour:
   timer: 0
   Timeremain: 2
   Spawnyet: 0
+  SpawnRedyet: 0
   ActiveBbird: 0
   ActiveSpark: 0
   ActiveSpawnOnePattern: 1
+  ActiveThree: 0
 --- !u!1 &1953077121
 GameObject:
   m_ObjectHideFlags: 0
@@ -10955,11 +10976,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.93
+      value: -3.64
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7
+      value: -3.74
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11116,6 +11137,10 @@ PrefabInstance:
     - target: {fileID: 2226812717404829779, guid: f13c1deedc22e49449f5d7897949fd45, type: 3}
       propertyPath: m_Name
       value: Player_Life_Containter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2226812717404829779, guid: f13c1deedc22e49449f5d7897949fd45, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3461195854342132363, guid: f13c1deedc22e49449f5d7897949fd45, type: 3}
       propertyPath: m_UiScaleMode
@@ -11607,7 +11632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6586086825810652183, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7240569834453201365, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -11616,7 +11641,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6586086825810652183, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 945805477}
   m_SourcePrefab: {fileID: 100100000, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
 --- !u!1001 &8549355862821559127
 PrefabInstance:
@@ -11676,7 +11704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6293424765186822428, guid: fb830f3557dbaf5418f47cb23ca95227, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11742,3 +11770,4 @@ SceneRoots:
   - {fileID: 1138831835}
   - {fileID: 1760821732}
   - {fileID: 1434307447}
+  - {fileID: 2039620512}

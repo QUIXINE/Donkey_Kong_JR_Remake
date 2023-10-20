@@ -84,7 +84,7 @@ public class GameState : MonoBehaviour
         yield return new WaitForSeconds(4f);            //How long to wait before changing scene (wait until all changing level animation finish)
         int currentScene =  SceneManager.GetActiveScene().buildIndex;
         int bonusScore;
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //Add bonus score to ScorePlayer01 (player finish in time gets bonus score)
         //use lapAmount as a condition because i don't want bonusScore in Score to be static, if it is it'll be harder to coontrol
         switch (Score.lapAmount)
@@ -109,11 +109,11 @@ public class GameState : MonoBehaviour
                 Score.ScorePlayer01 += bonusScore;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
-            case 1: //for testing
+            /* case 1: //for testing
                 Score.ScorePlayer01 += bonusScore;
                 Score.lapAmount++;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                break;
+                break; */
             case 4:
                 Score.lapAmount++;
                 SceneManager.LoadScene(1);
