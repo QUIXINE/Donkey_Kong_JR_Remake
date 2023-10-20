@@ -159,6 +159,7 @@ public partial class Player
 
     private void DualHandedState()
     {
+        print(canReach);
         animator.SetBool("IsGrounded", false);
         isTwoHanded = false;
         isDualHanded = true;
@@ -169,9 +170,10 @@ public partial class Player
             isNewState = false;
         }
 
-        //Reach out
+        #region Reach out
         if (canReach && horizontalOnVine02 > 0 && transform.rotation == Quaternion.Euler(0, 0, 0))        //Two-Handed R to Reach R
         {
+            print("Reach");
             Flip();
             animator.SetBool("DualHand", true);
             animator.SetBool("TwoHanded", false);
@@ -184,6 +186,7 @@ public partial class Player
         }
         else if (canReach && horizontalOnVine02 < 0 && transform.rotation == Quaternion.Euler(0, -180, 0)) //Two-Handed L to Reach L
         {
+            print("Reach");
             Flip();
             animator.SetBool("DualHand", true);
             animator.SetBool("TwoHanded", false);
@@ -194,26 +197,29 @@ public partial class Player
             StartCoroutine(WaitToChangeState(CurrentState, true));
             StartCoroutine(WaitToChangeState(CurrentState));
         }
+        #endregion
 
         //check if dual-handed and try to get back to two-handed
-        //Transit to Two-Handed
+        #region Transit to Two-Handed
         if (!canReach && horizontalOnVine02 < 0 && transform.rotation == Quaternion.Euler(0, -180, 0) && animator.GetBool("DualHand"))        //Reach R to Two-Handed R (and flipfrom R side to L side)
         {
+            print("Transit");
             Flip();
             Vector2 pos = transform.position;
-            pos.x -= GetDistanceToReachVineCloser();
+            pos.x -= GetDistanceToReachVineCloser();    //decrease to decrease pos.x += GetDistanceToReachVineCloser(); in Reach out
             transform.position = pos;
             canReachVineCloser = false;
             canGetOffVine = false;
             canGetToAnotherVine = false;
-            StartCoroutine(WaitAndTransitState()); //maybe can use TransitionToState()
+            StartCoroutine(WaitAndTransitState());      //maybe can use TransitionToState()
             animator.SetBool("DualHand", false);
         }
         else if (!canReach && horizontalOnVine02 > 0 && transform.rotation == Quaternion.Euler(0, 0, 0) && animator.GetBool("DualHand"))      //Reach L to Two-Handed L (and floip from L side to R side)
         {
+            print("Transit");
             Flip();
             Vector2 pos = transform.position;
-            pos.x += GetDistanceToReachVineCloser();
+            pos.x += GetDistanceToReachVineCloser();    //plus to decrease pos.x -= GetDistanceToReachVineCloser(); in Reach out
             transform.position = pos;
             canReachVineCloser = false;
             canGetOffVine = false;
@@ -221,24 +227,29 @@ public partial class Player
             StartCoroutine(WaitAndTransitState()); //maybe can use TransitionToState()
             animator.SetBool("DualHand", false);
         }
+        #endregion
 
-        //Get to another vine
+        #region Get to another vine
         if (/*Input.GetKey(KeyCode.RightArrow)*/horizontalOnVine02 > 0 && FoundAnotherVine() && transform.rotation == Quaternion.Euler(0, -180, 0) && animator.GetBool("DualHand") && !canReach && canGetToAnotherVine)   //Get to another vine R
         {
+            print("GetToAnotherVine");
             animator.SetBool("DualHand", false);
             canReachVineCloser = false;
             StartCoroutine(WaitAndTransitState());
         }
         else if (/*Input.GetKey(KeyCode.LeftArrow)*/horizontalOnVine02 < 0 && FoundAnotherVine() && transform.rotation == Quaternion.Euler(0, 0, 0) && animator.GetBool("DualHand") && !canReach && canGetToAnotherVine)      //Get to another vine L
         {
+            print("GetToAnotherVine");
             animator.SetBool("DualHand", false);
             canReachVineCloser = false;
             StartCoroutine(WaitAndTransitState());
         }
+        #endregion
 
-
-        //Dual with no another vine on another side to  two handed to get down
-        //Get down off the R side
+        #region Get down and Fall from vine conditions
+        //DualHanded with no another vine on another side to  two handed to get down
+        //Fall from vine, if press L/R arrow again while DualHanded with no another vine on another side DK will fall off the vine
+        //Get down off the R side and Fall to the L
         if (!FoundAnotherVine() && isOnVine && transform.rotation == Quaternion.Euler(0, -180, 0) && animator.GetBool("DualHand"))
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -254,14 +265,20 @@ public partial class Player
             else if (horizontalOnVine02 > 0 && canGetOffVine && !canReach) //Get off and Fall from vine
             {
                 Vector2 pos = transform.position;
-                pos.x += 0.2f;
+                // pos.x += 0.2f;           //used this to move DK hands off the vine so that it won't be on vine and fall off thei vine
                 transform.position = pos;
                 canGetOffVine = false;
                 StopAllCoroutines();
+                //if isOnVine is false, MovePosGetOnVine() will work which means player state will be TwoHanded and there will be an unplesant situatuion occur
+                //This is why I used CurrentState = PlayerState.Idle; instead
+                //Why used CurrentState = PlayerState.Idle;? because after pressing L/R arrow again while DualHanded with no another vine on another side
+                //player still be in DualHanded state, the gravity is 0, and player won't fall off ***maybe because of the checkers (look for more details why player won't fall off)***
+                //the vine so I set the state to Idle and set gravity so that player will fall
+                CurrentState = PlayerState.Idle;
             }
         }
             
-        //Get down off the L side
+        //Get down off the L side and Fall to the R
         else if (!FoundAnotherVine() && isOnVine && transform.rotation == Quaternion.Euler(0, 0, 0) && animator.GetBool("DualHand"))
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -277,13 +294,19 @@ public partial class Player
             else if (horizontalOnVine02 < 0 && canGetOffVine && !canReach) //Get off and Fall from vine
             {
                 Vector2 pos = transform.position;
-                pos.x -= 0.2f;
+                // pos.x -= 0.2f;           //used this to move DK hands off the vine so that it won't be on vine and fall off thei vine
                 transform.position = pos;
                 canGetOffVine = false;
                 StopAllCoroutines();
+                //if isOnVine is false, MovePosGetOnVine() will work which means player state will be TwoHanded and there will be an unplesant situatuion occur
+                //This is why I used CurrentState = PlayerState.Idle; instead
+                //Why used CurrentState = PlayerState.Idle;? because after pressing L/R arrow again while DualHanded with no another vine on another side
+                //player still be in DualHanded state, the gravity is 0, and player won't fall off ***maybe because of the checkers (look for more details why player won't fall off)***
+                //the vine so I set the state to Idle and set gravity so that player will fall
+                CurrentState = PlayerState.Idle;
             }
         }
-
+        #endregion
 
     }
 

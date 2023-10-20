@@ -25,7 +25,7 @@ sealed public partial class Player : MonoBehaviour
     private float horizontal;
     private float horizontalOnVine;
     private float vertical;
-    float horizontalOnVine02;
+    private float horizontalOnVine02;
 
     private bool facingRight;       //Flipping
 
@@ -120,6 +120,7 @@ sealed public partial class Player : MonoBehaviour
         StateManager();
         ReachVineCloser();
         OnVineGravityCheck();
+        print(CurrentState);
     }
 
     private void FixedUpdate()
@@ -149,6 +150,10 @@ sealed public partial class Player : MonoBehaviour
         if (IsOnVineChecker() || FoundAnotherVine() && IsTwoHanded() && isTwoHanded && CurrentState == PlayerState.TwoHanded)
         {
             horizontalOnVine = Input.GetAxis("Horizontal"); //--> change to DKHorizontal
+        }
+        else if(!IsOnVineChecker() || !isOnVine)
+        {
+            horizontalOnVine = 0;
         }
         else
         {
