@@ -1,0 +1,65 @@
+using UnityEngine;
+using TMPro;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine.SceneManagement;
+
+
+namespace ScoreManagement
+{
+    //Don't destroyed
+    public class Score_UI : MonoBehaviour 
+    {
+
+        #region Variables
+        [SerializeField] private Canvas score_Count_Canvas;
+        [SerializeField] private Canvas bonus_Count_Canvas;
+        [SerializeField] private TextMeshProUGUI player01ScoreTextUI;
+        [SerializeField] private TextMeshProUGUI bonusScoreTextUI;
+        [SerializeField] private TextMeshProUGUI lapAmountTextUI;
+        [SerializeField] private TextMeshProUGUI highScoreTextUI;
+        public static TextMeshProUGUI Player01ScoreTextUI;
+        public static TextMeshProUGUI BonusScoreTextUI;
+        public static TextMeshProUGUI LapAmountTextUI;
+        public static TextMeshProUGUI HighScoreTextUI;
+        #endregion
+
+
+        private void Awake() 
+        {
+            Assign_UI_Variables();
+        }
+
+        private void Update()
+        {
+            Canvas_Check();
+        }
+
+        private void Canvas_Check()
+        {
+           /*  if (score_Count_Canvas.worldCamera == null && bonus_Count_Canvas.worldCamera == null)
+            {
+                score_Count_Canvas.worldCamera = Camera.main;
+                bonus_Count_Canvas.worldCamera = Camera.main;
+            } */
+            if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 5)
+            {
+                bonus_Count_Canvas.gameObject.SetActive(false);
+            }
+            else
+            {
+                bonus_Count_Canvas.gameObject.SetActive(true);
+            }
+        }
+
+        private void Assign_UI_Variables()
+        {
+            
+            Player01ScoreTextUI =   player01ScoreTextUI;
+            BonusScoreTextUI    =   bonusScoreTextUI;
+            HighScoreTextUI     =   highScoreTextUI;
+            LapAmountTextUI     =   lapAmountTextUI;
+        }
+
+    }
+}

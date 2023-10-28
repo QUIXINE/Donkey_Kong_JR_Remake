@@ -98,13 +98,13 @@ namespace ScoreManagement
         {
 
             //Save Json
-            for(int i = 0; i < Score_Singleton.player_list.Count; i++)
+            for(int i = 0; i < Load_And_Save_Json.player_list.Count; i++)
             {
-                if(PlayerPrefs.GetInt("Player01_Score") == Score_Singleton.player_list[i].Score)  
+                if(PlayerPrefs.GetInt("Player01_Score") == Load_And_Save_Json.player_list[i].Score)  
                 {
                     score_Rank_Display.players_Name[i].text = $"{SelectedLetter[0].text}{SelectedLetter[1].text}{SelectedLetter[2].text}";
-                    Score_Singleton.player_list[i].Name = score_Rank_Display.players_Name[i].text;
-                    Score_Singleton.SaveHighScores();
+                    Load_And_Save_Json.player_list[i].Name = score_Rank_Display.players_Name[i].text;
+                    Load_And_Save_Json.SaveHighScores();
                     SceneManager.LoadScene(0);
                     break;
                 }

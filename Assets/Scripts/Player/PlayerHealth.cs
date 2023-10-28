@@ -1,12 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace PlayerSpace
 {
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : SingletonTest<PlayerHealth>
 {   
+    
+    /* 
     //Singleton
     private static PlayerHealth instance;
 
@@ -20,11 +21,15 @@ public class PlayerHealth : MonoBehaviour
             }
             return instance;
         }
-    }
+    } */
     
     //Health
-    public List<Image> livesImg = new List<Image>();
-    [SerializeField] private Sprite  lifeSprite;
+    // public List<Image> livesImg = new List<Image>();
+    //[SerializeField] private Sprite  lifeSprite;
+
+
+    //UI
+    Player_Health_UI player_Health_UI;
 
     //When player health is decreased anywhere, lifeSpriteAmount also decreased at the same place in code
     public int lifeSpriteAmount;
@@ -39,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake() 
     {
-        //Singleton
+        /* //Singleton
         if (instance == null)
         {
             instance = this;
@@ -48,41 +53,43 @@ public class PlayerHealth : MonoBehaviour
         {
             print("Destrot");
             Destroy(this.gameObject);
-        }
+        } */
         DontDestroyOnLoad(this);
-       
     }
 
     private void Start() 
     {
-        
         Instance.health = 3;
         Instance.lifeSpriteAmount = Instance.health;
-        canvas = GetComponent<Canvas>();
+        
+        // canvas = GetComponent<Canvas>();
         /* for(int i = 0; i < Instance.lifeSpriteAmount; i++)
         {
             livesImg[i].sprite = lifeSprite;
         } */
-        // StartCoroutine(ChangeLifeSpriteAmount());
+        StartCoroutine(ChangeLifeSpriteAmount());
     }
 
     private void Update() 
     {
-        mainCamera = Camera.main;
-        canvas.worldCamera = mainCamera;
+        //Destroy when reach menu scene
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            GameObject newObject = new GameObject("Player Health");
+            transform.parent = newObject.transform;
+            Destroy(newObject);
+        }
+
+        //Find type that has array of health UI
+        player_Health_UI = FindObjectOfType<Player_Health_UI>();
 
         //Show health, lifeSpriteAmount in inspector
         healthShow = Instance.health;
         lifeSpriteAmountShow = Instance.lifeSpriteAmount;
 
-        //Remove img from list and set actiove player life img
-        if(Instance.lifeSpriteAmount < livesImg.Count)
-        {
-            livesImg[Instance.lifeSpriteAmount].gameObject.SetActive(false);
-            // livesImg.RemoveAt(Instance.lifeSpriteAmount);
-        }
+        
 
-        /* //Test
+          /* //Test
         if(Input.GetKeyDown(KeyCode.E) && lifeSpriteAmount <= 2)
         {
 
@@ -103,6 +110,11 @@ public class PlayerHealth : MonoBehaviour
         if(health <= 0)
         {
             animator.SetBool("Die", true);
+        }
+        
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene("Menu_Scene");
         }
         */
 

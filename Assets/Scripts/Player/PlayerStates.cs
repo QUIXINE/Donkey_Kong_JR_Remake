@@ -7,7 +7,6 @@ public partial class Player
 {
     private void StateManager()
     {
-        print("Get in to first state");
         /*if (!isTwoHanded && !canReach && isOnVine && currentState != PlayerState.DualHanded)
         {
             isTwoHanded = true;
@@ -99,6 +98,7 @@ public partial class Player
         {
             if (IsOnVineChecker() && facingRight && isTwoHanded)
             {
+                print("Reaching first time to dual-handed L");
                 canReach = true;
                 canChangeToReach = true;
                 canReachFirstGetOnVine = false;
@@ -111,6 +111,7 @@ public partial class Player
         {
             if (IsOnVineChecker() && !facingRight && isTwoHanded)
             {
+                print("Reaching first time to dual-handed R");
                 canReach = true;
                 canChangeToReach = true;
                 canReachFirstGetOnVine = false;
@@ -139,6 +140,7 @@ public partial class Player
         //--> solved by using TransitState();
         else if (Input.GetKey(KeyCode.RightArrow)/*horizontalOnVine > 0*/ && transform.rotation == Quaternion.Euler(0, 0, 0) && !canReach && isTwoHanded && canChangeToReach)
         {
+            print("Transit to dual-handed R");
             canReach = true;
             StopAllCoroutines();
             animator.SetBool("TwoHanded", false);
@@ -148,6 +150,7 @@ public partial class Player
         }
         else if (Input.GetKey(KeyCode.LeftArrow)/*horizontalOnVine < 0*/ && transform.rotation == Quaternion.Euler(0, -180, 0) && !canReach && isTwoHanded && canChangeToReach)
         {
+            print("Transit to dual-handed L");
             canReach = true;
             StopAllCoroutines();
             animator.SetBool("TwoHanded", false);
@@ -159,7 +162,6 @@ public partial class Player
 
     private void DualHandedState()
     {
-        print(canReach);
         animator.SetBool("IsGrounded", false);
         isTwoHanded = false;
         isDualHanded = true;
@@ -173,7 +175,6 @@ public partial class Player
         #region Reach out
         if (canReach && horizontalOnVine02 > 0 && transform.rotation == Quaternion.Euler(0, 0, 0))        //Two-Handed R to Reach R
         {
-            print("Reach");
             Flip();
             animator.SetBool("DualHand", true);
             animator.SetBool("TwoHanded", false);
@@ -186,7 +187,6 @@ public partial class Player
         }
         else if (canReach && horizontalOnVine02 < 0 && transform.rotation == Quaternion.Euler(0, -180, 0)) //Two-Handed L to Reach L
         {
-            print("Reach");
             Flip();
             animator.SetBool("DualHand", true);
             animator.SetBool("TwoHanded", false);
@@ -203,7 +203,6 @@ public partial class Player
         #region Transit to Two-Handed
         if (!canReach && horizontalOnVine02 < 0 && transform.rotation == Quaternion.Euler(0, -180, 0) && animator.GetBool("DualHand"))        //Reach R to Two-Handed R (and flipfrom R side to L side)
         {
-            print("Transit");
             Flip();
             Vector2 pos = transform.position;
             pos.x -= GetDistanceToReachVineCloser();    //decrease to decrease pos.x += GetDistanceToReachVineCloser(); in Reach out
@@ -216,7 +215,6 @@ public partial class Player
         }
         else if (!canReach && horizontalOnVine02 > 0 && transform.rotation == Quaternion.Euler(0, 0, 0) && animator.GetBool("DualHand"))      //Reach L to Two-Handed L (and floip from L side to R side)
         {
-            print("Transit");
             Flip();
             Vector2 pos = transform.position;
             pos.x += GetDistanceToReachVineCloser();    //plus to decrease pos.x -= GetDistanceToReachVineCloser(); in Reach out
@@ -232,14 +230,12 @@ public partial class Player
         #region Get to another vine
         if (/*Input.GetKey(KeyCode.RightArrow)*/horizontalOnVine02 > 0 && FoundAnotherVine() && transform.rotation == Quaternion.Euler(0, -180, 0) && animator.GetBool("DualHand") && !canReach && canGetToAnotherVine)   //Get to another vine R
         {
-            print("GetToAnotherVine");
             animator.SetBool("DualHand", false);
             canReachVineCloser = false;
             StartCoroutine(WaitAndTransitState());
         }
         else if (/*Input.GetKey(KeyCode.LeftArrow)*/horizontalOnVine02 < 0 && FoundAnotherVine() && transform.rotation == Quaternion.Euler(0, 0, 0) && animator.GetBool("DualHand") && !canReach && canGetToAnotherVine)      //Get to another vine L
         {
-            print("GetToAnotherVine");
             animator.SetBool("DualHand", false);
             canReachVineCloser = false;
             StartCoroutine(WaitAndTransitState());

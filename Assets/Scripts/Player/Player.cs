@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using TakeDamage;
 using ScoreManagement;
 
@@ -47,28 +46,34 @@ sealed public partial class Player : MonoBehaviour
     private bool canReach;
 
     [Header("Jump")]
-    [SerializeField] private Transform groundCheckPos;
-    [SerializeField] private float groundCheckRadius;
-    [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private int jumpHeight;
     [SerializeField] private int jumpPadForce;
 
+    [Header("Ground Check")]
+    [SerializeField] private Transform groundCheckPos;
+    [SerializeField] private LayerMask groundLayerMask;
+    [Tooltip("length of x and y axis, has 'Ground Check Position' as the center pivot. Used as vector point x and y in OverlapBox()")]
+    [SerializeField] private float xLengthGroundCheck, yLengthGroundCheck;      //0.2, 0.05
 
     [Header("Vine Check")]
     [SerializeField] private LayerMask vineLayerMask;
     [SerializeField] private Transform vineCheckPosBody;
-    [SerializeField] private Transform vineCheckPosOnHead;
+    [SerializeField] private Transform vineCheckPosOnHead, vineCheckPosOnHead02;
     [SerializeField] private Transform vineCheckPosDualHand01, vineCheckPosDualHand02;
     [SerializeField] private float rayDistanceOnBody;
     [Tooltip("length of x axis, has 'Vine Check Position On Head' as the center pivot")]
-    [SerializeField] private float xlengthCheckOnHead;
+    [SerializeField] private float xLengthCheckOnHead;
+    [SerializeField] private float rayDistanceOnHead;
     [Tooltip("radius of 'Vine Check Position On DualHand02' used in OverlapCircle to check if player is two-handed")]
     [SerializeField] private float radiusCheckOnDualHand02; //used in IsTwoHanded()
-    [SerializeField] private float rayDistanceOnHand;
+    [SerializeField] private float rayDistanceOnHand;       //used in FoundAnotherVine()
     [SerializeField] private float rayDistanceGetCloseToVine;
+    [SerializeField] private float rayDistanceToReachVineCloser;
+    [SerializeField] private float  rayDistanceGetOnVine;
     private bool canChangeToReach;
     private bool canReachFirstGetOnVine;        //used to allow player to reach out on the same side after get on vine first time(after getting off the ground and get on the vine) 
                                                 //Why? --> beacause if don't do this player can't do as the reason say
+    private bool canFlip;
     private float reachToL01 = 0.2f, reachToL02 = 0.3f, reachToR01 = 0.26f, reachToR02 = 0.31f, reachToR03 = 0.35f;         //used to move position
     private bool reachToRTriggered01, reachToRTriggered02, reachToRTriggered03, reachToLTriggered01, reachToLTriggered02;   //check which reachToL and reachToR is used to move position
     private bool canGetToAnotherVine;           //used as a condition if player allowed to get, and to not immediately get to another vine
@@ -80,14 +85,14 @@ sealed public partial class Player : MonoBehaviour
     [Header("Enemy Check")]
     [SerializeField] private LayerMask enemyLayerMask;
     private bool canGetPointFromEnemy;
-    private List<EnemyScore> enemyList = new List<EnemyScore>();
+    private List<EnemyScore> enemyList = new List<EnemyScore>();    //used to get score from enemy, used w/ PlayerGetScore script
     private int scoreOfEnemy;
 
     public bool collideWithWater {get; private set;} //Water colliding check
 
     #endregion
 
-    private bool canFlip;
+    [SerializeField] private float rayDistanceToReachCloserOnBody;
 
     private void Start()
     {
@@ -111,16 +116,16 @@ sealed public partial class Player : MonoBehaviour
     void Update()
     {
         IsGrounded();
-        IsOnVine();
         GetInput();
         Jump();
         OnGroundFlip();
         HandleAnimation();
         MovePosGetOnVine();
         StateManager();
+        IsOnVine();
         ReachVineCloser();
         OnVineGravityCheck();
-        print(CurrentState);
+        print(IsOnVineChecker());
     }
 
     private void FixedUpdate()
@@ -141,15 +146,16 @@ sealed public partial class Player : MonoBehaviour
         else if (CurrentState == PlayerState.DualHanded) { isDualHanded = true; }
         /* if (IsGrounded())*/ //Problem: only get input while on the ground, this makes when not on ground player move on itself because it takes the last input
         if (!IsOnVineChecker() && IsGroundedChecker())
-            horizontal = Input.GetAxisRaw("Horizontal"); //--> change to DKHorizontal
+            horizontal = Input.GetAxisRaw("DKHorizontal"); 
         else if (!IsGroundedChecker())
         {
             horizontal = 0;
         }
 
-        if (IsOnVineChecker() || FoundAnotherVine() && IsTwoHanded() && isTwoHanded && CurrentState == PlayerState.TwoHanded)
+        if (IsOnVineChecker() /* || FoundAnotherVine() */ && isTwoHanded && CurrentState == PlayerState.TwoHanded)
         {
-            horizontalOnVine = Input.GetAxis("Horizontal"); //--> change to DKHorizontal
+            print("horizontalOnVine works");
+            horizontalOnVine = Input.GetAxis("DKHorizontal");
         }
         else if(!IsOnVineChecker() || !isOnVine)
         {
@@ -162,7 +168,7 @@ sealed public partial class Player : MonoBehaviour
 
         if (isDualHanded && IsOnVineChecker())
         {
-            horizontalOnVine02 = Input.GetAxis("Horizontal"); //--> change to DKHorizontal
+            horizontalOnVine02 = Input.GetAxis("DKHorizontal"); 
         }
         else
         {
@@ -179,7 +185,7 @@ sealed public partial class Player : MonoBehaviour
         {
             vertical = Input.GetAxisRaw("Vertical");
         }
-        else if (!FoundAnotherVine() && IsOnVineChecker() && CurrentState == PlayerState.DualHanded)
+        else if (!FoundAnotherVine() && CurrentState == PlayerState.DualHanded)
         {
             vertical = 0;   //prevents value that is still stuck on 1/-1 when got out of the condition
         }
@@ -222,14 +228,16 @@ sealed public partial class Player : MonoBehaviour
             {
                 if (transform.rotation == Quaternion.Euler(0, -180, 0))
                 {
+                    print("MovePosGetOnVine()");
                     Vector2 pos = transform.position;
-                    pos.x += GetDistanceToGetOnVineCloser();
+                    //pos.x += GetDistanceToGetOnVine();
                     transform.position = pos;
                 }
                 else if (transform.rotation == Quaternion.Euler(0, 0, 0))
                 {
+                    print("MovePosGetOnVine()");
                     Vector2 pos = transform.position;
-                    pos.x -= GetDistanceToGetOnVineCloser();
+                    //pos.x -= GetDistanceToGetOnVine();
                     transform.position = pos;
                 }
 
@@ -279,9 +287,11 @@ sealed public partial class Player : MonoBehaviour
         //if there's no IsGrounded, the move while not on ground, move will be last value, the jump will be able to get left and right
         //if there is, when not on ground, will use the last value
         
-        if(IsGroundedChecker() && !IsOnVineChecker())
-        rb.velocity = new Vector2(horizontal * moveSpeed * Time.deltaTime, rb.velocity.y);
-        else if (IsOnVineChecker())
+        if(IsGroundedChecker() &&  !IsOnVineChecker())
+        {
+            rb.velocity = new Vector2(horizontal * moveSpeed * Time.deltaTime, rb.velocity.y);
+        }
+        else if (IsOnVineChecker())     //check so that player won't move horizontal while on vine
         {
             horizontal = 0;
             rb.velocity = new Vector2(horizontal * moveSpeed * Time.deltaTime, rb.velocity.y);

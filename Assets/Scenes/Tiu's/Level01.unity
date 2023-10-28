@@ -1261,7 +1261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &344082555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3382,13 +3382,14 @@ GameObject:
   - component: {fileID: 906061561}
   - component: {fileID: 906061562}
   - component: {fileID: 906061566}
+  - component: {fileID: 906061567}
   m_Layer: 8
   m_Name: Enemy_On_Vine
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &906061561
 Rigidbody2D:
   serializedVersion: 4
@@ -3538,7 +3539,7 @@ Transform:
   m_GameObject: {fileID: 906061560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.68, y: -0.604, z: 0}
+  m_LocalPosition: {x: -6.68, y: -0.64, z: 0}
   m_LocalScale: {x: 0.27509254, y: 0.27509254, z: 0.27509254}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3555,6 +3556,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102d28c4a54bb5a498eef5db360774cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &906061567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906061560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaad3c3e1894674e961178b5603c301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &926054014 stripped
@@ -4958,7 +4971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1449281603
 Rigidbody2D:
   serializedVersion: 4
@@ -9711,11 +9724,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.174
+      value: -5.96
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.492
+      value: -4.38
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.z

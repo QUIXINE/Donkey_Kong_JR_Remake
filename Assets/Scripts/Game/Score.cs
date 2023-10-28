@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using TakeDamage;
+using UnityEngine.SceneManagement;
 
 namespace ScoreManagement
 {
@@ -9,13 +10,19 @@ namespace ScoreManagement
     {
         public static int ScorePlayer01;
         public static int lapAmount;
+        public int lapAmountShow;
         public static TextMeshProUGUI ScoreText;
-        [SerializeField] private int bonusScore;
+        // [SerializeField] private int bonusScore;
+        public static int bonusScore;
         [SerializeField] private int highScore;
 
-        private void Start()
+
+        private void Awake() 
         {
             InitializeBonusScore();
+        }
+        private void Start()
+        {
             
             InvokeRepeating(nameof(DecreaseBonus), 4f, 3f); //4f because wait player to become active 1 sec. then decrease bonus every 3 sec.
             highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -27,6 +34,8 @@ namespace ScoreManagement
             //bonus score will change with condition depends on Lap amount
             switch (lapAmount)
             {
+                case 0:
+                    break;
                 case 1:
                     bonusScore = 5000;
                     break;
@@ -45,6 +54,11 @@ namespace ScoreManagement
 
         private void Update() 
         {
+            lapAmountShow = lapAmount;
+            if(Input.GetKeyDown(KeyCode.G))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
             DisplayerScorePlayer01();
             DisplayHighScore();
             DisplayBonusScore();
@@ -56,29 +70,29 @@ namespace ScoreManagement
         {
             if(ScorePlayer01 == 0 )
             {
-                Score_Singleton.Player01ScoreTextUI.text = $"000000";
+                Score_UI.Player01ScoreTextUI.text = $"000000";
             }
             if(ScorePlayer01 > 0)
             {
                 if(ScorePlayer01 < 100000 && ScorePlayer01 >= 10000)
                 {
-                    Score_Singleton.Player01ScoreTextUI.text = $"0{ScorePlayer01}";
+                    Score_UI.Player01ScoreTextUI.text = $"0{ScorePlayer01}";
                     // Score_Singleton.HighScoreTextUI.text = $"0{ScorePlayer01}";
 
                 }
                 else if (ScorePlayer01 < 10000 && ScorePlayer01 >= 1000)
                 {
-                    Score_Singleton.Player01ScoreTextUI.text = $"00{ScorePlayer01}";
+                    Score_UI.Player01ScoreTextUI.text = $"00{ScorePlayer01}";
                     // Score_Singleton.HighScoreTextUI.text = $"0{ScorePlayer01}";
                 }
                 else if (ScorePlayer01 < 1000 && ScorePlayer01 >= 100)
                 {
-                    Score_Singleton.Player01ScoreTextUI.text = $"000{ScorePlayer01}";
+                    Score_UI.Player01ScoreTextUI.text = $"000{ScorePlayer01}";
                     // Score_Singleton.HighScoreTextUI.text = $"0{ScorePlayer01}";
                 }
                 else if (ScorePlayer01 < 100)
                 {
-                    Score_Singleton.Player01ScoreTextUI.text = $"000000";
+                    Score_UI.Player01ScoreTextUI.text = $"000000";
                     // Score_Singleton.HighScoreTextUI.text = $"0{ScorePlayer01}";
                 }
 
@@ -87,12 +101,12 @@ namespace ScoreManagement
 
         private void DisplayBonusScore()
         {
-            Score_Singleton.BonusScoreTextUI.text = $"{bonusScore}";
+            Score_UI.BonusScoreTextUI.text = $"{bonusScore}";
         }
         
         private void DisplayLapAmount()
         {
-             Score_Singleton.LapAmountTextUI.text = $"{lapAmount}";
+             Score_UI.LapAmountTextUI.text = $"{lapAmount}";
         }
 
         public void DisplayHighScore()
@@ -106,19 +120,19 @@ namespace ScoreManagement
             }
             if(PlayerPrefs.GetInt("HighScore") < 100000 && PlayerPrefs.GetInt("HighScore") >= 10000)
             {
-                Score_Singleton.HighScoreTextUI.text = $"0{PlayerPrefs.GetInt("HighScore")}";
+                Score_UI.HighScoreTextUI.text = $"0{PlayerPrefs.GetInt("HighScore")}";
             }
             else if (PlayerPrefs.GetInt("HighScore") < 10000 && PlayerPrefs.GetInt("HighScore") >= 1000)
             {
-                Score_Singleton.HighScoreTextUI.text = $"00{PlayerPrefs.GetInt("HighScore")}";
+                Score_UI.HighScoreTextUI.text = $"00{PlayerPrefs.GetInt("HighScore")}";
             }
             else if (PlayerPrefs.GetInt("HighScore") < 1000 && PlayerPrefs.GetInt("HighScore") >= 100)
             {
-                Score_Singleton.HighScoreTextUI.text = $"000{PlayerPrefs.GetInt("HighScore")}";
+                Score_UI.HighScoreTextUI.text = $"000{PlayerPrefs.GetInt("HighScore")}";
             }
             else if (PlayerPrefs.GetInt("HighScore") < 100)
             {
-                Score_Singleton.HighScoreTextUI.text = $"000000";
+                Score_UI.HighScoreTextUI.text = $"000000";
             }
         }
         
@@ -135,7 +149,7 @@ namespace ScoreManagement
             {
                 //Play emergency audio
                 //Change text color
-                Score_Singleton.BonusScoreTextUI.color = new Color32(148, 87, 235, 255);
+                Score_UI.BonusScoreTextUI.color = new Color32(148, 87, 235, 255);
             }
             DisplayBonusScore();
         }

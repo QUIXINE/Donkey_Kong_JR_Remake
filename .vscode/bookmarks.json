@@ -1,7 +1,7 @@
 {
 	"files": [
 		{
-			"path": "Assets/Scripts/Game/Score_Singleton.cs",
+			"path": "Assets/Scripts/Game/Score_UI.cs",
 			"bookmarks": [
 				{
 					"line": 9,
@@ -24,12 +24,17 @@
 			"path": "Assets/Scripts/Game/Menu_Scene.cs",
 			"bookmarks": [
 				{
-					"line": 40,
+					"line": 9,
+					"column": 23,
+					"label": ""
+				},
+				{
+					"line": 23,
 					"column": 8,
 					"label": ""
 				},
 				{
-					"line": 41,
+					"line": 24,
 					"column": 94,
 					"label": ""
 				}
@@ -39,7 +44,12 @@
 			"path": "Assets/Scripts/Game/GameState.cs",
 			"bookmarks": [
 				{
-					"line": 111,
+					"line": 33,
+					"column": 13,
+					"label": ""
+				},
+				{
+					"line": 94,
 					"column": 20,
 					"label": ""
 				}
@@ -49,13 +59,23 @@
 			"path": "Assets/Scripts/Player/PlayerCheckers.cs",
 			"bookmarks": [
 				{
-					"line": 95,
-					"column": 0,
+					"line": 28,
+					"column": 20,
 					"label": ""
 				},
 				{
-					"line": 383,
+					"line": 96,
 					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 406,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 407,
+					"column": 79,
 					"label": ""
 				}
 			]

@@ -25,7 +25,7 @@
 19.get off the vine, get from one shorter to longer and don't get off
 20.DualHanded Right to two-handed L hands off and can't get back
 21.Player-Movement: Flipping and DualHanded and Fall, DualHanded immediately instead of flip(while Two-Handed) to another side after pressing btn to flip, and sometime Get off the vine without stoping by DualHanded animation first immediately
-24.Player-Movement: Player collides with platform 1st and can't move up on the vine (if collide with ground vertical won't receive input)
+24.Player-Movement: Player collides with platform 1st and can't move up on the vine (if collide with ground vertical won't receive input), can it DualHanded?
 25.Score is not Don'tDestroyed or stored as PlayerPrefs 
 26.if GameState is not Don'tDestroyed, i have to add GameState obj every scenes. if Don'tDestroyed //put player in Update() because it will be missing after reload the scene
 27.Player health: doesn’t get reset (get back to 3) after player die(-3 life) and start a new game, it’s DontDestroyOnLoad(). 
@@ -33,10 +33,13 @@
 29.if there's platform on another side, player can still flip to another side, but player shouldn't be able to do that  
 30.Player-Movement: jump from platform to the vine DK will flip wrong side (if hard press DK will get to another side of vine immediately)
 31.Player-Movement: When on platform dk get on vine from a little too far from vine
+    - check the ray on body, hand, head
+    - should I create more layer for floating platform, while player on platform define the short ray distance so that player wouldn't be too far to get on vine
 32.Player-Movement: while Dualhanded gets to another vine which is not with valid distance
     1.check getclose() that relates with Dualhanded, the distance of a ray
     2.check get to another vine func if the another side vine is found
-
+33.Player-Movement: Player doesn't get on the vine when the vine is ahead of PosBody while still in range of ability to get on vine 
+34.Player-Movement: if there's On head Playuer won't be able to reach out animation but the state is changed to DualHanded as coded
 
 ## Solved
 1.Solved: gravity after jump, when collide with vine player float up
@@ -80,29 +83,32 @@ Fall from height uses Rigidbody, if on vine and use vertical down rb will negati
 ## TODO:
 //8/31/2023
 //make dk jr's hands are on the vine within the its boundary
+
 //9/14/2023 
-//To-do-list
-//1.Fall from vine (!FoundAnotherVine() && push btn of the reach side again (L then L again))✅
-//2.Player life
-//3.Score
+1.Fall from vine (!FoundAnotherVine() && push btn of the reach side again (L then L again))✅
+2.Player life
+3.Score
+
 //9/18/2023 
-//To-do-list
-//1.Falling height check
-//2.Score - jump above enemy to get point, enemy stacking points. fruit collide with enemy get points, fruit stacking points 
+1.Falling height check
+2.Score - jump above enemy to get point, enemy stacking points. fruit collide with enemy get points, fruit stacking points 
+
 //9/19/2023 
-//To-do-list 
-//1.Falling height check ✅
-//2.Score - jump above enemy to get point, enemy stacking points. fruit collide with enemy get points, fruit stacking points 
-//3.jump get on vine with little touch of hand - use vineDualHandPos01.up or other direction to check✅ --> use vineCheckPosBody with rayDistanceOnBody instead
-//4.check ground-vine mixed (1st secene 1st platform) bottom is on ground but still dual/two-handed, if Two-Handed or Dual-Handed && IsGrouded() && IsOnVine() && FoundAnotherVine() player will be Two-handed or Dual-Handed state
+1.Falling height check ✅
+2.Score - jump above enemy to get point, enemy stacking points. fruit collide with enemy get points, fruit stacking points 
+3.jump get on vine with little touch of hand - use vineDualHandPos01.up or other direction to check✅ --> use vineCheckPosBody with rayDistanceOnBody instead
+4.check ground-vine mixed (1st secene 1st platform) bottom is on ground but still dual/two-handed, if Two-Handed or Dual-Handed && IsGrouded() && IsOnVine() && FoundAnotherVine() player will be Two-handed or Dual-Handed state
+
 //9/21/2023 
 1.Score - jump above enemy to get point, enemy stacking points ❌. fruit collide with enemy get points ✅, fruit stacking points ✅
 2.Player Life --> collide with enemy, water, and fall from height, --health. ✅
 3.Score - Highscore store and loadscene 
+
 //9/25/2023
 1.Jump avoid enemy get point ✅
 2.Bonus score
 3.Scene loading 
+
 //9/26/2023
 1.Bonus score
 2.Scene Loading
@@ -113,7 +119,7 @@ Fall from height uses Rigidbody, if on vine and use vertical down rb will negati
     - find a way to do it
 
 //10/19/2023
-1.to solve player Dualhanded can completely reach the vine from another side
+1.to solve player Dualhanded can't completely reach the vine from another side
     - check if how many Getclose() I really need
     - check the operator (+, -)
     - check the value or distance to get close to the vine 
@@ -121,3 +127,34 @@ Fall from height uses Rigidbody, if on vine and use vertical down rb will negati
     - check what does each func is for
 
     now: pos.x -= GetDistanceToReachVineCloser(); stop this to see if I can only use ReachVineCloser() to make Dk get close to the vine
+
+//10/23/2023, 10/24/2023, 10/25/2023
+1.polish Player Movement
+    DualHanded
+        Reaching distance ✅ --> solved by using vineCheckPosDualHand02 to check if the hand is off instead //❌_Level02 Reaching distance is still not ok
+        - What's wrong with DualHandPos01 checker? If there's nothing wrong it should detect and get closer to the vine.
+        - If there's nothing wrong with DualHandPos01 try use DualHandPos02 to detect the vine with left trasform direction. Will there be a problem like error position?
+        - check GetDistanceToReachVineCloser() isn't it used to get closer to the vine? if it is, why there's still a few distance farther from the vine
+        - DK try to get close to the far vine. Should I use bodyCheckPos instead? if I use DH01CheckPos I have to make sure ray distance will not detect the far vine so that DK won’t get close to it.
+    Get On Vine
+        - problem 31
+        - problem 33 relates w/ //Used hand instead of body (Bookmark)
+    problem 24
+    Polish IsOnVineChecker()
+2.Polish Player Health  (Singleton), destroy when is at Menu Scene✅
+3.polish Score (Score UI, Singleton)✅
+
+//10/28/2023
+1.polish Player Movement
+    DualHanded
+        Reaching distance 
+        - What's wrong with DualHandPos01 checker? If there's nothing wrong it should detect and get closer to the vine.
+        - If there's nothing wrong with DualHandPos01 try use DualHandPos02 to detect the vine with left trasform direction. Will there be a problem like error position?
+        - check GetDistanceToReachVineCloser() isn't it used to get closer to the vine? if it is, why there's still a few distance farther from the vine
+        - DK try to get close to the far vine. Should I use bodyCheckPos instead? if I use DH01CheckPos I have to make sure ray distance will not detect the far vine so that DK won’t get close to it.
+        - still won't reach to the another vine properly
+    Get On Vine
+        - problem 31
+        - problem 33 relates w/ //Used hand instead of body (Bookmark)
+    problem 24
+    Polish IsOnVineChecker()
