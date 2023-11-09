@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &1705806226120311037
 MonoBehaviour:
@@ -323,6 +323,8 @@ GameObject:
   - component: {fileID: 48740226583326939}
   - component: {fileID: 3536068656130033466}
   - component: {fileID: 6882929562045313915}
+  - component: {fileID: 5260007648907845923}
+  - component: {fileID: 6515961737281484237}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -371,5 +373,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be97b6fdeed0c9b4998acd3636e562f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusScore: 5000
-  highScore: 0
+--- !u!114 &5260007648907845923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293424765186822428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad9861722d02484abf68aa641982fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6515961737281484237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293424765186822428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3013227d9e1134fbce364fabc257d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

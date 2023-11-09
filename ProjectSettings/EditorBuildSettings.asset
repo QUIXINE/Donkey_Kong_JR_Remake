@@ -8,24 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Midterm/Menu_Scene.unity
     guid: 30ab1d3bb097e4444b9e65b9c8f2317e
-  - enabled: 0
-    path: Assets/Scenes/Tiu's/Level01.unity
-    guid: b78eb83301df90947854860ebb872af3
-  - enabled: 0
-    path: Assets/Scenes/Tiu's/Level02.unity
-    guid: b98f04a5df71d2f48b8483a948de58c0
-  - enabled: 0
-    path: Assets/Scenes/Tiu's/Level03.unity
-    guid: 8a49cb56a6879c649a5f23262e5bb8cb
-  - enabled: 0
-    path: Assets/Scenes/Tiu's/Level04.unity
-    guid: e172ffd9646ca0e429157f59e6ef4a30
+  - enabled: 1
+    path: Assets/Scenes/Midterm/Opening.unity
+    guid: fffe2e8129c1f684998815d5d6af98af
   - enabled: 1
     path: Assets/Scenes/Midterm/_Level01.unity
-    guid: fc1f0d32318719c468f0c16c3fc32ab3
+    guid: ffd6da60f3921cb46b8c8ab1eaf077ce
   - enabled: 1
     path: Assets/Scenes/Midterm/_Level02.unity
     guid: 84c09e9def0dff14dbe7c37e60754c81
+  - enabled: 1
+    path: Assets/Scenes/Midterm/Level02 Cutscene.unity
+    guid: cf6620e80e7ece54b8155e7ed9333d98
   - enabled: 1
     path: Assets/Scenes/Midterm/_Level03.unity
     guid: a13639d2b8acebb488452f5397286542
@@ -35,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Midterm/Rank_Scene.unity
     guid: 08ac87d9c81c6ef40bd129bca59b648e
+  - enabled: 0
+    path: Assets/Scenes/Tiu's/CutScene.unity
+    guid: 757a3f2a112069947b9a20561b282ed9
   m_configObjects: {}
