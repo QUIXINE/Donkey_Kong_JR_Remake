@@ -19,8 +19,14 @@ namespace ScoreManagement
         //Collide with fruit the GetPoint
         public void GetPoint(int score)
         {
-            Score.ScorePlayer01 = Score.ScorePlayer01 + score;
-            // Score.ScoreText.text = $"{Score.ScorePlayer01}";
+            if(PlayerPrefs.GetInt("Current_Player") == 1)
+            {
+                Score_Variables.ScorePlayer01 = Score_Variables.ScorePlayer01 + score;
+            }
+            else
+            {
+                Score_Variables.ScorePlayer02 = Score_Variables.ScorePlayer02 + score;
+            }
             rb.gravityScale = 0.5f;
             enemyCollider.enabled = false;
         }

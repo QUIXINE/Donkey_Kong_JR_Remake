@@ -119,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.049743652, y: -0.053059578}
   serializedVersion: 2
-  m_Radius: 0.4375
+  m_Radius: 0.31148314
 --- !u!114 &340029338731664755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
+  way: {fileID: 0}
   moveSpeed: 5
 --- !u!50 &-1793668166327749773
 Rigidbody2D:

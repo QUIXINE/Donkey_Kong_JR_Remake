@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timeremain: 2
   anim: {fileID: 0}
-  WalkSpeed: 5
+  WalkSpeed: 2.5
   waypoint2: []
 --- !u!61 &4082996339458895275
 BoxCollider2D:

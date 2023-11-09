@@ -11,8 +11,14 @@ public partial class Player
         {
             if(enemyList.Count != 0)
             {
-                Score.ScorePlayer01 = Score.ScorePlayer01 + scoreOfEnemy; // Score.TotalScore = Score.TotalScore + EnemyStack:int();
-                // Score.ScoreText.text = $"{Score.ScorePlayer01}";
+                if(PlayerPrefs.GetInt("Current_Player") == 1)
+                {
+                    Score_Variables.ScorePlayer01 = Score_Variables.ScorePlayer01 + scoreOfEnemy;
+                }
+                else
+                {
+                    Score_Variables.ScorePlayer02 = Score_Variables.ScorePlayer02 + scoreOfEnemy;;
+                }
                 canGetPointFromEnemy = false;
             }
         }
@@ -27,7 +33,7 @@ public partial class Player
         //Why  check after jump straight --> because ray will be created after press jump btn (I put the Call EnemyStack() inside Jump()), if 
         //Raycast hits enemy
         RaycastHit2D[] Hits = new RaycastHit2D[2];
-        int hit = Physics2D.CircleCastNonAlloc(groundCheckPos.position, 0.7f, -groundCheckPos.up, Hits, 1f, enemyLayerMask);
+        int hit = Physics2D.CircleCastNonAlloc(groundCheckPos01.position, 0.7f, -groundCheckPos01.up, Hits, 1f, enemyLayerMask);
 
         EnemyScore enemy01;
         EnemyScore enemy02;

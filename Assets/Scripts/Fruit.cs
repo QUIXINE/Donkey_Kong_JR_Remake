@@ -10,18 +10,24 @@ public class Fruit : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool isCrashedEnemy01, isCrashedEnemy02, isCrashedEnemy03; //used to check how many enemies is collided
-    private int fruitScore;
+    private int fruitScore = 400;
     private bool canCollidePlayer;
     private void Start()
     {
-        fruitScore = 400;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         canCollidePlayer = true;
     }
     public void GetPoint()
     {
-        Score.ScorePlayer01 = Score.ScorePlayer01 + fruitScore;
+        if(PlayerPrefs.GetInt("Current_Player") == 1)
+        {
+            Score_Variables.ScorePlayer01 = Score_Variables.ScorePlayer01 + fruitScore;
+        }
+        else
+        {
+            Score_Variables.ScorePlayer02 = Score_Variables.ScorePlayer02 + fruitScore;
+        }
         // Score.ScoreText.text = $"{Score.ScorePlayer01}";
         rb.gravityScale = 0.5f;
     }
