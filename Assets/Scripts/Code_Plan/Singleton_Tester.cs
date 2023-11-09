@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Singleton_Tester : SingletonTest<Singleton_Tester> {
+public class Singleton_Tester : Singleton<Singleton_Tester> {
 
     public int Num_Teller;
 

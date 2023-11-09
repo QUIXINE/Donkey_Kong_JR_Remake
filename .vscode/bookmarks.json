@@ -11,31 +11,11 @@
 			]
 		},
 		{
-			"path": "Assets/Scripts/Player/PlayerTakeDamage.cs",
+			"path": "Assets/Scripts/Player/Player_TakeDamage.cs",
 			"bookmarks": [
 				{
-					"line": 27,
+					"line": 26,
 					"column": 25,
-					"label": ""
-				}
-			]
-		},
-		{
-			"path": "Assets/Scripts/Game/Menu_Scene.cs",
-			"bookmarks": [
-				{
-					"line": 9,
-					"column": 23,
-					"label": ""
-				},
-				{
-					"line": 23,
-					"column": 8,
-					"label": ""
-				},
-				{
-					"line": 24,
-					"column": 94,
 					"label": ""
 				}
 			]
@@ -44,38 +24,73 @@
 			"path": "Assets/Scripts/Game/GameState.cs",
 			"bookmarks": [
 				{
-					"line": 33,
-					"column": 13,
-					"label": ""
-				},
-				{
-					"line": 94,
+					"line": 129,
 					"column": 20,
 					"label": ""
 				}
 			]
 		},
 		{
-			"path": "Assets/Scripts/Player/PlayerCheckers.cs",
+			"path": "Assets/Scripts/Player/Player_Checkers.cs",
 			"bookmarks": [
 				{
-					"line": 28,
+					"line": 31,
 					"column": 20,
 					"label": ""
 				},
 				{
-					"line": 96,
+					"line": 380,
+					"column": 28,
+					"label": ""
+				},
+				{
+					"line": 494,
 					"column": 8,
 					"label": ""
 				},
 				{
-					"line": 406,
-					"column": 8,
-					"label": ""
-				},
-				{
-					"line": 407,
+					"line": 495,
 					"column": 79,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Assets/Scripts/Player/Player_Health_UI.cs",
+			"bookmarks": [
+				{
+					"line": 15,
+					"column": 30,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Assets/Scripts/Player/Player01Health.cs",
+			"bookmarks": [
+				{
+					"line": 25,
+					"column": 33,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Assets/Scripts/Player/Player_States.cs",
+			"bookmarks": [
+				{
+					"line": 22,
+					"column": 16,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "Assets/Scripts/Enemy/Enemy_Collision.cs",
+			"bookmarks": [
+				{
+					"line": 13,
+					"column": 80,
 					"label": ""
 				}
 			]

@@ -10,18 +10,25 @@ public class Fruit : MonoBehaviour
 {
     private Rigidbody2D rb;
     private bool isCrashedEnemy01, isCrashedEnemy02, isCrashedEnemy03; //used to check how many enemies is collided
-    private int fruitScore;
+    private int fruitScore = 400;
     private bool canCollidePlayer;
     private void Start()
     {
-        fruitScore = 400;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         canCollidePlayer = true;
     }
     public void GetPoint()
     {
-        Score.ScorePlayer01 = Score.ScorePlayer01 + fruitScore;
+        if(PlayerPrefs.GetInt("Current_Player") == 1)
+        {
+            Score_Variables.ScorePlayer01 = Score_Variables.ScorePlayer01 + fruitScore;
+        }
+        else
+        {
+            Score_Variables.ScorePlayer02 = Score_Variables.ScorePlayer02 + fruitScore;
+        }
+        Score_PopUp_Display.PopUpScore(gameObject.transform, fruitScore);   //Pop up score
         // Score.ScoreText.text = $"{Score.ScorePlayer01}";
         rb.gravityScale = 0.5f;
     }
@@ -39,6 +46,7 @@ public class Fruit : MonoBehaviour
     {
         if (col.gameObject.layer == 9 && canCollidePlayer)
         {
+            AudioPlayerTest.PlayAudio(AudioReferences.EatSound);
             GetPoint();
             canCollidePlayer = false;
         }
@@ -48,20 +56,29 @@ public class Fruit : MonoBehaviour
             IGetPoint get = col.gameObject.GetComponent<IGetPoint>();
             if(!isCrashedEnemy01)
             {
+                AudioPlayerTest.PlayAudio(AudioReferences.FruitBumpSound);
                 fruitScore += 400; 
+                StartCoroutine(StopTime());
                 get.GetPoint(fruitScore);
+                Score_PopUp_Display.PopUpScore(col.gameObject.transform, fruitScore);   //Pop up score
                 isCrashedEnemy01 = true;
             }
             else if(isCrashedEnemy01 && !isCrashedEnemy02)
             {
+                AudioPlayerTest.PlayAudio(AudioReferences.FruitBumpSound);
                 fruitScore += 400; 
+                StartCoroutine(StopTime());
                 get.GetPoint(fruitScore);
+                Score_PopUp_Display.PopUpScore(col.gameObject.transform, fruitScore);   //Pop up score
                 isCrashedEnemy02 = true;
             }
             else if(isCrashedEnemy01 && isCrashedEnemy02 && !isCrashedEnemy03)
             {
+                AudioPlayerTest.PlayAudio(AudioReferences.FruitBumpSound);
                 fruitScore += 400; 
+                StartCoroutine(StopTime());
                 get.GetPoint(fruitScore);
+                Score_PopUp_Display.PopUpScore(col.gameObject.transform, fruitScore);   //Pop up score
                 isCrashedEnemy03 = true;
             }
         }
@@ -82,6 +99,14 @@ public class Fruit : MonoBehaviour
             isCrashedEnemy03 = true;
         }
         */
+    
+    
     }
 
+    private IEnumerator StopTime()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(1.30f);
+        Time.timeScale = 1;
+    }
 }

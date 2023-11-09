@@ -256,6 +256,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Cage_Papa_7
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 46
+        width: 254
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702e275099b7d504d850cb13e5785afd
+      internalID: -281805259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -274,6 +295,7 @@ TextureImporter:
       Cage_Papa_4: -2003977674
       Cage_Papa_5: -1849883906
       Cage_Papa_6: 311533946
+      Cage_Papa_7: -281805259
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
