@@ -70,12 +70,5 @@ public class BBird_Controller2 : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (collision.CompareTag("Fruit"))
-        {
-
-            /* StartCoroutine(WaitAnim());*/
-            Destroy(gameObject);
-
-        }
     }
 }

@@ -38,9 +38,5 @@ public class BSpark_Controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Fruit"))
-        {
-            Destroy(gameObject);
-        }
     }
 }

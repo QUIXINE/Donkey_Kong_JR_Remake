@@ -19,7 +19,7 @@ public class Bjaw_Controller : MonoBehaviour
     public Animation anim;
     //variable
     private GameObject ObjectRope;
-
+    private int dirX;
     private float TimeLaunch;
     public float WalkSpeed;
     private int RndNumLF;
@@ -27,6 +27,7 @@ public class Bjaw_Controller : MonoBehaviour
     private bool runyet = false;
     private bool isMove = false;
     private bool isDown = false;
+    private bool isflip = false;
 
 
     void Start()
@@ -43,9 +44,18 @@ public class Bjaw_Controller : MonoBehaviour
             runyet = true;
         }
 
+
         if (runyet == true)
         {
-            if(isMove == true)
+            flip();
+            {
+                if (!IsGround())
+                {
+                    Back();
+                }
+            }
+
+            if (isMove == true)
             {
                 LeftRight();
             }
@@ -76,16 +86,18 @@ public class Bjaw_Controller : MonoBehaviour
 
         {
 
-                if (RndNumLF >= 1)
-                {
-                    transform.position = transform.position + new Vector3(-1 * WalkSpeed * Time.deltaTime, 0, 0);
-                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            if (RndNumLF == 1)
+            {
+                dirX = 1;
+                rb.velocity = new Vector2(dirX * WalkSpeed, rb.velocity.y);
+                isflip = false;
 
             }
-                if (RndNumLF == 0)
-                {
-                    transform.position = transform.position + new Vector3(1 * WalkSpeed * Time.deltaTime, 0, 0);
-                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            if (RndNumLF == 0)
+            {
+                dirX = -1;
+                rb.velocity = new Vector2(dirX * WalkSpeed, rb.velocity.y);
+                isflip = true;
             }
         }
 
@@ -94,7 +106,7 @@ public class Bjaw_Controller : MonoBehaviour
     private void UpDown()
     {
         isMove = false;
-        transform.position = new Vector3(ObjectRope.transform.position.x, transform.position.y + (-1.5f * (WalkSpeed * Time.deltaTime)), ObjectRope.transform.position.z);
+        transform.position = new Vector3(ObjectRope.transform.position.x, transform.position.y + (-1.5f * (WalkSpeed * Time.deltaTime)), transform.position.z);
 
     }
 
@@ -114,9 +126,35 @@ public class Bjaw_Controller : MonoBehaviour
         }
     }
 
+    void flip()
+    {
+        if (!isflip)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * 1, transform.localScale.y, transform.localScale.z);
+        }
+        if (isflip)
+        {
+            if(transform.localScale.x > 0)
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
+    }
+
+    private void Back()
+    {
+        if (RndNumLF == 1)
+        {
+            RndNumLF = 0;
+
+        }
+        else
+        {
+            RndNumLF = 1;
+
+        }
+    }
     private bool IsGround()
     {
-        float Height = 1f;
+        float Height = 0.5f;
         RaycastHit2D rayhit = Physics2D.Raycast(box2d.bounds.center, Vector2.down, box2d.bounds.extents.y + Height, GroundLayer);
         Color rayColor;
         if (rayhit.collider != null)
@@ -148,16 +186,14 @@ public class Bjaw_Controller : MonoBehaviour
             Debug.Log("!isground");
             rb.isKinematic = true;
         }
-        if (collision.CompareTag("Fruit"))
-        {
 
-            /* StartCoroutine(WaitAnim());*/
-           Destroy(gameObject);
-
-        }
         if (collision.CompareTag("BottRope"))
         {
             rb.isKinematic = false;
+        }
+        if (collision.CompareTag("End"))
+        {
+            Destroy(gameObject);
         }
     }
 }
