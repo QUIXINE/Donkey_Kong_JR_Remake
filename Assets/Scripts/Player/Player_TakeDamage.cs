@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using PlayerSpace;
-using UnityEngine.Animations;
 
 namespace TakeDamage
 {

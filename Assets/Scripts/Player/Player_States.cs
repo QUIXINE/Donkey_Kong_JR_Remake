@@ -198,7 +198,6 @@ public partial class Player
             else if(!IsThereBoundaryAsObstacle() && !IsThereKeyAsObstacle())
             {
                 canReach = true;
-                StopAllCoroutines();
                 animator.SetBool("TwoHanded", false);
                 //StartCoroutine(WaitAndTransitState());
                 TransitState(PlayerState.DualHanded);
@@ -208,11 +207,6 @@ public partial class Player
         {
             if(IsThereBoundaryAsObstacle() && !IsThereKeyAsObstacle())
             {
-                canReach = true;
-                StopAllCoroutines();
-                animator.SetBool("TwoHanded", false);
-                //StartCoroutine(WaitAndTransitState());    //if transit wait time Dk will get to DualHanded while TwoHanded animation and have to press 2 times (first will get to DualHanded state, another for reaching out) to reach out
-                TransitState(PlayerState.DualHanded);       //if transit immediately Dk will sometime DualHanded so quick
             }
             else if(!IsThereBoundaryAsObstacle() && !IsThereKeyAsObstacle())
             {

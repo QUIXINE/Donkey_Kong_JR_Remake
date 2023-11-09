@@ -294,7 +294,6 @@ sealed public partial class Player
     }
 
 
-
     //Used to check while player is DualHanded, check if the ditance between player and the vine is not valid(DK hands are off the vine)
     //Used w/ ReachVineCloser() which is called in Update()
     private float GetDistanceToAlwaysReachVineCloser()
@@ -316,7 +315,6 @@ sealed public partial class Player
                     {
                         if(distance02 <= 0.001)
                         {
-
                             //canReachVineCloser = false;
                             return 0;
                         }
@@ -351,7 +349,6 @@ sealed public partial class Player
                             //canReachVineCloser = false;
                             return 0;
                         }
-
                         return 0.01f;
                     }
                 }
@@ -610,12 +607,9 @@ sealed public partial class Player
         //if isOnVine is false, MovePosGetOnVine() will work which means player state will be TwoHanded and there will be an unplesant situatuion occur
         else if(CurrentState == PlayerState.Idle && !IsGroundedChecker() && IsOnVine)   //this condition relates with DualHandedState()       
         {
-            //isOnVine = false;   //maybe not, I added because there's one on previous condition
             rb.gravityScale = 2;
         }
     }
-    
-
     #endregion
 
   
@@ -710,7 +704,6 @@ sealed public partial class Player
 
           
     }
-
 
     //Draw cube at raycast box posiotion
     void OnDrawGizmos()

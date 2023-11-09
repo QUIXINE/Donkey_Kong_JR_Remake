@@ -326,6 +326,7 @@ sealed public partial class Player : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.X) && IsGroundedChecker() && !IsJumped) 
         {
+            IsJumped = true;
             animator.SetBool("StopJump", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             animator.SetBool("Jump", true);
