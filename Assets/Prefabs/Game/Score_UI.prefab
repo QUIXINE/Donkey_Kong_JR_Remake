@@ -1499,7 +1499,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 894431886867802006}
-  - component: {fileID: 6347862724167916239}
   m_Layer: 0
   m_Name: Score_UI
   m_TagString: Untagged
@@ -1524,26 +1523,6 @@ Transform:
   - {fileID: 5840774559706211986}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6347862724167916239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586086825810652183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08f62bfbc7e304a4fade3a8a8f3fdbfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score_Count_Canvas: {fileID: 2226747693768069960}
-  bonus_Count_Canvas: {fileID: 6494541864533174636}
-  player01ScoreTextUI: {fileID: 3664826127741526003}
-  player02ScoreTextUI: {fileID: 5413652915628022604}
-  player02TurnUI: {fileID: 6237362653131752945}
-  bonusScoreTextUI: {fileID: 954120358897850580}
-  lapAmountTextUI: {fileID: 4368550542149646721}
-  highScoreTextUI: {fileID: 4320177024100527993}
 --- !u!1 &6875094137198559082
 GameObject:
   m_ObjectHideFlags: 0
