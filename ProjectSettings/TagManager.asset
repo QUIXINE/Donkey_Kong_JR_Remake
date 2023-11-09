@@ -4,12 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - JumpPad
+  - Fruit
+  - Enemy
+  - Key
+  - End
   - TopRope
   - BottRope
-  - Fruit
-  - End
   - Trigger
-  - Enemy
+  - Sling
   layers:
   - Default
   - TransparentFX
@@ -19,9 +22,9 @@ TagManager:
   - UI
   - Ground
   - Vine
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Item
   - 
   - 
   - 
