@@ -48,6 +48,7 @@
 Player-Movement: When hitOnBody (I don't konow which) doesn't detect vine and move from vine to vinr, from DualHanded to TwoHanded, the state can become DualHanded on it's own while TwoHanded gesture  //necessary, but if there's no time, can play moving only in range of hit body 
 
 
+
 # Solved
 1.Solved: gravity after jump, when collide with vine player float up
 2.Solved: fliping doesn't move sprite to left or right side of the vine, but only flip itself
@@ -108,6 +109,10 @@ that means it's FoundAnotherVine(), but CheckPosDual02 doesn't check any. this m
 26.Player-Movement: DualHanded to TwoHanded auto flip, make TwoHanded flip and collides w/ platform
     - try check more in IsThereObstacle() to check and flip back
 --> solved by using FlipBackFromObstacle()
+27.Player-Life: Play clear stage cutscene but health still decrease
+--> because I test the game while the bonus point is less than 0, so it decreases the health . or maybe I didn't disable Player_TakeDamage, so I
+sloved by disabling Player_TakeDamage
+
 
 # Cuations
 1.if use horizontalOnVine > 0 in Reaching first time player will get to Dual-Handed immediately
@@ -261,7 +266,7 @@ that means it's FoundAnotherVine(), but CheckPosDual02 doesn't check any. this m
 6. Time registration ✅
 
 7. Cut scene
-    - Clear stage, hide things? - remains enemy because still not merge branch enemy
+    - TODO: Clear stage, hide things? - remains enemy because still not merge branch enemy
     - reach final vine, time to wait for clear stage animation and get to the next scene in total ✅
     - Cut scene has their own scene, finish stage then load to cut scene. time to wait for each cut scene to finish then get to next level scene. ✅(All)
         - Opening
@@ -295,7 +300,7 @@ that means it's FoundAnotherVine(), but CheckPosDual02 doesn't check any. this m
     - Proble: Sound Audio Manager play in loop sometime after dead --> solved by using Player enable as condition in PlayAudio() in AudioPlayerTest ✅
 
 
-Fruit banana too wide collider
+Fruit banana too wide collider ✅
 
 Player Movement 
 1.can move as original gameplay, but there are a few problem

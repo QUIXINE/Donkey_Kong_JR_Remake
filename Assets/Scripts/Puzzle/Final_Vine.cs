@@ -3,6 +3,7 @@ using System.Collections;
 using PlayerSpace;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using TakeDamage;
 
 public class Final_Vine : MonoBehaviour 
 {
@@ -11,6 +12,7 @@ public class Final_Vine : MonoBehaviour
     {
         print("Reach final vine");
         Player player = col.GetComponent<Player>();
+        Player_TakeDamage player_TakeDamage = col.GetComponent<Player_TakeDamage>();
         player.transform.rotation = Quaternion.Euler(0, 0, 0);
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
@@ -25,13 +27,13 @@ public class Final_Vine : MonoBehaviour
             player.transform.position = new Vector2(-0.685f, 3f);
         }
             
-        StartCoroutine(DisablePlayer(player));
+        DisablePlayer(player, player_TakeDamage);
         playableDirector.Play();
     }    
 
-    private IEnumerator DisablePlayer(Player player)
+    private void DisablePlayer(Player player, Player_TakeDamage player_TakeDamage)
     {
-        yield return new WaitForSeconds(0.1f);
+        player_TakeDamage.enabled = false;
         player.enabled = false;
         LoadAfterWin();
     }

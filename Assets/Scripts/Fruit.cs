@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using UnityEngine;
 using TMPro;
 using ScoreManagement;
@@ -12,6 +12,7 @@ public class Fruit : MonoBehaviour
     private bool isCrashedEnemy01, isCrashedEnemy02, isCrashedEnemy03; //used to check how many enemies is collided
     private int fruitScore = 400;
     private bool canCollidePlayer;
+    private bool collidePlayer;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +40,7 @@ public class Fruit : MonoBehaviour
         {
             rb.gravityScale = 0;
             rb.velocity = Vector2.zero;
+            Destroy(gameObject);
         }
     }
 
@@ -48,10 +50,11 @@ public class Fruit : MonoBehaviour
         {
             AudioPlayerTest.PlayAudio(AudioReferences.EatSound);
             GetPoint();
+            collidePlayer = true;
             canCollidePlayer = false;
         }
 
-        if(col.gameObject.layer == 8)
+        if(col.gameObject.layer == 8 && collidePlayer)
         {
             IGetPoint get = col.gameObject.GetComponent<IGetPoint>();
             if(!isCrashedEnemy01)

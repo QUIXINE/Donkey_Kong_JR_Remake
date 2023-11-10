@@ -94,7 +94,7 @@ public class GameState : MonoBehaviour
     public static IEnumerator LoadSceneAfterWin()
     {
         Bonus_Score_Manager bonus_Score_Manager = FindObjectOfType<Bonus_Score_Manager>();
-        bonus_Score_Manager.StopBonusIncrement();                       //Stop decreasing bonus when get to dying state (dying animation played)
+        bonus_Score_Manager.StopBonusDecreasement();                       //Stop decreasing bonus when get to dying state (dying animation played)
         int currentScene =  SceneManager.GetActiveScene().buildIndex;
 
         //There's no need to use PlayerPrefs.GetInt(Player_Amount) as condition because "CurrentPlayer" only change when player dies
@@ -145,7 +145,7 @@ public class GameState : MonoBehaviour
     public static IEnumerator LoadSceneAfterDead()
     {
         Bonus_Score_Manager bonus_Score_Manager = FindObjectOfType<Bonus_Score_Manager>();
-        bonus_Score_Manager.StopBonusIncrement();                     //Stop decreasing bonus when get to dying state (dying animation played)
+        bonus_Score_Manager.StopBonusDecreasement();                     //Stop decreasing bonus when get to dying state (dying animation played)
         yield return new WaitForSeconds(4f);
 
         if(PlayerPrefs.GetInt("Player_Amount") == 1)
@@ -191,7 +191,7 @@ public class GameState : MonoBehaviour
     private IEnumerator LoadSceneAfterGameOver()
     {
         Bonus_Score_Manager bonus_Score_Manager = FindObjectOfType<Bonus_Score_Manager>();
-        bonus_Score_Manager.StopBonusIncrement();                     //Stop decreasing bonus when get to dying state (dying animation played)
+        bonus_Score_Manager.StopBonusDecreasement();                     //Stop decreasing bonus when get to dying state (dying animation played)
         yield return new WaitForSeconds(3f);
         //Load to score storing scene if player has score that is more than one of the 5 ranks
         PlayerPrefs.SetInt("Player01_Score", Score_Variables.ScorePlayer01);
