@@ -4354,13 +4354,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1091198495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491fc2ec3b3204d4fb66a62055551c80, type: 3}
+  m_Script: {fileID: 11500000, guid: dc04054f7e5296e41a55500eecd2a096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountTxtUI: {fileID: 364971783}
-  insertCoinTxtUI: {fileID: 695195581}
-  coinTxtUI: {fileID: 1577526314}
-  player_Coin_Num_UI_Parent: {fileID: 173450517}
   highLightImg: {fileID: 244044033}
   scoreBoardObj: {fileID: 1045256481}
   scoreBoardObjOldPos: {fileID: 1045256482}
