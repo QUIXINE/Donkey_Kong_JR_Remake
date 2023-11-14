@@ -94,6 +94,16 @@
 					"label": ""
 				}
 			]
+		},
+		{
+			"path": "Assets/Scripts/Game/Finish_Level04.cs",
+			"bookmarks": [
+				{
+					"line": 14,
+					"column": 40,
+					"label": ""
+				}
+			]
 		}
 	]
 }

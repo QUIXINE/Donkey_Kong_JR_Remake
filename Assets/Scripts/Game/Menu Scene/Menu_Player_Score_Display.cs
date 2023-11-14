@@ -68,7 +68,7 @@ namespace ScoreManagement
             #endregion
 
             #region Player 2
-                if(Player_Selection.Player_Amount == 2)
+                if(Option_Selection.Player_Amount == 2)
                 {
                     Score_UI.Player02ScoreTextUI.gameObject.SetActive(true);
                     Score_UI.Player02TurnUI.gameObject.SetActive(true);
