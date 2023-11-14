@@ -9,17 +9,18 @@ public class Finish_Level04 : MonoBehaviour
     }
     private void Update() 
     {
-        /* if(cagePart01.activeSelf == false && cagePart02.activeSelf == false && cagePart03.activeSelf == false && cagePart04.activeSelf == false
+        if(cagePart01.activeSelf == false && cagePart02.activeSelf == false && cagePart03.activeSelf == false && cagePart04.activeSelf == false
          && cagePart05.activeSelf == false && cagePart06.activeSelf == false && !isWin)
         {
+            //Trigger PlayerableDirector
             StartCoroutine(GameState.LoadSceneAfterWin());
             isWin = true;
-        } */
+        }
 
         //for testing
-        if(Input.GetKeyDown(KeyCode.L))
+        /* if(Input.GetKeyDown(KeyCode.L))
         {
             StartCoroutine(GameState.LoadSceneAfterWin());
-        }
+        } */
     }  
 }

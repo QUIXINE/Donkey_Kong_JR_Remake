@@ -90,7 +90,7 @@ namespace ScoreManagement
             //DisplayBonusScore();
         }
 
-        public void StopBonusIncrement()
+        public void StopBonusDecreasement()
         {
             CancelInvoke(nameof(DecreaseBonus));
         }
