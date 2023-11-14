@@ -6,12 +6,6 @@ using UnityEngine.UI;
 public class Option_Selection : MonoBehaviour
 {
     public static int Player_Amount;
-    private int coin;
-    [SerializeField] private TextMeshProUGUI amountTxtUI;
-    [SerializeField] private TextMeshProUGUI insertCoinTxtUI;
-    [SerializeField] private TextMeshProUGUI coinTxtUI;
-    [SerializeField] private GameObject player_Coin_Num_UI_Parent;
-
 
     //Option Selecting
     [SerializeField] private Image highLightImg;
@@ -105,7 +99,6 @@ public class Option_Selection : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape) && scoreBoardObj.transform.position == scoreBoardObjTargetedPos)
         {
-            print("ESC");
             scoreBoardObj.transform.position    =   new Vector3(20, 0, 0);
         }
     }
@@ -113,6 +106,12 @@ public class Option_Selection : MonoBehaviour
 
 
 /* Insert Coin to increase player amount way  
+    private int coin;
+    [SerializeField] private TextMeshProUGUI amountTxtUI;
+    [SerializeField] private TextMeshProUGUI insertCoinTxtUI;
+    [SerializeField] private TextMeshProUGUI coinTxtUI;
+    [SerializeField] private GameObject player_Coin_Num_UI_Parent;
+
   private void SelectPlayerAmount()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
