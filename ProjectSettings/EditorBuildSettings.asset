@@ -12,16 +12,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Midterm/Opening.unity
     guid: fffe2e8129c1f684998815d5d6af98af
   - enabled: 1
-    path: Assets/Scenes/Midterm/Final_Level01.unity
+    path: Assets/Scenes/Midterm/_Level01.unity
     guid: ffd6da60f3921cb46b8c8ab1eaf077ce
   - enabled: 1
-    path: Assets/Scenes/Midterm/Final_Level02.unity
+    path: Assets/Scenes/Midterm/_Level02.unity
     guid: 84c09e9def0dff14dbe7c37e60754c81
   - enabled: 1
     path: Assets/Scenes/Midterm/Level02 Cutscene.unity
     guid: cf6620e80e7ece54b8155e7ed9333d98
   - enabled: 1
-    path: Assets/Scenes/Midterm/Final_Level03.unity
+    path: Assets/Scenes/Midterm/_Level03.unity
     guid: a13639d2b8acebb488452f5397286542
   - enabled: 1
     path: Assets/Scenes/Midterm/_Level04.unity
