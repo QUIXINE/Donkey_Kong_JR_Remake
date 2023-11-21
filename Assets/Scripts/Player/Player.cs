@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TakeDamage;
 using ScoreManagement;
+using UnityEngine.SceneManagement;
 
 namespace PlayerSpace
 {
@@ -117,7 +118,7 @@ sealed public partial class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         playerTakeDamage = GetComponent<Player_TakeDamage>();
         dkCol = GetComponent<Collider2D>();
         IsOnVine = false;
@@ -249,7 +250,13 @@ sealed public partial class Player : MonoBehaviour
             //Condition to make Dk jr's hands don't go off the vine while OnVine, but is in the boundary of the vine
             if (IsOnVine == false)
             {
-                Instantiate(vineFallenLeafParticle, vineCheckPosDualHand01.position, Quaternion.identity);
+                //Instantiate fallen leaf particle after get on vine
+                if(SceneManager.GetActiveScene().buildIndex != 6 && SceneManager.GetActiveScene().buildIndex != 5)
+                {
+                    Vector3 shortenScale = new Vector3(0.2f, 0.2f, 0.2f);
+                    vineFallenLeafParticle.transform.localScale =  shortenScale;
+                    Instantiate(vineFallenLeafParticle, vineCheckPosDualHand01.position, Quaternion.identity);
+                }
                 /* if (transform.rotation == Quaternion.Euler(0, -180, 0))
                 {
                     Vector2 pos = transform.position;
@@ -276,9 +283,14 @@ sealed public partial class Player : MonoBehaviour
             //Condition to make Dk jr's hands don't go off the vine while OnVine, but is in the boundary of the vine
             if (IsOnVine == false)
             {
-                Vector3 shortenScale = new Vector3(0.2f, 0.2f, 0.2f);
-                vineFallenLeafParticle.transform.localScale =  shortenScale;
-                Instantiate(vineFallenLeafParticle, transform.position, Quaternion.identity);
+                //Instantiate fallen leaf particle after get on vine
+                if(SceneManager.GetActiveScene().buildIndex != 6 && SceneManager.GetActiveScene().buildIndex != 5)
+                {
+                    Vector3 shortenScale = new Vector3(0.2f, 0.2f, 0.2f);
+                    vineFallenLeafParticle.transform.localScale =  shortenScale;
+                    Instantiate(vineFallenLeafParticle, vineCheckPosDualHand01.position, Quaternion.identity);
+                }
+               
                 if (transform.rotation == Quaternion.Euler(0, -180, 0))
                 {
                     Vector2 pos = transform.position;

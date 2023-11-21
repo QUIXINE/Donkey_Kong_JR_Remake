@@ -12,7 +12,7 @@ public class Player_Audio_Handler : MonoBehaviour
     private void Start() 
     {
         player = GetComponent<Player>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 

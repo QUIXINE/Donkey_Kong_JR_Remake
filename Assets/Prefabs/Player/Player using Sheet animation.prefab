@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 8899893355829440913}
   - component: {fileID: 8419072338196206931}
   m_Layer: 9
-  m_Name: Player
+  m_Name: Player using Sheet animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

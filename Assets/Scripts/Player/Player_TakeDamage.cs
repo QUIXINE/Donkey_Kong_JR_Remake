@@ -14,7 +14,7 @@ namespace TakeDamage
 
         private void Start() 
         {
-            animator = GetComponent<Animator>();
+            animator = GetComponentInChildren<Animator>();
             player = GetComponent<Player>();
             rb = GetComponent<Rigidbody2D>();
             capsuleCollider = GetComponent<CapsuleCollider2D>();
