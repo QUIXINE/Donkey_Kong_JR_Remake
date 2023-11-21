@@ -108,7 +108,364 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: sprite_donkey_0
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 783
+        width: 187
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 887a688fb564ff940a16640acc5c1ba9
+      internalID: 1774719879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_1
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 782
+        width: 183
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c539f31844a1f804ba84d66bd270b086
+      internalID: -228219734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_2
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 784
+        width: 185
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3f6a6d1e4e9de242843b69d9583aa3e
+      internalID: -2017689951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_3
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 784
+        width: 184
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bbc5751172c92f4792dc4b2bd1a1d09
+      internalID: -570269904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_4
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 786
+        width: 221
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05e9c71998df833438dd8b8199d7dc03
+      internalID: 2143596951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_5
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 782
+        width: 235
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1d67f1b116a43843ac4231c5d0cdc71
+      internalID: -1292972668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_6
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 770
+        width: 208
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 714977396d663f2499a09f370ac8cf31
+      internalID: -1152115744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_7
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 391
+        width: 221
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fdf68f26f6ac4942afa373e84072f83
+      internalID: 1601768173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_8
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 391
+        width: 197
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02391541543cd248a21a0fb5b708586
+      internalID: -989462203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_9
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 472
+        width: 89
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aa70583cc8c0554888163a88ef2a5e1
+      internalID: -485563455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_10
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 534
+        width: 190
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ddca31776549eb4dbb5831371393bea
+      internalID: 81992559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_11
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 527
+        width: 205
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb1052c77ec3f584e8783f454197b789
+      internalID: -1983447309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_12
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 510
+        width: 93
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a28af0d565fe6549855ddb05de17cb3
+      internalID: -1436993731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_13
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 443
+        width: 108
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 637872850beddcf4bbbf5ecc2a21c76c
+      internalID: 399452299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_14
+      rect:
+        serializedVersion: 2
+        x: 1521
+        y: 432
+        width: 107
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 690cb3219da648e4cac5dca42d2a7b60
+      internalID: -383206119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_15
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 113
+        width: 230
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d68c1661caa55245914f33eef104a55
+      internalID: -1469146064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_donkey_16
+      rect:
+        serializedVersion: 2
+        x: 1241
+        y: 103
+        width: 205
+        height: 319
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 731ae9f7bedbfc44da589ad6587114ea
+      internalID: -754014420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +476,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sprite_donkey_0: 1774719879
+      sprite_donkey_1: -228219734
+      sprite_donkey_10: 81992559
+      sprite_donkey_11: -1983447309
+      sprite_donkey_12: -1436993731
+      sprite_donkey_13: 399452299
+      sprite_donkey_14: -383206119
+      sprite_donkey_15: -1469146064
+      sprite_donkey_16: -754014420
+      sprite_donkey_2: -2017689951
+      sprite_donkey_3: -570269904
+      sprite_donkey_4: 2143596951
+      sprite_donkey_5: -1292972668
+      sprite_donkey_6: -1152115744
+      sprite_donkey_7: 1601768173
+      sprite_donkey_8: -989462203
+      sprite_donkey_9: -485563455
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
