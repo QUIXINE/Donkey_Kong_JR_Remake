@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3824723345704623035}
   - component: {fileID: 7378266301088857053}
   - component: {fileID: 8831008299196208235}
+  - component: {fileID: 7953793878435431561}
   - component: {fileID: 3083078114462146978}
   m_Layer: 0
   m_Name: Apple
@@ -149,6 +150,27 @@ CircleCollider2D:
   m_Offset: {x: 0.5001295, y: -0.39594945}
   serializedVersion: 2
   m_Radius: 2.0768373
+--- !u!95 &7953793878435431561
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3073674240304789424}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1184bfee44ca55a47a6cdcc88f205cb6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3083078114462146978
 MonoBehaviour:
   m_ObjectHideFlags: 0
