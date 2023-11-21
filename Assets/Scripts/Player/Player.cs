@@ -111,7 +111,8 @@ sealed public partial class Player : MonoBehaviour
     #endregion
 
     [SerializeField] private LayerMask itemLayerMask;
-
+    [SerializeField] private ParticleSystem waterSplashParticle;
+    [SerializeField] private ParticleSystem vineFallenLeafParticle;
 
     private void Start()
     {
@@ -237,11 +238,8 @@ sealed public partial class Player : MonoBehaviour
     private void Flip()
     {
         facingRight = !facingRight;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-            //transform.Rotate(0f, 180f, 0f);
-        }
+        transform.Rotate(0f, 180f, 0f);
+    }
 
     private void MovePosGetOnVine()
     {
@@ -251,7 +249,8 @@ sealed public partial class Player : MonoBehaviour
             //Condition to make Dk jr's hands don't go off the vine while OnVine, but is in the boundary of the vine
             if (IsOnVine == false)
             {
-                if (transform.rotation == Quaternion.Euler(0, -180, 0))
+                Instantiate(vineFallenLeafParticle, vineCheckPosDualHand01.position, Quaternion.identity);
+                /* if (transform.rotation == Quaternion.Euler(0, -180, 0))
                 {
                     Vector2 pos = transform.position;
                     //pos.x += GetDistanceToGetOnVine();
@@ -262,8 +261,7 @@ sealed public partial class Player : MonoBehaviour
                     Vector2 pos = transform.position;
                     //pos.x -= GetDistanceToGetOnVine();
                     transform.position = pos;
-                }
-
+                } */
                 IsOnVine = true;
                 animator.SetBool("TwoHanded", true);
 
@@ -278,6 +276,9 @@ sealed public partial class Player : MonoBehaviour
             //Condition to make Dk jr's hands don't go off the vine while OnVine, but is in the boundary of the vine
             if (IsOnVine == false)
             {
+                Vector3 shortenScale = new Vector3(0.2f, 0.2f, 0.2f);
+                vineFallenLeafParticle.transform.localScale =  shortenScale;
+                Instantiate(vineFallenLeafParticle, transform.position, Quaternion.identity);
                 if (transform.rotation == Quaternion.Euler(0, -180, 0))
                 {
                     Vector2 pos = transform.position;

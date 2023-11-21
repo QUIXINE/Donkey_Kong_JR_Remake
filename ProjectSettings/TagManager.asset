@@ -13,6 +13,7 @@ TagManager:
   - BottRope
   - Trigger
   - Sling
+  - PlatformCloseVine
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundBack
+    uniqueID: 5274243
+    locked: 0
+  - name: Background
+    uniqueID: 3177609725
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 943000771
     locked: 0

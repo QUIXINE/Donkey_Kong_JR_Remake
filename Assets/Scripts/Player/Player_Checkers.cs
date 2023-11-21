@@ -562,7 +562,7 @@ sealed public partial class Player
             rayDistanceGetCloseToVine = 0.6f; //What is this for?
         if(IsOnVine)
         {
-            //xLengthCheckOnHead = 0; //set 0 so that when getting down the ray won't interupt
+            xLengthCheckOnHead = 0; //set 0 so that when getting down the ray won't interupt
         }
         else
         {
@@ -622,6 +622,11 @@ sealed public partial class Player
             Horizontal = 0;
             rb.velocity = new Vector2(0, 0);
             collideWithWater = true;
+
+            Vector3 shortenScale = new Vector3(0.6f, 0.6f, 0.6f);
+            waterSplashParticle.transform.localScale = shortenScale;
+            Instantiate(waterSplashParticle, vineCheckPosBody.position, vineCheckPosBody.rotation);  //call water splash VFX
+            
             animator.SetBool("DieOtherCondition", true);
             playerTakeDamage.TakeDamage();
         }
@@ -711,30 +716,6 @@ sealed public partial class Player
         Gizmos.color = Color.blue;
         //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
         //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-
-        //Ground check
-        /* Vector2 pos = obstacleCheckPos.position;
-        Vector2 posOfFlipBack = obstacleCheckPos.position;
-
-        //check from the correct side
-    if(transform.rotation == Quaternion.Euler(0,-180,0))
-        {
-            pos.x += 0.1f;
-            pos.y -= 0.28f;
-
-            posOfFlipBack.x -= 0.3f;
-            posOfFlipBack.y -= 0.28f;
- 
-        }
-        else if(transform.rotation == Quaternion.Euler(0,0,0))
-        {
-            pos.x -= 0.1f;
-            pos.y -= 0.28f;
-
-            posOfFlipBack.x += 0.4f;
-            posOfFlipBack.y -= 0.28f;
-
-        } */
 
         Gizmos.DrawWireCube(groundCheckPos01.position, new Vector3(xLengthGroundCheck, yLengthGroundCheck, 0));
         //Gizmos.DrawRay(groundCheckPos01.position, -groundCheckPos01.up *  2f);

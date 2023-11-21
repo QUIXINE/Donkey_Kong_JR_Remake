@@ -145,7 +145,7 @@ namespace TakeDamage
             //if on ground will turn collider off
             if(!player.IsGroundedChecker() && !player.collideWithWater)
             {
-                capsuleCollider.enabled = false;
+                // capsuleCollider.enabled = false;
                 rb.gravityScale = 2;
             }
         }

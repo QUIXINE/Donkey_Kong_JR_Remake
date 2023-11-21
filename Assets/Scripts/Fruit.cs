@@ -9,6 +9,7 @@ using ScoreManagement;
 public class Fruit : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Animator animator;
     private bool isCrashedEnemy01, isCrashedEnemy02, isCrashedEnemy03; //used to check how many enemies is collided
     private int fruitScore = 400;
     private bool canCollidePlayer;
@@ -16,6 +17,8 @@ public class Fruit : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
         rb.gravityScale = 0;
         canCollidePlayer = true;
     }
@@ -50,6 +53,7 @@ public class Fruit : MonoBehaviour
         {
             AudioPlayerTest.PlayAudio(AudioReferences.EatSound);
             GetPoint();
+            animator.enabled = true;
             collidePlayer = true;
             canCollidePlayer = false;
         }

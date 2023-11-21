@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3092812487353571678}
   - component: {fileID: 1850531890387908187}
   - component: {fileID: 5872954750141554365}
+  - component: {fileID: 5065440998355984915}
   m_Layer: 0
   m_Name: Mango
   m_TagString: Fruit
@@ -161,3 +162,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c67dce6a659a6b4494e17c80064bfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5065440998355984915
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456493405575037452}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63ba1734d4da15744b0c8369e23f55dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

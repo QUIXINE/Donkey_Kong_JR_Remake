@@ -264,7 +264,6 @@ GameObject:
   - component: {fileID: 8267985749443661287}
   - component: {fileID: 8899893355829440913}
   - component: {fileID: 8419072338196206931}
-  - component: {fileID: 6713430198909496666}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -449,8 +448,9 @@ MonoBehaviour:
   climbUpSpeed: 30
   climbDownSpeed: 180
   climbDualHandSpeed: 80
-  jumpForce: 0
-  jumpPadForce: 2500
+  jumpForce: 3.25
+  jumpPadForceDefault: 0
+  jumpPadForceSpecial: 0
   groundCheckPos01: {fileID: 5626622653126633214}
   groundCheckPos02: {fileID: 8732041223283465351}
   groundCheckPos03: {fileID: 8119497032009372158}
@@ -486,10 +486,12 @@ MonoBehaviour:
   obstacleCheckPos01: {fileID: 9114083979781865822}
   obstacleCheckPos02: {fileID: 4190115043994146250}
   xLengthObstacleCheck: 0.25
-  yLengthObstacleCheck: 0.55
+  yLengthObstacleCheck: 0.5
   itemLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  waterSplashParticle: {fileID: 59238330083409552, guid: 88ce85274eb3d554c9650d61918a6888, type: 3}
+  vineFallenLeafParticle: {fileID: 1195588108102549434, guid: 91a46aa35353b81408759e72298adf9b, type: 3}
 --- !u!114 &8899893355829440913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,30 +518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35bf616da1edcb149847b8f0aed6696e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6713430198909496666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8148971490947819957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1beff4c1f9d99914b990c5787271460f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceToGo: 0.15
-  posDualHand01: {fileID: 8548594517603090095}
-  posDualHand02: {fileID: 8713081734939175960}
-  posOnHead: {fileID: 7426983358444145226}
-  posOnFoot01: {fileID: 0}
-  posOnFoot02: {fileID: 0}
-  posOnBottom: {fileID: 0}
-  rayDistance: 0.1
-  rayDistanceValueContainer: 0
-  itemLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &8601987314663611620
 GameObject:
   m_ObjectHideFlags: 0

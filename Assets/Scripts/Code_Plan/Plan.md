@@ -302,3 +302,23 @@ sloved by disabling Player_TakeDamage
 
 Fruit banana too wide collider ✅
 
+
+11/21/2023
+Art
+- apply completed animation in cleared stage cutscene
+- apply sfx in Max's cutscene, unless he already did, then I dun need to
+    - must solve animation bones first so that timeline can be used
+- ~~Is scene level 02 sunset?~~ No!
+
+Art in code
+- ตกน้ำ (instantiate particle)✅
+- vine จับแล้วใบไม้ล่วง ✅
+ -  when will the leaf comes off. 1. when jump to get on the vine first time✅, 2. get on 1st time and every time Jr moves on vine
+- play animation of the fruits after got eaten ✅
+- animation bones ใช้งานกับ code ไม่ได้ (แม็ก ทิว ไปหาความรู้มาแก้ไขเรื่องนี้)
+- animation fall ตอนออกจากพื้นแล้วไม่เปลี่ยน animation หลังจากขึ้นบนเชือก ✅ -> turn pff loop in aniamation file
+
+Mechanics code
+- local drive saving
+
+Level04 -> activate PlayableDirector
