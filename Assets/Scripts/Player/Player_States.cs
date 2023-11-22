@@ -228,6 +228,7 @@ namespace PlayerSpace
         private void DualHandedState()
         {
             animator.SetBool("IsGrounded", false);
+            animator.SetBool("Jump", false);
             isTwoHanded = false;
             isDualHanded = true;
 

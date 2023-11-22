@@ -41,7 +41,6 @@ public class Player_Audio_Handler : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.X) && player.IsGroundedChecker() && player.CurrentState == Player.PlayerState.Idle)
         {
-            print("jumped");
             AudioPlayerTest.PlayAudio(AudioReferences.JumpSound);
         }
 

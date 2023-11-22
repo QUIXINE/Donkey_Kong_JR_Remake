@@ -9,9 +9,9 @@ namespace PlayerSpace
     {
         [Tooltip("used to define how much the key will move on y-axis after collide with player")]
         [SerializeField] private float distanceToGo;
-        [SerializeField] private Transform posDualHand01, posDualHand02, posOnHead, posOnFoot01, posOnFoot02, posOnBottom;
+        [SerializeField] private Transform posDualHand01, posDualHand02, posOnHead, groundCheckPos01, groundCheckPos02, keyCheckposOnFoot02;
         [SerializeField] private float rayDistance;
-        [SerializeField] private float rayDistanceValueContainer;
+        [SerializeField] private float rayDistanceFirstValue;
         [SerializeField] private LayerMask itemLayerMask;
         private Player player;
         private float vertical;
@@ -19,7 +19,7 @@ namespace PlayerSpace
         private void Start() 
         {
             player = GetComponent<Player>();
-            rayDistanceValueContainer = rayDistance;
+            rayDistanceFirstValue = rayDistance;
         }
         private void Update()
         {
@@ -30,7 +30,7 @@ namespace PlayerSpace
             //why -2.5f --> it's the distance to make sure the ray won't detect the key and makes the key move after it's at the lowest position of the chain  
             if(transform.position.y > -2.5f)
             {
-                rayDistance = rayDistanceValueContainer;
+                rayDistance = rayDistanceFirstValue;
             }
 
            
@@ -51,9 +51,9 @@ namespace PlayerSpace
                         hitInfo.collider.gameObject.transform.Translate(new Vector2(0, distanceToGo), Space.World);
                     }
                 }
-                else if (Physics2D.Raycast(posOnFoot01.position, -Vector2.up, rayDistance, itemLayerMask))
+                else if (Physics2D.Raycast(groundCheckPos02.position, -Vector2.up, rayDistance, itemLayerMask))
                 {
-                    RaycastHit2D hitInfo = Physics2D.Raycast(posOnFoot01.position, -Vector2.up, rayDistance, itemLayerMask);
+                    RaycastHit2D hitInfo = Physics2D.Raycast(groundCheckPos02.position, -Vector2.up, rayDistance, itemLayerMask);
                     if (hitInfo.collider.CompareTag("Key"))
                     {
                         hitInfo.collider.gameObject.transform.Translate(new Vector2(0, -distanceToGo), Space.World);
@@ -69,9 +69,9 @@ namespace PlayerSpace
                         hitInfo.collider.gameObject.transform.Translate(new Vector2(0, distanceToGo), Space.World);
                     }
                 }
-                else if (Physics2D.Raycast(posOnFoot02.position, -Vector2.up, rayDistance, itemLayerMask))
+                else if (Physics2D.Raycast(keyCheckposOnFoot02.position, -Vector2.up, rayDistance, itemLayerMask))
                 {
-                    RaycastHit2D hitInfo = Physics2D.Raycast(posOnFoot02.position, -Vector2.up, rayDistance, itemLayerMask);
+                    RaycastHit2D hitInfo = Physics2D.Raycast(keyCheckposOnFoot02.position, -Vector2.up, rayDistance, itemLayerMask);
                     if (hitInfo.collider.CompareTag("Key"))
                     {
                         hitInfo.collider.gameObject.transform.Translate(new Vector2(0, -distanceToGo), Space.World);
@@ -92,9 +92,9 @@ namespace PlayerSpace
                     }
                 }
                 //push under the bottom
-                else if(Physics2D.Raycast(posOnBottom.position, -Vector2.up, rayDistance, itemLayerMask))
+                else if(Physics2D.Raycast(groundCheckPos01.position, -Vector2.up, rayDistance, itemLayerMask))
                 {
-                    RaycastHit2D hitInfo = Physics2D.Raycast(posOnBottom.position, -Vector2.up, rayDistance, itemLayerMask);
+                    RaycastHit2D hitInfo = Physics2D.Raycast(groundCheckPos01.position, -Vector2.up, rayDistance, itemLayerMask);
                     if (hitInfo.collider.CompareTag("Key"))
                     {
                         hitInfo.collider.gameObject.transform.Translate(new Vector2(0, -distanceToGo), Space.World);
@@ -124,7 +124,7 @@ namespace PlayerSpace
             //used this so that after back to the groun the ray will work again
             if(col.gameObject.layer == 6)
             {
-                rayDistance = rayDistanceValueContainer;
+                rayDistance = rayDistanceFirstValue;
             }  
         }
     }

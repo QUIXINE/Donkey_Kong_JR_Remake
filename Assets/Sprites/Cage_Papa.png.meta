@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 0
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -63,16 +63,16 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 2
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -85,7 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -98,7 +98,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,28 +113,7 @@ TextureImporter:
       name: Cage_Papa_0
       rect:
         serializedVersion: 2
-        x: 129
-        y: 369
-        width: 84
-        height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7086ad1152bf99240800000000000000
-      internalID: 4799143014571862023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cage_Papa_1
-      rect:
-        serializedVersion: 2
-        x: 213
+        x: 128
         y: 369
         width: 85
         height: 85
@@ -145,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4091cc1ad966567448364029932d4dba
-      internalID: 1928711908
+      spriteID: 802e71e120ba8e0488b350b5e9028162
+      internalID: 1499261052
       vertices: []
       indices: 
       edges: []
@@ -155,9 +134,9 @@ TextureImporter:
       name: Cage_Papa_2
       rect:
         serializedVersion: 2
-        x: 298
+        x: 213
         y: 369
-        width: 86
+        width: 85
         height: 85
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -166,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7208e1edf44d6845977668f3f3d7e30
-      internalID: -71417679
+      spriteID: 2d1f201959cfc35498326bb960fcbbdc
+      internalID: -2105040140
       vertices: []
       indices: 
       edges: []
@@ -176,9 +155,9 @@ TextureImporter:
       name: Cage_Papa_3
       rect:
         serializedVersion: 2
-        x: 129
+        x: 128
         y: 284
-        width: 84
+        width: 85
         height: 85
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -187,14 +166,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7135c166863cc54189d4fedd5977e61
-      internalID: -1047321168
+      spriteID: 32690b7cf2436514bae2f5341a171456
+      internalID: -93179226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cage_Papa_1
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 369
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 844bfb18bd63dfa41b23d1114c8c394c
+      internalID: 2000591733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: Cage_Papa_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 284
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b60e66af8213f499503b28da76e702
+      internalID: -2003977674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cage_Papa_5
       rect:
         serializedVersion: 2
         x: 213
@@ -208,29 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af556efa6c30c1a4e8cd964ba72e23d8
-      internalID: 2101287960
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cage_Papa_5
-      rect:
-        serializedVersion: 2
-        x: 298
-        y: 284
-        width: 86
-        height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b28bce6bf232f8849a0a7b83fa015e67
-      internalID: -277455302
+      spriteID: fe16029b255441345a7030666c76abbd
+      internalID: -1849883906
       vertices: []
       indices: 
       edges: []
@@ -239,10 +239,31 @@ TextureImporter:
       name: Cage_Papa_6
       rect:
         serializedVersion: 2
+        x: 298
+        y: 284
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade3186ad57525f4d9c69c62cfa89a4d
+      internalID: 311533946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cage_Papa_7
+      rect:
+        serializedVersion: 2
         x: 129
-        y: 47
-        width: 255
-        height: 171
+        y: 46
+        width: 254
+        height: 173
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3160db99d1f49943a91f2dee639e57d
-      internalID: -604200057
+      spriteID: 702e275099b7d504d850cb13e5785afd
+      internalID: -281805259
       vertices: []
       indices: 
       edges: []
@@ -259,7 +280,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 84221b032d2d1f540a302d1c566811dd
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -267,13 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cage_Papa_0: 4799143014571862023
-      Cage_Papa_1: 1928711908
-      Cage_Papa_2: -71417679
-      Cage_Papa_3: -1047321168
-      Cage_Papa_4: 2101287960
-      Cage_Papa_5: -277455302
-      Cage_Papa_6: -1733072252
+      Cage_Papa_0: 1499261052
+      Cage_Papa_1: 2000591733
+      Cage_Papa_2: -2105040140
+      Cage_Papa_3: -93179226
+      Cage_Papa_4: -2003977674
+      Cage_Papa_5: -1849883906
+      Cage_Papa_6: 311533946
+      Cage_Papa_7: -281805259
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -882,21 +882,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3144646293659725094, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-    - {fileID: 1639952700531109037, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-    - {fileID: 468471834176091781, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-    - {fileID: 2191019285698410447, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-    - {fileID: 6785937166477598377, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-    - {fileID: 7031865075084143983, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-    - {fileID: 5718541253713780301, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-    - {fileID: 5055802015105942763, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-    m_AddedGameObjects: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6162345414576232131, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+      insertIndex: 11
+      addedObject: {fileID: 715511580}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3810701416876122869, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1454164924}
   m_SourcePrefab: {fileID: 100100000, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+--- !u!4 &157379987 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6162345414576232131, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+  m_PrefabInstance: {fileID: 157379986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &169156263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3433,6 +3433,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18.442057, y: 0.26}
   m_EdgeRadius: 0
+--- !u!1 &715511579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 715511580}
+  m_Layer: 0
+  m_Name: Key Check Pos On Foot 02
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &715511580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715511579}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.34651566, y: 0.050843716, z: 0}
+  m_LocalScale: {x: 0.61109, y: 0.61109, z: 0.61109}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 157379987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &748159517 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5626622653126633214, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
@@ -5222,11 +5253,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1150218393 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5976684659049223146, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-  m_PrefabInstance: {fileID: 157379986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1159610853
 GameObject:
   m_ObjectHideFlags: 0
@@ -6987,18 +7013,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1beff4c1f9d99914b990c5787271460f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToGo: 0
+  distanceToGo: 0.2
   posDualHand01: {fileID: 2143180517}
   posDualHand02: {fileID: 1333779934}
   posOnHead: {fileID: 1193935886}
-  posOnFoot01: {fileID: 1150218393}
-  posOnFoot02: {fileID: 1393794665}
-  posOnBottom: {fileID: 1895462579}
-  rayDistance: 0
-  rayDistanceValueContainer: 0
+  groundCheckPos01: {fileID: 1895462579}
+  groundCheckPos02: {fileID: 1393794665}
+  keyCheckposOnFoot02: {fileID: 715511580}
+  rayDistance: 0.05
+  rayDistanceFirstValue: 0
   itemLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!1 &1455758904
 GameObject:
   m_ObjectHideFlags: 0
@@ -7306,11 +7332,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 206452032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1583201014 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8119497032009372158, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
-  m_PrefabInstance: {fileID: 165852549344408103}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1595487663
 GameObject:
   m_ObjectHideFlags: 0
@@ -9944,7 +9965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.72
+      value: -6.728
       objectReference: {fileID: 0}
     - target: {fileID: 3552317301424915655, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10020,7 +10041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8148971490947819957, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8148971490947819957, guid: 14073240a5795ca429233d21cfb7cfc4, type: 3}
       propertyPath: m_TagString
@@ -10108,15 +10129,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1beff4c1f9d99914b990c5787271460f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToGo: 0.15
+  distanceToGo: 0.2
   posDualHand01: {fileID: 949577738}
   posDualHand02: {fileID: 306588881}
   posOnHead: {fileID: 1101168883}
-  posOnFoot01: {fileID: 455940481}
-  posOnFoot02: {fileID: 1583201014}
-  posOnBottom: {fileID: 748159517}
-  rayDistance: 0.6
-  rayDistanceValueContainer: 0.6
+  groundCheckPos01: {fileID: 748159517}
+  groundCheckPos02: {fileID: 455940481}
+  keyCheckposOnFoot02: {fileID: 64256729}
+  rayDistance: 0.05
+  rayDistanceFirstValue: 0
   itemLayerMask:
     serializedVersion: 2
     m_Bits: 1024

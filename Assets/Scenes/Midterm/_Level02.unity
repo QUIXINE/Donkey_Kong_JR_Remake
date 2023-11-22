@@ -988,7 +988,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 04bcf93ab7f346c4a88bef36806ac31b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5441,7 +5441,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1073945734}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -5470,6 +5470,30 @@ PlayableDirector:
   - key: {fileID: 3799621776506869008, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
     value: {fileID: 1296214188}
   - key: {fileID: -7378379908085992265, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 2143950063}
+  - key: {fileID: 8267350776490129025, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -604263282063184333, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 1599000168}
+  - key: {fileID: 2715620428207294486, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 1599000168}
+  - key: {fileID: 2843745909498128857, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8067720305041158396, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 1859549081}
+  - key: {fileID: -3613764773172349647, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 1395306325}
+  - key: {fileID: -701221361810029272, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 1914798386}
+  - key: {fileID: -3819065217670701804, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 2026618745}
+  - key: {fileID: 6482158626915798370, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 657666545}
+  - key: {fileID: 6257639012030911956, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 1079905121}
+  - key: {fileID: 3799621776506869008, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
+    value: {fileID: 1296214188}
+  - key: {fileID: -7378379908085992265, guid: 22b13c4b599cbf74493269bfbc242e77, type: 2}
     value: {fileID: 2143950063}
   m_ExposedReferences:
     m_References: []
@@ -7451,6 +7475,79 @@ Transform:
   - {fileID: 177374309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1386535779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1386535781}
+  - component: {fileID: 1386535780}
+  m_Layer: 0
+  m_Name: Clear Stage Timeline (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!320 &1386535780
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386535779}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 2843745909498128857, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 1936090847}
+  - key: {fileID: 8067720305041158396, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 1859549081}
+  - key: {fileID: -3819065217670701804, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 2026618745}
+  - key: {fileID: -3613764773172349647, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 1395306325}
+  - key: {fileID: -701221361810029272, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 1914798386}
+  - key: {fileID: -604263282063184333, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 165852549344408104}
+  - key: {fileID: 2715620428207294486, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 165852549344408104}
+  - key: {fileID: 8267350776490129025, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 1968649284}
+  - key: {fileID: 6482158626915798370, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 657666545}
+  - key: {fileID: 6257639012030911956, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 1079905121}
+  - key: {fileID: 3799621776506869008, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 1296214188}
+  - key: {fileID: -7378379908085992265, guid: 2e0752c3fa7df3a4eb8ecb2103300645, type: 2}
+    value: {fileID: 2143950063}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &1386535781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386535779}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.170886, y: 0.79444885, z: 0.10946019}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1395306325
 GameObject:
   m_ObjectHideFlags: 0
@@ -7508,7 +7605,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: d21ed2fc3e3a82243a15670c93141a5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9238,6 +9335,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1621067667784729911, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455772955168464277, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144646293659725094, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3810701416876122869, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
       propertyPath: m_Name
       value: Player using Skin
@@ -9303,6 +9412,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+--- !u!95 &1599000168 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8002106178816843298, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+  m_PrefabInstance: {fileID: 1599000167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1608405401
 GameObject:
   m_ObjectHideFlags: 0
@@ -11463,15 +11577,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -281805259, guid: 10b713b61de403648b510eba118a8d55, type: 3}
+  m_Sprite: {fileID: -604200057, guid: 10b713b61de403648b510eba118a8d55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.55, y: 1.7}
+  m_Size: {x: 2.55, y: 1.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1859549080
@@ -14747,6 +14861,7 @@ SceneRoots:
   - {fileID: 1540640292}
   - {fileID: 1968649285}
   - {fileID: 1073945736}
+  - {fileID: 1386535781}
   - {fileID: 2026618747}
   - {fileID: 1914798388}
   - {fileID: 1128083994}
@@ -14763,6 +14878,7 @@ SceneRoots:
   - {fileID: 1934140286}
   - {fileID: 9985410}
   - {fileID: 165852549344408103}
+  - {fileID: 1599000167}
   - {fileID: 877714530}
   - {fileID: 3614355855885030856}
   - {fileID: 893641176}
@@ -14783,4 +14899,3 @@ SceneRoots:
   - {fileID: 1592491538}
   - {fileID: 1382783561}
   - {fileID: 1992226452}
-  - {fileID: 1599000167}
