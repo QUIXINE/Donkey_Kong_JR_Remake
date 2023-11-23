@@ -71,11 +71,13 @@ public class GameState : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         //inactivate Mario, fruits, enemies, DK jr.
-        Enemy_Moving[] enemies =   FindObjectsOfType<Enemy_Moving>(); 
         Fruit[] fruits  =   FindObjectsOfType<Fruit>(); 
         Player  player  =   FindObjectOfType<Player>();
-        Mario mario     =   FindObjectOfType<Mario>();
-        foreach(Enemy_Moving enemy in enemies)
+        Mario_Controller mario     =   FindObjectOfType<Mario_Controller>();
+
+        //Destroy enemies in scene
+        Enemy_Score[] enemies =   FindObjectsOfType<Enemy_Score>(); 
+        foreach(Enemy_Score enemy in enemies)
         {
             enemy.gameObject.SetActive(false);
         }
@@ -97,6 +99,18 @@ public class GameState : MonoBehaviour
         bonus_Score_Manager.StopBonusDecreasement();                       //Stop decreasing bonus when get to dying state (dying animation played)
         int currentScene =  SceneManager.GetActiveScene().buildIndex;
 
+        //Destroy enemies in scene
+        Mario_Controller mario_Controller = FindObjectOfType<Mario_Controller>();
+        if(mario_Controller != null)
+        {
+            print("disable MarioController");
+            mario_Controller.enabled = false;
+        }
+        Enemy_Score[] enemyArray = FindObjectsOfType<Enemy_Score>();
+        foreach(Enemy_Score enemy in enemyArray)
+        {
+            Destroy(enemy.gameObject);
+        }
         //There's no need to use PlayerPrefs.GetInt(Player_Amount) as condition because "CurrentPlayer" only change when player dies
         if(PlayerPrefs.GetInt("Current_Player") == 1)
         {

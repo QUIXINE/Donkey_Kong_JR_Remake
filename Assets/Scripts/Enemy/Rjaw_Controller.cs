@@ -4,7 +4,7 @@ using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Rjaw_Controller : MonoBehaviour
+public class Rjaw_Controller : MonoBehaviour, IEnemyController
 {
     //Layer
     [SerializeField] private LayerMask GroundLayer;
@@ -84,7 +84,6 @@ public class Rjaw_Controller : MonoBehaviour
         yield return new WaitForSeconds(2);
         RndLF();
         isMove = true;
-        Debug.Log("Go");
     }
 
     /*IEnumerator WaitAnim(float _deelay = 0)
@@ -121,7 +120,6 @@ public class Rjaw_Controller : MonoBehaviour
         {
             isMove = false;
             transform.position = new Vector2(ObjectRope.transform.position.x, transform.position.y + (-1.5f * (WalkSpeed * Time.deltaTime)));
-            Debug.Log("Dowm");
         }
 
     }
@@ -173,7 +171,6 @@ public class Rjaw_Controller : MonoBehaviour
          if (RndNumUD >= 7)
          {
              isDown = true;
-             Debug.Log("Down");
              GetComponent<BoxCollider2D>().isTrigger = true;
 
 
@@ -209,16 +206,12 @@ public class Rjaw_Controller : MonoBehaviour
     {
         if (collision.CompareTag("TopRope"))
         {
-            Debug.Log("HIT");
             if (isBott == false)
             {
                 RndLF();
                 RndUD();
-                Debug.Log("UD" + RndNumUD);
-                Debug.Log("LF" + RndNumLF);
                 isMove = true;
                 ObjectRope = collision.gameObject;
-                Debug.Log(ObjectRope);
             }
 
             if(isBott == true && isDown == false)
@@ -256,6 +249,11 @@ public class Rjaw_Controller : MonoBehaviour
                 isMove = false;
             }*/
 
+        }
+
+        public void EnemyFall()
+        {
+            this.enabled = false;
         }
 
     }

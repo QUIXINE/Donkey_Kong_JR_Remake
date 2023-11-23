@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RSpark_Controller : MonoBehaviour
+public class RSpark_Controller : MonoBehaviour, IEnemyController
 {
     //Rigidbody
     Rigidbody2D rb;
@@ -72,6 +72,11 @@ public class RSpark_Controller : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void EnemyFall()
+    {
+        this.enabled = false;
     }
 
 }

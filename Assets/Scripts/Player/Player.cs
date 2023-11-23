@@ -101,7 +101,7 @@ sealed public partial class Player : MonoBehaviour
     [Header("Enemy Check")]
     [SerializeField] private LayerMask enemyLayerMask;
     private bool canGetPointFromEnemy;
-    private List<EnemyScore> enemyList = new List<EnemyScore>();    //used to get score from enemy, used w/ PlayerGetScore script
+    private List<Enemy_Score> enemyList = new List<Enemy_Score>();    //used to get score from enemy, used w/ PlayerGetScore script
     private int scoreOfEnemy;
 
     [Header("Water Check")]
@@ -160,7 +160,6 @@ sealed public partial class Player : MonoBehaviour
         HandleGravity();
         HandleCollider();
         FlipBackFromObstacle();
-        print(rayDistanceToCheckIsOnVine);
     }
 
     private void FixedUpdate()

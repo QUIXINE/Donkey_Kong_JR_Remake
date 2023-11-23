@@ -24,16 +24,22 @@ namespace TakeDamage
         {
             FallFromHeight();
             //for testing
-            if(Input.GetKeyDown(KeyCode.E))
+            /* if(Input.GetKeyDown(KeyCode.E))
             {
                 animator.SetBool("DieOtherCondition", true);
                 TakeDamage();
-            }
+            } */
             
         }
 
         public void TakeDamage()
         {
+            Mario_Controller mario_Controller = FindObjectOfType<Mario_Controller>();
+            if(mario_Controller != null)
+            {
+                print("disable mariocontroller");
+                mario_Controller.enabled = false;
+            }
             //Every time health--, other objs will stop  
             //life at 3 to 2 and 2 to 1
             if(PlayerPrefs.GetInt("Current_Player") == 1)
@@ -41,9 +47,9 @@ namespace TakeDamage
                 if(Player01Health.Instance.Health > 0 && Player01Health.Instance.Health > 1)
                 {
                     animator.SetBool("Die", true);
-                    Enemy_Moving[] enemies = FindObjectsOfType<Enemy_Moving>();   //Script that makes enemy moves
+                    Enemy_Collision[] enemies = FindObjectsOfType<Enemy_Collision>();   //Script that makes enemy moves
                     Fruit[] fruits = FindObjectsOfType<Fruit>();
-                    foreach(Enemy_Moving enemy in enemies)
+                    foreach(Enemy_Collision enemy in enemies)
                     {
                         enemy.enabled = false;
                     }
@@ -61,10 +67,10 @@ namespace TakeDamage
                 else if(Player01Health.Instance.Health == 1) //life at 1 to 0
                 {
                     animator.SetBool("Die", true);
-                    Enemy_Moving[] enemies = FindObjectsOfType<Enemy_Moving>();   //Script that makes enemy moves
+                    Enemy_Collision[] enemies = FindObjectsOfType<Enemy_Collision>();   //Script that makes enemy moves
                     Fruit[] fruits = FindObjectsOfType<Fruit>();
                     Player player = (Player)FindObjectOfType(typeof(Player));
-                    foreach(Enemy_Moving enemy in enemies)
+                    foreach(Enemy_Collision enemy in enemies)
                     {
                         enemy.enabled = false;
                     }
@@ -83,9 +89,9 @@ namespace TakeDamage
                 if(Player02Health.Instance.Health > 0 && Player02Health.Instance.Health > 1)
                 {
                     animator.SetBool("Die", true);
-                    Enemy_Moving[] enemies = FindObjectsOfType<Enemy_Moving>();   //Script that makes enemy moves
+                    Enemy_Collision[] enemies = FindObjectsOfType<Enemy_Collision>();   //Script that makes enemy moves
                     Fruit[] fruits = FindObjectsOfType<Fruit>();
-                    foreach(Enemy_Moving enemy in enemies)
+                    foreach(Enemy_Collision enemy in enemies)
                     {
                         enemy.enabled = false;
                     }
@@ -103,10 +109,10 @@ namespace TakeDamage
                 else if(Player02Health.Instance.Health == 1) //life at 1 to 0
                 {
                     animator.SetBool("Die", true);
-                    Enemy_Moving[] enemies = FindObjectsOfType<Enemy_Moving>();   //Script that makes enemy moves
+                    Enemy_Collision[] enemies = FindObjectsOfType<Enemy_Collision>();   //Script that makes enemy moves
                     Fruit[] fruits = FindObjectsOfType<Fruit>();
                     Player player = (Player)FindObjectOfType(typeof(Player));
-                    foreach(Enemy_Moving enemy in enemies)
+                    foreach(Enemy_Collision enemy in enemies)
                     {
                         enemy.enabled = false;
                     }

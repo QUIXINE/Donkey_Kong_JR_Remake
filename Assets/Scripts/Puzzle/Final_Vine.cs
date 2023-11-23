@@ -11,24 +11,28 @@ public class Final_Vine : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col) 
     {
         print("Reach final vine");
-        Player player = col.GetComponent<Player>();
-        Player_TakeDamage player_TakeDamage = col.GetComponent<Player_TakeDamage>();
-        player.transform.rotation = Quaternion.Euler(0, 0, 0);
-        if(SceneManager.GetActiveScene().buildIndex == 1)
+        
+        if(col.TryGetComponent<Player>(out Player player))
         {
-            player.transform.position = new Vector2(-4.21f, 3f);
-        }
-        else if(SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            player.transform.position = new Vector2(-0.685f, 3f);
-        }
-        else if(SceneManager.GetActiveScene().buildIndex == 3)
-        {
-            player.transform.position = new Vector2(-0.685f, 3f);
+            Player_TakeDamage player_TakeDamage = col.GetComponent<Player_TakeDamage>();
+            player.transform.rotation = Quaternion.Euler(0, 0, 0);
+            print("Change transform");
+            if(SceneManager.GetActiveScene().buildIndex == 2)
+            {
+                player.gameObject.transform.position = new Vector2(-4.1f, 2.7f);
+            }
+            else if(SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                player.gameObject.transform.position = new Vector2(-0.5f, 2.8f);
+            }
+            else if(SceneManager.GetActiveScene().buildIndex == 5)
+            {
+                player.gameObject.transform.position = new Vector2(-0.5f, 2.8f);
+            }
+            DisablePlayer(player, player_TakeDamage);
+            playableDirector.Play();
         }
             
-        DisablePlayer(player, player_TakeDamage);
-        playableDirector.Play();
     }    
 
     private void DisablePlayer(Player player, Player_TakeDamage player_TakeDamage)

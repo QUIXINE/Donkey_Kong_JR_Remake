@@ -37,13 +37,13 @@ public partial class Player
         RaycastHit2D[] Hits = new RaycastHit2D[2];
         int hit = Physics2D.CircleCastNonAlloc(groundCheckPos01.position, 0.7f, -groundCheckPos01.up, Hits, 1f, enemyLayerMask);
 
-        EnemyScore enemy01;
-        EnemyScore enemy02;
+        Enemy_Score enemy01;
+        Enemy_Score enemy02;
         
         //RaycastHit2D[] Hits2
         if(hit == 1 && enemyList.Count == 0)
         {
-            enemy01 = Hits[0].collider.gameObject.GetComponent<EnemyScore>();     //out of index --> learn how to use RaycastHit2D[]
+            enemy01 = Hits[0].collider.gameObject.GetComponent<Enemy_Score>();     //out of index --> learn how to use RaycastHit2D[]
             enemyList.Add(enemy01);
             print(enemyList);
             
@@ -51,9 +51,9 @@ public partial class Player
         else if(hit == 2 && enemyList.Count == 0)
         {
             //Try to check use this method for 2 objs at once(hits 2 enemies at the same time)
-            enemy01 = Hits[0].collider.gameObject.GetComponent<EnemyScore>(); 
+            enemy01 = Hits[0].collider.gameObject.GetComponent<Enemy_Score>(); 
             enemyList.Add(enemy01);
-            enemy02 = Hits[1].collider.gameObject.GetComponent<EnemyScore>();
+            enemy02 = Hits[1].collider.gameObject.GetComponent<Enemy_Score>();
             enemyList.Add(enemy02);
             print(enemyList);
         } 

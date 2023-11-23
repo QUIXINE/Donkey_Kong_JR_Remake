@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BSpark_Controller : MonoBehaviour
+public class BSpark_Controller : MonoBehaviour, IEnemyController
 {
     public Transform[] waypoints;
     public GameObject way;
@@ -38,5 +38,10 @@ public class BSpark_Controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+    }
+
+    public void EnemyFall()
+    {
+        this.enabled = false;
     }
 }

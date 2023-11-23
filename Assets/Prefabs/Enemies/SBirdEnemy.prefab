@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4274245618684012528}
   - component: {fileID: 5021300428927257445}
   - component: {fileID: 482189906722272825}
+  - component: {fileID: -4277221803577030848}
   m_Layer: 8
   m_Name: SBirdEnemy
   m_TagString: Enemy
@@ -147,7 +148,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.003280878, y: -0.14858383}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -158,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.75}
+  m_Size: {x: 0.55377054, y: 0.45283234}
   m_EdgeRadius: 0
 --- !u!114 &5021300428927257445
 MonoBehaviour:
@@ -187,5 +188,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 102d28c4a54bb5a498eef5db360774cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4277221803577030848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973256689982447634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaad3c3e1894674e961178b5603c301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

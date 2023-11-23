@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Midterm/_Level02.unity
     guid: 84c09e9def0dff14dbe7c37e60754c81
   - enabled: 1
-    path: Assets/Scenes/Midterm/Level02 Cutscene.unity
-    guid: cf6620e80e7ece54b8155e7ed9333d98
+    path: Assets/Scenes/Midterm/_Level02 Cutscene.unity
+    guid: b5ca7d7616aff014c892128a37140064
   - enabled: 1
     path: Assets/Scenes/Midterm/_Level03.unity
     guid: a13639d2b8acebb488452f5397286542
@@ -29,7 +29,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Midterm/Rank_Scene.unity
     guid: 08ac87d9c81c6ef40bd129bca59b648e
-  - enabled: 0
-    path: Assets/Scenes/Tiu's/CutScene.unity
-    guid: 757a3f2a112069947b9a20561b282ed9
   m_configObjects: {}

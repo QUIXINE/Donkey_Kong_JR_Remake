@@ -4,7 +4,7 @@ namespace ScoreManagement
 {
 
 
-    public class EnemyScore : MonoBehaviour, IGetPoint 
+    public class Enemy_Score : MonoBehaviour, IGetPoint 
     {
         private Rigidbody2D rb;
         private BoxCollider2D enemyCollider;
@@ -27,6 +27,7 @@ namespace ScoreManagement
             {
                 Score_Variables.ScorePlayer02 = Score_Variables.ScorePlayer02 + score;
             }
+            rb.isKinematic = false;
             rb.gravityScale = 0.5f;
             enemyCollider.enabled = false;
         }
