@@ -1107,7 +1107,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1621067667784729911, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2417079286751048834, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455772955168464277, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2358,7 +2366,7 @@ SpriteRenderer:
   m_Size: {x: 0.86, y: 0.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &435873209
@@ -3993,7 +4001,7 @@ SpriteRenderer:
   m_Size: {x: 0.85, y: 0.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &762181204
@@ -4273,7 +4281,7 @@ SpriteRenderer:
   m_Size: {x: 0.86, y: 0.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &854674026
@@ -4599,7 +4607,7 @@ SpriteRenderer:
   m_Size: {x: 0.84, y: 0.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &931226328
@@ -6049,11 +6057,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1150218393 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5976684659049223146, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-  m_PrefabInstance: {fileID: 157379986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1154605533
 GameObject:
   m_ObjectHideFlags: 0
@@ -6743,7 +6746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!320 &1278687773
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -7326,7 +7329,7 @@ SpriteRenderer:
   m_Size: {x: 0.84, y: 0.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1349018329
@@ -7692,11 +7695,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.9093904, y: 0.36104393}
   m_EdgeRadius: 0
---- !u!4 &1393794665 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4605932237915464291, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-  m_PrefabInstance: {fileID: 157379986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1402336086 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4368550542149646721, guid: 31f8330e21bccfb42bec9eac23a43c45, type: 3}
@@ -8045,11 +8043,11 @@ MonoBehaviour:
   posDualHand01: {fileID: 2143180517}
   posDualHand02: {fileID: 1333779934}
   posOnHead: {fileID: 1193935886}
-  posOnFoot01: {fileID: 1150218393}
-  posOnFoot02: {fileID: 1393794665}
-  posOnBottom: {fileID: 1895462579}
+  groundCheckPos01: {fileID: 0}
+  groundCheckPos02: {fileID: 0}
+  keyCheckposOnFoot02: {fileID: 0}
   rayDistance: 0
-  rayDistanceValueContainer: 0
+  rayDistanceFirstValue: 0
   itemLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -8237,7 +8235,7 @@ SpriteRenderer:
   m_Size: {x: 0.86, y: 0.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1578784971
@@ -10240,11 +10238,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.19004302}
   m_EdgeRadius: 0
---- !u!4 &1895462579 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7058860141424985601, guid: ab292c63de81d1b4ba35d2de6457a863, type: 3}
-  m_PrefabInstance: {fileID: 157379986}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1910124526
 GameObject:
   m_ObjectHideFlags: 0
@@ -10643,8 +10636,9 @@ MonoBehaviour:
   timer: 0
   Timeremain: 2
   Spawnyet: 0
-  ActiveBbird: 1
-  ActiveSpark: 0
+  Active1: 0
+  Active2: 0
+  Active4: 0
 --- !u!1 &1987802257
 GameObject:
   m_ObjectHideFlags: 0

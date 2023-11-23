@@ -113,10 +113,10 @@ TextureImporter:
       name: jump_pad_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 313
-        width: 1903
-        height: 477
+        x: 13
+        y: 311
+        width: 468
+        height: 476
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,13 +131,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jump_pad_1
+      name: jump_pad_2
       rect:
         serializedVersion: 2
-        x: 485
-        y: 309
-        width: 473
-        height: 362
+        x: 958
+        y: 311
+        width: 468
+        height: 476
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,13 +152,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jump_pad_2
+      name: jump_pad_3
       rect:
         serializedVersion: 2
-        x: 961
+        x: 1437
         y: 310
-        width: 472
-        height: 246
+        width: 468
+        height: 474
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,13 +173,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jump_pad_3
+      name: jump_pad_1
       rect:
         serializedVersion: 2
-        x: 1436
-        y: 310
-        width: 469
-        height: 156
+        x: 483
+        y: 311
+        width: 468
+        height: 476
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7941d8528d1e7f94dab7493d52302d86
-      internalID: 1152351767
+      spriteID: 946cb3d6517a7bf498ffd13bec2331f5
+      internalID: 2067444486
       vertices: []
       indices: 
       edges: []
@@ -208,6 +208,7 @@ TextureImporter:
       jump_pad_1: 2067444486
       jump_pad_2: -141248305
       jump_pad_3: -63307724
+      jump_pad_4: 1428522260
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
