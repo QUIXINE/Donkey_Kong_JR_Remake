@@ -2083,7 +2083,43 @@ AnimationClip:
       m_RotationOrder: 4
     path: bone_1
   m_FloatCurves: []
-  m_PPtrCurves: []
+  m_PPtrCurves:
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 9065864524570516952, guid: c8842a93d48dced4c92488ff95550579, type: 3}
+    attribute: m_Sprite
+    path: MarioSpawn/Layer 21
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 4802011097335149027, guid: d739881adc727f749952a21c207dfb03, type: 3}
+    attribute: m_Sprite
+    path: MarioSpawn/Layer 8
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 6481092094412553978, guid: c8842a93d48dced4c92488ff95550579, type: 3}
+    attribute: m_Sprite
+    path: MarioSpawn/Layer 15
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 7402293171428834375, guid: 5b19c848b614ba64a80658e3eac99f7c, type: 3}
+    attribute: m_Sprite
+    path: MarioSpawn/Layer 9
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -2272,6 +2308,42 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
+      path: 2524533317
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 2672120387
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 3124348319
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 3896664789
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
       path: 2822142753
       attribute: 1
       script: {fileID: 0}
@@ -2595,7 +2667,11 @@ AnimationClip:
       isPPtrCurve: 0
       isIntCurve: 0
       isSerializeReferenceCurve: 0
-    pptrCurveMapping: []
+    pptrCurveMapping:
+    - {fileID: 9065864524570516952, guid: c8842a93d48dced4c92488ff95550579, type: 3}
+    - {fileID: 4802011097335149027, guid: d739881adc727f749952a21c207dfb03, type: 3}
+    - {fileID: 6481092094412553978, guid: c8842a93d48dced4c92488ff95550579, type: 3}
+    - {fileID: 7402293171428834375, guid: 5b19c848b614ba64a80658e3eac99f7c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
