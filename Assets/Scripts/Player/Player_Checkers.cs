@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace PlayerSpace
@@ -11,10 +13,10 @@ sealed public partial class Player
     {
         //check if player jump from the sides of vine to get on vine
         //Solved 16 - use IsOnPlatformCloseVine() for checking if player is on platform that is close to the vine, if so then change ray distance to shorter so that player won't get on vine from too far  
-        RaycastHit2D hitOnBodyL = Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, /* IsOnPlatformCloseVine()? 0.2f : 0.4f */0.5f, vineLayerMask);
+        RaycastHit2D hitOnBodyL = Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, IsGroundedChecker()? 0.2f : rayDistanceToCheckIsOnVine, vineLayerMask);
         //used when DK hands are off because immediately flip to the wrong side after jump from the platform, or while two handed
-        RaycastHit2D hitOnBodyR = Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, 0.5f, vineLayerMask);                    
-        RaycastHit2D hitOnHead  = Physics2D.Raycast(vineCheckPosOnHead02.position, -vineCheckPosOnHead02.right, 0.5f, vineLayerMask);           //maybe used to check when body is off but hands are still on the vine, to be able to move
+        RaycastHit2D hitOnBodyR = Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceToCheckIsOnVine, vineLayerMask);                    
+        //RaycastHit2D hitOnHead  = Physics2D.Raycast(vineCheckPosOnHead02.position, -vineCheckPosOnHead02.right, 0.5f, vineLayerMask);           //maybe used to check when body is off but hands are still on the vine, to be able to move
         RaycastHit2D hitOnHand  = Physics2D.Raycast(vineCheckPosDualHand02.position, -vineCheckPosDualHand02.right, rayDistanceGetCloseToVine, vineLayerMask);
         //RaycastHit2D hitOnHand02  = Physics2D.Raycast(vineCheckPosDualHand01.position, -vineCheckPosDualHand02.right, 1.5f, vineLayerMask);   //used because DK's hands are off while DualHanded
 
@@ -121,7 +123,7 @@ sealed public partial class Player
     {
         Collider2D collideBoundaryOnFront = Physics2D.OverlapBox(obstacleCheckPos01.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, boundaryLayerMask);
         //used w/ _Level04 while on vine and there is boundary on another side, and is TwoHanded
-        if (collideBoundaryOnFront)
+        if (collideBoundaryOnFront && SceneManager.GetActiveScene().buildIndex == 6)
         {
             return true;
         }
@@ -132,7 +134,7 @@ sealed public partial class Player
     {
         Collider2D collideKeyOnBack = Physics2D.OverlapBox(obstacleCheckPos02.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, itemLayerMask);
         //used w/ _Level04 while on vine and there is a key behind, prevent player to get to that side
-        if (collideKeyOnBack && collideKeyOnBack.gameObject.CompareTag("Key"))
+        if (collideKeyOnBack && collideKeyOnBack.gameObject.CompareTag("Key") && SceneManager.GetActiveScene().buildIndex == 6)
         {
             print("Key is there");
             return true;
@@ -145,12 +147,12 @@ sealed public partial class Player
         if(CurrentState == PlayerState.TwoHanded && animator.GetBool("TwoHanded") && !IsGroundedChecker() && !CollideGroundOnHead())
         {
             //used to check on the back if flip and colldie w/ ground
-            if (Physics2D.OverlapBox(obstacleCheckPos02.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, groundLayerMask) && IsOnVine)
+            if (Physics2D.OverlapBox(obstacleCheckPos02.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, groundLayerMask) && IsOnVine && SceneManager.GetActiveScene().buildIndex == 6)
             {
                 Flip();
             }
             //used w/ _Level04
-            else if (Physics2D.OverlapBox(obstacleCheckPos02.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, boundaryLayerMask) && IsOnVine)
+            else if (Physics2D.OverlapBox(obstacleCheckPos02.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, boundaryLayerMask) && IsOnVine && SceneManager.GetActiveScene().buildIndex == 6)
             {
                 Flip();
             }
@@ -371,7 +373,6 @@ sealed public partial class Player
     }
 
 
-    //Processing Hold shorter vine
     private float GetDistanceToHoldVineCloser()
     {
         //print("check");//
@@ -389,7 +390,7 @@ sealed public partial class Player
             //Two-Handed L
             if (transform.rotation == Quaternion.Euler(0, -180, 0) || transform.rotation == Quaternion.Euler(0, 180, 0)) //Move from Dual-Handed L to Two-handed R
             {
-                hitOnBodyL  =   Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask);
+                hitOnBodyL  =   Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceToHoldVineCloser, vineLayerMask);
                 if (hitOnBodyL && hitOnBodyL.collider.gameObject.layer == 7)
                 {
                     float distance = hitOnBodyL.collider.transform.position.x - vineCheckPosBody.position.x;
@@ -413,7 +414,7 @@ sealed public partial class Player
                 } 
 
                 //used when DK hands are off because immediately flip to the wrong side after jump from the platform, or while two handed
-                hitOnBodyR  =   Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask);
+                hitOnBodyR  =   Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceToHoldVineCloser, vineLayerMask);
                 if (hitOnBodyR/*  && !hitOnHead */ &&  !hitOnBodyL && hitOnBodyR.collider.gameObject.layer == 7)
                 {
                     float distance = vineCheckPosBody.position.x - hitOnBodyR.collider.transform.position.x;
@@ -442,7 +443,7 @@ sealed public partial class Player
             //Two-Handed R
             else if (transform.rotation == Quaternion.Euler(0, 0, 0)) //Move from Dual-Handed L to Two-handed R
             {
-                hitOnBodyL  =   Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask);
+                hitOnBodyL  =   Physics2D.Raycast(vineCheckPosBody.position, -vineCheckPosBody.right, rayDistanceToHoldVineCloser, vineLayerMask);
                 if (hitOnBodyL && hitOnBodyL.collider.gameObject.layer == 7)
                 {
                     float distance = vineCheckPosBody.position.x - hitOnBodyL.collider.transform.position.x;
@@ -465,7 +466,7 @@ sealed public partial class Player
                     }
                 }
                 //used when DK hands are off because immediately flip to the wrong side after jump from the platform
-                hitOnBodyR  =   Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceOnBody, vineLayerMask);
+                hitOnBodyR  =   Physics2D.Raycast(vineCheckPosBody.position, vineCheckPosBody.right, rayDistanceToHoldVineCloser, vineLayerMask);
                 if (hitOnBodyR /* && !hitOnHead */ && !hitOnBodyL && hitOnBodyR.collider.gameObject.layer == 7)
                 {
                     float distance = hitOnBodyR.collider.transform.position.x - vineCheckPosBody.position.x;
@@ -542,11 +543,11 @@ sealed public partial class Player
                 IsOnVine = false;
                 isTwoHanded = false;
                 CurrentState = PlayerState.Idle;
+                xLengthCheckOnHead = 0.6f;  //set 0.1f so that player can get to the vine collide w/ head
             }
             
             IsJumped = false;
             rayDistanceGetCloseToVine = 0.1f;
-            //xLengthCheckOnHead = 0.3f;  //set 0.1f so that player can get to the vine collide w/ head
         }
         if(IsGroundedChecker() && rb.velocity.y <= 0)   //What is this for? --> to stop get point from enemy when is back to the ground
         {

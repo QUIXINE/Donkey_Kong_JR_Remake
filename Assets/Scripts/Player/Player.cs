@@ -1,8 +1,8 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using TakeDamage;
 using ScoreManagement;
-using UnityEngine.SceneManagement;
 
 namespace PlayerSpace
 {
@@ -68,8 +68,14 @@ sealed public partial class Player : MonoBehaviour
         [SerializeField] private LayerMask vineLayerMask;
         [SerializeField] private Transform vineCheckPosBody;
         [SerializeField] private Transform vineCheckPosOnHead, vineCheckPosOnHead02;
+        [Tooltip("used to be position of the ray to cast from while player is in DualHanded state")]
         [SerializeField] private Transform vineCheckPosDualHand01, vineCheckPosDualHand02;
-        [SerializeField] private float rayDistanceOnBody;
+        [Tooltip("used to set ray distance. ray distance will tell how far the ray will detect the vine while player is in TwoHanded state" +
+        "so that when the hands are off the vine player will get back. the ray position is position of vineCheckPosBody")]
+        [SerializeField] private float rayDistanceToHoldVineCloser;
+        [Tooltip("used to set ray distance. ray distance will tell how far the ray will detect the vine to do 2 things.\n1.check if player jump and there is vine closer, then get on the vine." +
+        "\n2.check if player is on the vine")]
+        [SerializeField] private float rayDistanceToCheckIsOnVine;
         [Tooltip("length of x axis, has 'Vine Check Position On Head' as the center pivot")]
         [SerializeField] private float xLengthCheckOnHead;
         [SerializeField] private float rayDistanceOnHead;
@@ -103,34 +109,40 @@ sealed public partial class Player : MonoBehaviour
     public bool collideWithWater {get; private set;} //Water colliding check
 
     [Header("Obstacle Check")]
+    [Tooltip("used to check Key")]
+    [SerializeField] private LayerMask itemLayerMask;
     [SerializeField] private LayerMask boundaryLayerMask;
     [SerializeField] private Transform obstacleCheckPos01;
     [SerializeField] private Transform obstacleCheckPos02;
+    [Tooltip("used to set size on x-axis of OverlapBox.")]
     [SerializeField] private float xLengthObstacleCheck;
+    [Tooltip("used to set size on y-axis of OverlapBox.")]
     [SerializeField] private float yLengthObstacleCheck;
-
     #endregion
 
-    [SerializeField] private LayerMask itemLayerMask;
     [SerializeField] private ParticleSystem waterSplashParticle;
     [SerializeField] private ParticleSystem vineFallenLeafParticle;
 
     private void Start()
     {
+       AssignVariables();
+    }
+
+    private void AssignVariables()
+    {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         playerTakeDamage = GetComponent<Player_TakeDamage>();
         dkCol = GetComponent<Collider2D>();
+        CurrentState = PlayerState.Idle;
         IsOnVine = false;
         canChangeToReach = false;
         canReachFirstGetOnVine = true;
         canGetToAnotherVine = false;
         checkGravityVineExit = false;
-        CurrentState = PlayerState.Idle;
         canFlip = true;
         isDualHanded = false;
         canGetPointFromEnemy = false;
-        gameObject.layer = 9;
         collideWithWater = false;
     }
 
@@ -148,6 +160,7 @@ sealed public partial class Player : MonoBehaviour
         HandleGravity();
         HandleCollider();
         FlipBackFromObstacle();
+        print(rayDistanceToCheckIsOnVine);
     }
 
     private void FixedUpdate()
@@ -316,7 +329,7 @@ sealed public partial class Player : MonoBehaviour
     }
 
 
-    #region Movement and States Methods
+    #region Movement Methods
     private void Move()
     {
         //On ground move
@@ -377,7 +390,6 @@ sealed public partial class Player : MonoBehaviour
         }
     }
     #endregion
-
     
 }
 }
