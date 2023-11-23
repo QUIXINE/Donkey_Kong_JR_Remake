@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1591022655279843490}
   - component: {fileID: 14936300925577637}
   - component: {fileID: 3370848678584746503}
+  - component: {fileID: -3226457878431281298}
+  - component: {fileID: 9151184141974249418}
   m_Layer: 0
   m_Name: Egg
   m_TagString: Enemy
@@ -133,3 +135,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387aff5ae0dad7d4db716d06a57d0807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3226457878431281298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286060720106648206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a002416776f1c43b821a6e8abda637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WalkSpeed: 2
+--- !u!95 &9151184141974249418
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286060720106648206}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c47015d975d84e43b445827d9592de9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
