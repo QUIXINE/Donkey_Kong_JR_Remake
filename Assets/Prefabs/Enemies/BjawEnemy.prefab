@@ -221,16 +221,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7781890384665624691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c2e543a7a05116468190a695f53f8cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a1cc0962b3d2404798b5a1df2372914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  box2d: {fileID: 5738102010937494093}
+  box2d: {fileID: 7890784546514980615}
   Timeremain: 2
   anim: {fileID: 0}
-  WalkSpeed: 1
+  WalkSpeed: 1.5
 --- !u!50 &2968408460994234130
 Rigidbody2D:
   serializedVersion: 4

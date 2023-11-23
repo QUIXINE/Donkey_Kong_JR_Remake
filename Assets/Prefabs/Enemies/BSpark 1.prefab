@@ -98,12 +98,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5017209011645746203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2fe1b5cab9103b4aabbb798bf1345e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0154a725b8a0e5e4c8790fd172be115f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Timeremain: 2
   anim: {fileID: 0}
-  WalkSpeed: 1.5
+  WalkSpeed: 1
   waypoint2: []
 --- !u!58 &8798911353138369340
 CircleCollider2D:

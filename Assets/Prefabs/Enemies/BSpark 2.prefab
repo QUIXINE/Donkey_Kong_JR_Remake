@@ -133,12 +133,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5017209011645746203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f45691d33693b294d92e06fb63d642fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 41a2d8cf531588f4b9b09c4b2a960c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Timeremain: 2
   anim: {fileID: 0}
-  WalkSpeed: 1.5
+  WalkSpeed: 1
   waypoint3: []
 --- !u!50 &1990243666670281288
 Rigidbody2D:

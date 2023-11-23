@@ -169,10 +169,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 973256689982447634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11b1f6ff920f7fc438b19927d942635f, type: 3}
+  m_Script: {fileID: 11500000, guid: 81e7d7990f7c7f44f8616dbc499d0488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timeremain: 0
+  Timeremain: 1
   anim: {fileID: 0}
   SpawnEgg: {fileID: 6286060720106648206, guid: aa707cd0c92897f4d897ebba14439bb1, type: 3}
   WalkSpeed: 2

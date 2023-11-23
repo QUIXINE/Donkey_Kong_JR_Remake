@@ -84,9 +84,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4288688103565464930}
   m_SourcePrefab: {fileID: 100100000, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
---- !u!61 &6537647404343471980 stripped
+--- !u!61 &8690263315591277094 stripped
 BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 5738102010937494093, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7890784546514980615, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
   m_PrefabInstance: {fileID: 1521010293642618145}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &9143823327142487378 stripped
@@ -103,13 +103,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9143823327142487378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5589cd37c3b6d62478caef9268448bc0, type: 3}
+  m_Script: {fileID: 11500000, guid: e29ee96b62cf9634d8b76429becda932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  box2d: {fileID: 6537647404343471980}
+  box2d: {fileID: 8690263315591277094}
   Timeremain: 2
   anim: {fileID: 0}
   WalkSpeed: 1
