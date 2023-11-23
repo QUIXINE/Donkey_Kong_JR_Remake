@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Bjaw_Controller : MonoBehaviour
+public class Bjaw_Controller : MonoBehaviour, IEnemyController
 {
     //Layer
     [SerializeField] private LayerMask GroundLayer;
@@ -73,7 +73,6 @@ public class Bjaw_Controller : MonoBehaviour
         yield return new WaitForSeconds(1);
         RndLF();
         isMove = true;
-        Debug.Log("Go");
     }
 
     /*IEnumerator WaitAnim(float _deelay = 0)
@@ -122,7 +121,6 @@ public class Bjaw_Controller : MonoBehaviour
             isDown = true;
             GetComponent<BoxCollider2D>().isTrigger = true;
             rb.isKinematic = true;
-            Debug.Log("Down");
         }
     }
 
@@ -175,15 +173,12 @@ public class Bjaw_Controller : MonoBehaviour
         if (collision.CompareTag("TopRope"))
         {
             RndUD();
-            Debug.Log("UD" + RndNumUD);
             ObjectRope = collision.gameObject;
-            Debug.Log(ObjectRope);
         }
 
         if (collision.CompareTag("TopRope") && !IsGround())
         {
             isDown = true;
-            Debug.Log("!isground");
             rb.isKinematic = true;
         }
 
@@ -195,5 +190,10 @@ public class Bjaw_Controller : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void EnemyFall()
+    {
+        this.enabled = false;
     }
 }

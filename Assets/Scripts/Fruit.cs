@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using ScoreManagement;
+using UnityEngine.SceneManagement;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -38,7 +39,29 @@ public class Fruit : MonoBehaviour
     }
     private void Update()
     {
-        Vector2 pos = new Vector2(-3.87f, -6.69f);
+        DestroySelf();
+    }
+
+    private void DestroySelf()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Vector2 pos = new Vector2(0, 0);
+        switch (currentSceneIndex)
+        {
+            case 2:
+                pos = new Vector2(0, -3.4f);
+                break;
+            case 3:
+                pos = new Vector2(0, -4f);
+                break;
+            case 5:
+                pos = new Vector2(0, -3f);
+                break;
+            case 6:
+                pos = new Vector2(0, -5.7f);
+                break;
+
+        }
         if (transform.position.y <= pos.y)
         {
             rb.gravityScale = 0;
@@ -61,12 +84,14 @@ public class Fruit : MonoBehaviour
         if(col.gameObject.layer == 8 && collidePlayer)
         {
             IGetPoint get = col.gameObject.GetComponent<IGetPoint>();
+            IEnemyController enemyController = col.gameObject.GetComponent<IEnemyController>();
             if(!isCrashedEnemy01)
             {
                 AudioPlayerTest.PlayAudio(AudioReferences.FruitBumpSound);
                 fruitScore += 400; 
                 StartCoroutine(StopTime());
                 get.GetPoint(fruitScore);
+                enemyController.EnemyFall();
                 Score_PopUp_Display.PopUpScore(col.gameObject.transform, fruitScore);   //Pop up score
                 isCrashedEnemy01 = true;
             }
@@ -76,6 +101,7 @@ public class Fruit : MonoBehaviour
                 fruitScore += 400; 
                 StartCoroutine(StopTime());
                 get.GetPoint(fruitScore);
+                enemyController.EnemyFall();
                 Score_PopUp_Display.PopUpScore(col.gameObject.transform, fruitScore);   //Pop up score
                 isCrashedEnemy02 = true;
             }
@@ -85,6 +111,7 @@ public class Fruit : MonoBehaviour
                 fruitScore += 400; 
                 StartCoroutine(StopTime());
                 get.GetPoint(fruitScore);
+                enemyController.EnemyFall();
                 Score_PopUp_Display.PopUpScore(col.gameObject.transform, fruitScore);   //Pop up score
                 isCrashedEnemy03 = true;
             }

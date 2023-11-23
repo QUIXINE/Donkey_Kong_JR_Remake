@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SBird_Controlleer : MonoBehaviour
+public class SBird_Controlleer : MonoBehaviour, IEnemyController
 {
     //Rigidbody
     Rigidbody2D rb;
@@ -115,5 +115,10 @@ public class SBird_Controlleer : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x * - 1, transform.localScale.y, transform.localScale.z);
     }
 
+    public void EnemyFall()
+    {
+        this.enabled = false;
+    }
 }
+
 

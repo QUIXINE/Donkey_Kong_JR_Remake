@@ -14,6 +14,11 @@
 			"path": "Assets/Scripts/Player/Player_TakeDamage.cs",
 			"bookmarks": [
 				{
+					"line": 25,
+					"column": 12,
+					"label": ""
+				},
+				{
 					"line": 26,
 					"column": 25,
 					"label": ""
@@ -24,7 +29,7 @@
 			"path": "Assets/Scripts/Game/GameState.cs",
 			"bookmarks": [
 				{
-					"line": 129,
+					"line": 143,
 					"column": 20,
 					"label": ""
 				}
@@ -99,7 +104,7 @@
 			"path": "Assets/Scripts/Game/Finish_Level04.cs",
 			"bookmarks": [
 				{
-					"line": 14,
+					"line": 45,
 					"column": 40,
 					"label": ""
 				}

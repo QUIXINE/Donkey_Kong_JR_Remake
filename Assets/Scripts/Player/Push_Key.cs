@@ -9,7 +9,7 @@ namespace PlayerSpace
     {
         [Tooltip("used to define how much the key will move on y-axis after collide with player")]
         [SerializeField] private float distanceToGo;
-        [SerializeField] private Transform posDualHand01, posDualHand02, posOnHead, groundCheckPos01, groundCheckPos02, keyCheckposOnFoot02;
+        [SerializeField] private Transform posDualHand01, posDualHand02, posOnHead, groundCheckPos01, groundCheckPos02, keyCheckPosOnFoot;
         [SerializeField] private float rayDistance;
         [SerializeField] private float rayDistanceFirstValue;
         [SerializeField] private LayerMask itemLayerMask;
@@ -69,9 +69,9 @@ namespace PlayerSpace
                         hitInfo.collider.gameObject.transform.Translate(new Vector2(0, distanceToGo), Space.World);
                     }
                 }
-                else if (Physics2D.Raycast(keyCheckposOnFoot02.position, -Vector2.up, rayDistance, itemLayerMask))
+                else if (Physics2D.Raycast(keyCheckPosOnFoot.position, -Vector2.up, rayDistance, itemLayerMask))
                 {
-                    RaycastHit2D hitInfo = Physics2D.Raycast(keyCheckposOnFoot02.position, -Vector2.up, rayDistance, itemLayerMask);
+                    RaycastHit2D hitInfo = Physics2D.Raycast(keyCheckPosOnFoot.position, -Vector2.up, rayDistance, itemLayerMask);
                     if (hitInfo.collider.CompareTag("Key"))
                     {
                         hitInfo.collider.gameObject.transform.Translate(new Vector2(0, -distanceToGo), Space.World);

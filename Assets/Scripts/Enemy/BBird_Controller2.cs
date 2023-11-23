@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class BBird_Controller2 : MonoBehaviour
+public class BBird_Controller2 : MonoBehaviour, IEnemyController
 {
     //Rigidbody
     Rigidbody2D rb;
@@ -70,5 +70,10 @@ public class BBird_Controller2 : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void EnemyFall()
+    {
+        this.enabled = false;
     }
 }

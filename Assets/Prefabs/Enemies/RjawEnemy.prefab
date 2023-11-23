@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3449391124033210459, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.120566346
+      value: -5.176353
       objectReference: {fileID: 0}
     - target: {fileID: 3449391124033210459, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1375189
+      value: -1.4034328
       objectReference: {fileID: 0}
     - target: {fileID: 3449391124033210459, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
       propertyPath: m_LocalPosition.z
@@ -80,9 +80,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7781890384665624691, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
       insertIndex: 2
       addedObject: {fileID: 9085543703759519}
-    - targetCorrespondingSourceObject: {fileID: 7781890384665624691, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4288688103565464930}
   m_SourcePrefab: {fileID: 100100000, guid: 976b46bf6cda32e4cb890ce142585789, type: 3}
 --- !u!61 &8690263315591277094 stripped
 BoxCollider2D:
@@ -114,15 +111,3 @@ MonoBehaviour:
   anim: {fileID: 0}
   WalkSpeed: 1
   isBott: 0
---- !u!114 &4288688103565464930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9143823327142487378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102d28c4a54bb5a498eef5db360774cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
