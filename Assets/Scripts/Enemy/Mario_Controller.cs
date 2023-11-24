@@ -34,7 +34,7 @@ public class Mario_Controller : MonoBehaviour
         }
         if (Active2)
         {
-            WaitSpark();
+            Wait();
         }
         if (Active4)
         {
