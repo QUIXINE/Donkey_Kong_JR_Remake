@@ -249,6 +249,8 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  circleRayDis: 0.5
+  CircleRadius: 0.7
   waterLayerMask:
     serializedVersion: 2
     m_Bits: 16
@@ -264,6 +266,8 @@ MonoBehaviour:
   yLengthObstacleCheck: 0.5
   waterSplashParticle: {fileID: 59238330083409552, guid: 88ce85274eb3d554c9650d61918a6888, type: 3}
   vineFallenLeafParticle: {fileID: 1195588108102549434, guid: 91a46aa35353b81408759e72298adf9b, type: 3}
+  sizeX: 1.2
+  sizeY: 0.8
 --- !u!114 &4982594095239651823
 MonoBehaviour:
   m_ObjectHideFlags: 0

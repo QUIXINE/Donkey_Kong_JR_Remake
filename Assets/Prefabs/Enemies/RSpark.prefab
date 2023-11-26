@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3381710563180716169}
   - component: {fileID: 1678404591219169544}
   - component: {fileID: 5161673664418454760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RSpark
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -163,9 +163,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02346325, y: -0.017597735}
+  m_Offset: {x: -0.02346325, y: -0.10726276}
   serializedVersion: 2
-  m_Radius: 0.40024567
+  m_Radius: 0.31058064
 --- !u!114 &1678404591219169544
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,16 +14,6 @@ public class Egg_Collision : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col) 
     {
-        /* if(col.gameObject.layer == 9)
-        {
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = 0;
-            Destroy(gameObject, 0.4f);
-            Player_TakeDamage playerTakeDamage = col.gameObject.GetComponent<Player_TakeDamage>();
-            animator.SetBool("Hit", true);
-            playerTakeDamage.animator.SetBool("DieOtherCondition", true);
-            playerTakeDamage.TakeDamage();
-        } */
         if(col.gameObject.TryGetComponent<Player_TakeDamage>(out var player))
         {
             print("Hit");

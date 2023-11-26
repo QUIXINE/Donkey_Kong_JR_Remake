@@ -7,13 +7,13 @@ namespace ScoreManagement
     public class Enemy_Score : MonoBehaviour, IGetPoint 
     {
         private Rigidbody2D rb;
-        private BoxCollider2D enemyCollider;
+        private Collider2D enemyCollider;
 
 
         private void Start() 
         {
             rb = GetComponent<Rigidbody2D>();
-            enemyCollider = GetComponent<BoxCollider2D>();
+            enemyCollider = GetComponent<Collider2D>();
         }
 
         //Collide with fruit the GetPoint

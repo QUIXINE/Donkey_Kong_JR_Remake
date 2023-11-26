@@ -103,6 +103,8 @@ sealed public partial class Player : MonoBehaviour
     private bool canGetPointFromEnemy;
     private List<Enemy_Score> enemyList = new List<Enemy_Score>();    //used to get score from enemy, used w/ PlayerGetScore script
     private int scoreOfEnemy;
+    //[SerializeField] private float circleRayDis, CircleRadius;    //used if use CirCleCastNonAlloc in EnemyStak();
+    [SerializeField] private float sizeX = 1.2f, sizeY = 0.8f;      //used if use OverlapBoxNonAlloc in EnemyStak();
 
     [Header("Water Check")]
     [SerializeField] private LayerMask waterLayerMask;
@@ -160,6 +162,7 @@ sealed public partial class Player : MonoBehaviour
         HandleGravity();
         HandleCollider();
         FlipBackFromObstacle();
+        EnemyStack();
     }
 
     private void FixedUpdate()
@@ -359,7 +362,7 @@ sealed public partial class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             animator.SetBool("Jump", true);
             canGetPointFromEnemy = true;
-            EnemyStack();
+            //EnemyStack();
             IsJumped = true;
         }
     }

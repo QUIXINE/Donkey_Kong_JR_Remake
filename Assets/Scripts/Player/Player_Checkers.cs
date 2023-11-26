@@ -726,8 +726,10 @@ sealed public partial class Player
         Gizmos.DrawWireCube(obstacleCheckPos01.position, new Vector3(xLengthObstacleCheck, yLengthObstacleCheck, 0));
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(obstacleCheckPos02.position, new Vector3(xLengthObstacleCheck, yLengthObstacleCheck, 0));
+        
         //Enemy check to get score
-        //Gizmos.DrawWireSphere(groundCheckPos.position, 0.7f);
+        //Gizmos.DrawWireSphere(groundCheckPos01.position, CircleRadius);
+        Gizmos.DrawWireCube(groundCheckPos01.position, new Vector3(sizeX, sizeY, 0f));
         //Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
 
         //Drak on Head
