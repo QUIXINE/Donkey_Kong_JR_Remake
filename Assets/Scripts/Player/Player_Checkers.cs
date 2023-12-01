@@ -533,7 +533,16 @@ sealed public partial class Player
             rb.gravityScale = 1;
             Vertical = 0;
             canReachFirstGetOnVine = true;
-            
+            //Fix on _Level04 can't get off
+            if(IsOnVine && SceneManager.GetActiveScene().buildIndex == 6)
+            {
+                rayDistanceToHoldVineCloser = 0;
+                rayDistanceGetCloseToVine = 0;
+            }
+            else
+            {
+                rayDistanceToHoldVineCloser = 0.5f;
+            }
             //!IsOnVineChecker() --> benefit when on vine and collide w/ platform, player will be able to move
             if(!IsOnVineChecker())
             {
@@ -547,7 +556,7 @@ sealed public partial class Player
             }
             
             IsJumped = false;
-            rayDistanceGetCloseToVine = 0.1f;
+            //rayDistanceGetCloseToVine = 0.1f;
         }
         if(IsGroundedChecker() && rb.velocity.y <= 0)   //What is this for? --> to stop get point from enemy when is back to the ground
         {

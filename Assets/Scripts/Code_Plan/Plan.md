@@ -295,7 +295,7 @@ sloved by disabling Player_TakeDamage
             - put key in locker ✅
         - Clear stage cutscene ✅
             - stop bg sound, alarm sound after clear stage ✅
-        - Max's cutscene
+        - Max's cutscene✅
 
     - Proble: Sound Audio Manager play in loop sometime after dead --> solved by using Player enable as condition in PlayAudio() in AudioPlayerTest ✅
 
@@ -306,7 +306,7 @@ Fruit banana too wide collider ✅
 11/21/2023
 Art
 - apply completed animation in cleared stage cutscene
-- apply sfx in Max's cutscene, unless he already did, then I dun need to
+- apply sfx in Max's cutscene, unless he already did, then I dun need to ✅
     - must solve animation bones first so that timeline can be used
 - ~~Is scene level 02 sunset?~~ No!
 

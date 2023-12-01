@@ -6,16 +6,16 @@ namespace PlayerSpace{
 public partial class Player 
 {
     #region Check enemy to earn point
-    private Enemy_Collision enemy_Collision;
+    private Enemy_Score enemy_Score;
     void CallEnemyStack()
     {
         if(canGetPointFromEnemy)
         {
             /* RaycastHit2D[] Hits = new RaycastHit2D[2];
             int hit = Physics2D.CircleCastNonAlloc(groundCheckPos01.position, CircleRadius, -groundCheckPos01.up, Hits, circleRayDis, boundaryLayerMask); //0.7, 0.1 */
-            if(enemy_Collision != null)
+            if(enemy_Score != null)
             {
-                if(/* hit == 0 && */enemyList.Count != 0 && enemy_Collision.IsAbleToGetPoint)
+                if(/* hit == 0 && */enemyList.Count != 0 && enemy_Score.IsAbleToGetPoint)
                 {
                     AudioPlayerTest.PlayAudio(AudioReferences.EnemyClearSound);
                     Score_PopUp_Display.PopUpScore(enemyList[0].gameObject.transform, scoreOfEnemy);    //Pop up score
@@ -55,7 +55,7 @@ public partial class Player
             if(hit == 1 && enemyList.Count == 0)
             {
                 enemy01 = collider2Ds[0].gameObject.GetComponent<Enemy_Score>();     //out of index --> learn how to use RaycastHit2D[]
-                enemy_Collision = collider2Ds[0].gameObject.GetComponent<Enemy_Collision>();
+                enemy_Score = enemy01;
                 enemyList.Add(enemy01);
                 print(enemyList);
                 
@@ -64,7 +64,7 @@ public partial class Player
             {
                 //Try to check use this method for 2 objs at once(hits 2 enemies at the same time)
                 enemy01 = collider2Ds[0].gameObject.GetComponent<Enemy_Score>(); 
-                enemy_Collision = collider2Ds[0].gameObject.GetComponent<Enemy_Collision>();
+                enemy_Score = enemy01;
                 enemyList.Add(enemy01);
                 enemy02 = collider2Ds[0].gameObject.gameObject.GetComponent<Enemy_Score>();
                 enemyList.Add(enemy02);

@@ -8,6 +8,7 @@ namespace ScoreManagement
     {
         private Rigidbody2D rb;
         private Collider2D enemyCollider;
+        public bool IsAbleToGetPoint {get; private set;} = true;
 
 
         private void Start() 
@@ -27,9 +28,26 @@ namespace ScoreManagement
             {
                 Score_Variables.ScorePlayer02 = Score_Variables.ScorePlayer02 + score;
             }
-            rb.isKinematic = false;
-            rb.gravityScale = 0.5f;
             enemyCollider.enabled = false;
+            rb.velocity = Vector2.down * 5f;
         }
+
+        private void OnTriggerEnter2D(Collider2D col) 
+        {
+            if (col.gameObject.layer == 11)
+            {
+                IsAbleToGetPoint = false;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D col) 
+        {
+            if (col.gameObject.layer == 11)
+            {
+                IsAbleToGetPoint = true;
+            }
+        }
+
+
     }
 }
