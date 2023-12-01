@@ -91,10 +91,10 @@
 			]
 		},
 		{
-			"path": "Assets/Scripts/Enemy/Enemy_Collide_Player.cs",
+			"path": "Assets/Scripts/Enemy/Enemy_Collision.cs",
 			"bookmarks": [
 				{
-					"line": 14,
+					"line": 15,
 					"column": 80,
 					"label": ""
 				}

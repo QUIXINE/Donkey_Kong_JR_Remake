@@ -2,8 +2,9 @@ using UnityEngine;
 
 namespace TakeDamage
 {
-    public class Enemy_Collide_Player : MonoBehaviour 
+    public class Enemy_Collision : MonoBehaviour 
     {
+        public bool IsAbleToGetPoint {get; private set;} = true;
         private void OnTriggerEnter2D(Collider2D col) 
         {
             if (col.gameObject.layer == 9)  //player
@@ -15,6 +16,18 @@ namespace TakeDamage
                     AudioPlayerTest.PlayAudio(AudioReferences.BiteSound);       //play bite sound
                     takeDamage.TakeDamage();
                 }
+            }
+            else if (col.gameObject.layer == 11)
+            {
+                IsAbleToGetPoint = false;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D col) 
+        {
+            if (col.gameObject.layer == 11)
+            {
+                IsAbleToGetPoint = true;
             }
         }
     }

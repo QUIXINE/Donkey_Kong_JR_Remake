@@ -362,7 +362,7 @@ sealed public partial class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             animator.SetBool("Jump", true);
             canGetPointFromEnemy = true;
-            //EnemyStack(); //if put in Update(), it seems only takes 1 enemy
+            //EnemyStack();
             IsJumped = true;
         }
     }

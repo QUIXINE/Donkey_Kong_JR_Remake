@@ -39,10 +39,10 @@ public class Fruit : MonoBehaviour
     }
     private void Update()
     {
-        //DestroySelf();
+        DestroySelf();
     }
 
-    /* private void DestroySelf()
+    private void DestroySelf()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         Vector2 pos = new Vector2(0, 0);
@@ -68,7 +68,7 @@ public class Fruit : MonoBehaviour
             rb.velocity = Vector2.zero;
             Destroy(gameObject);
         }
-    } */
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -80,7 +80,8 @@ public class Fruit : MonoBehaviour
             collidePlayer = true;
             canCollidePlayer = false;
         }
-        else if(col.gameObject.layer == 8 && collidePlayer)
+
+        if(col.gameObject.layer == 8 && collidePlayer)
         {
             IGetPoint get = col.gameObject.GetComponent<IGetPoint>();
             IEnemyController enemyController = col.gameObject.GetComponent<IEnemyController>();
@@ -114,10 +115,6 @@ public class Fruit : MonoBehaviour
                 Score_PopUp_Display.PopUpScore(col.gameObject.transform, fruitScore);   //Pop up score
                 isCrashedEnemy03 = true;
             }
-        }
-        else if(col.gameObject.layer == 4)  //Water
-        {
-            Destroy(gameObject);
         }
         /*if(Collides enemy)
         {
