@@ -6,27 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Midterm/Menu_Scene.unity
+    path: Assets/Scenes/Final/Menu_Scene.unity
     guid: 30ab1d3bb097e4444b9e65b9c8f2317e
   - enabled: 1
-    path: Assets/Scenes/Midterm/Opening.unity
+    path: Assets/Scenes/Final/Opening.unity
     guid: fffe2e8129c1f684998815d5d6af98af
   - enabled: 1
-    path: Assets/Scenes/Midterm/_Level01.unity
+    path: Assets/Scenes/Final/_Level01.unity
     guid: ffd6da60f3921cb46b8c8ab1eaf077ce
   - enabled: 1
-    path: Assets/Scenes/Midterm/_Level02.unity
+    path: Assets/Scenes/Final/_Level02.unity
     guid: 84c09e9def0dff14dbe7c37e60754c81
   - enabled: 1
-    path: Assets/Scenes/Midterm/_Level02 Cutscene.unity
+    path: Assets/Scenes/Final/_Level02 Cutscene.unity
     guid: b5ca7d7616aff014c892128a37140064
   - enabled: 1
-    path: Assets/Scenes/Midterm/_Level03.unity
+    path: Assets/Scenes/Final/_Level03.unity
     guid: a13639d2b8acebb488452f5397286542
   - enabled: 1
-    path: Assets/Scenes/Midterm/_Level04.unity
+    path: Assets/Scenes/Final/_Level04.unity
     guid: 253ce53516fd3514b869b87c1fa1a1b6
   - enabled: 1
-    path: Assets/Scenes/Midterm/Rank_Scene.unity
+    path: Assets/Scenes/Final/Rank_Scene.unity
     guid: 08ac87d9c81c6ef40bd129bca59b648e
   m_configObjects: {}
