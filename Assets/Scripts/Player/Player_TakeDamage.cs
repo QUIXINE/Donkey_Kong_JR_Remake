@@ -11,6 +11,7 @@ namespace TakeDamage
         private Rigidbody2D rb;
         private CapsuleCollider2D capsuleCollider;
         [SerializeField] private float dieHeight = -3.95f;
+        public bool IsCollidedWithEnemy {get; set;}
 
         private void Start() 
         {
@@ -24,11 +25,11 @@ namespace TakeDamage
         {
             FallFromHeight();
             //for testing
-            /* if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.E))
             {
                 animator.SetBool("DieOtherCondition", true);
                 TakeDamage();
-            } */
+            }
             
         }
 
@@ -47,9 +48,9 @@ namespace TakeDamage
                 if(Player01Health.Instance.Health > 0 && Player01Health.Instance.Health > 1)
                 {
                     animator.SetBool("Die", true);
-                    Enemy_Collision[] enemies = FindObjectsOfType<Enemy_Collision>();   //Script that makes enemy moves
+                    Enemy_Collide_Player[] enemies = FindObjectsOfType<Enemy_Collide_Player>();   //Script that makes enemy moves
                     Fruit[] fruits = FindObjectsOfType<Fruit>();
-                    foreach(Enemy_Collision enemy in enemies)
+                    foreach(Enemy_Collide_Player enemy in enemies)
                     {
                         enemy.enabled = false;
                     }
@@ -67,10 +68,10 @@ namespace TakeDamage
                 else if(Player01Health.Instance.Health == 1) //life at 1 to 0
                 {
                     animator.SetBool("Die", true);
-                    Enemy_Collision[] enemies = FindObjectsOfType<Enemy_Collision>();   //Script that makes enemy moves
+                    Enemy_Collide_Player[] enemies = FindObjectsOfType<Enemy_Collide_Player>();   //Script that makes enemy moves
                     Fruit[] fruits = FindObjectsOfType<Fruit>();
                     Player player = (Player)FindObjectOfType(typeof(Player));
-                    foreach(Enemy_Collision enemy in enemies)
+                    foreach(Enemy_Collide_Player enemy in enemies)
                     {
                         enemy.enabled = false;
                     }
@@ -89,9 +90,9 @@ namespace TakeDamage
                 if(Player02Health.Instance.Health > 0 && Player02Health.Instance.Health > 1)
                 {
                     animator.SetBool("Die", true);
-                    Enemy_Collision[] enemies = FindObjectsOfType<Enemy_Collision>();   //Script that makes enemy moves
+                    Enemy_Collide_Player[] enemies = FindObjectsOfType<Enemy_Collide_Player>();   //Script that makes enemy moves
                     Fruit[] fruits = FindObjectsOfType<Fruit>();
-                    foreach(Enemy_Collision enemy in enemies)
+                    foreach(Enemy_Collide_Player enemy in enemies)
                     {
                         enemy.enabled = false;
                     }
@@ -109,10 +110,10 @@ namespace TakeDamage
                 else if(Player02Health.Instance.Health == 1) //life at 1 to 0
                 {
                     animator.SetBool("Die", true);
-                    Enemy_Collision[] enemies = FindObjectsOfType<Enemy_Collision>();   //Script that makes enemy moves
+                    Enemy_Collide_Player[] enemies = FindObjectsOfType<Enemy_Collide_Player>();   //Script that makes enemy moves
                     Fruit[] fruits = FindObjectsOfType<Fruit>();
                     Player player = (Player)FindObjectOfType(typeof(Player));
-                    foreach(Enemy_Collision enemy in enemies)
+                    foreach(Enemy_Collide_Player enemy in enemies)
                     {
                         enemy.enabled = false;
                     }
@@ -131,7 +132,7 @@ namespace TakeDamage
         //Fall from height
         private void FallFromHeight()
         {
-            if (rb.velocity.y < dieHeight && player.IsGroundedChecker())
+            if (rb.velocity.y < dieHeight && player.IsGroundedChecker() && !IsCollidedWithEnemy)
             {
                 print(rb.velocity.y);
                 animator.SetBool("IsGrounded", true);   //in PlayerCheckers script, IsGrounded() doesn't let animator bool IsGrounded = true 

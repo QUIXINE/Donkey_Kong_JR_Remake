@@ -65,7 +65,7 @@ namespace PlayerSpace
             //used with horizontalOnVine to flip DK jr. from one side to another while OnVine
             //isOnVine will be true after being sure that DK jr hands don't go off
             //Problem: pos doesn't based on offset of vine and player
-            if (HorizontalOnVine > 0 && transform.rotation == Quaternion.Euler(0, -180, 0) && !canChangeToReach && canFlip && !IsThereBoundaryAsObstacle())
+            if (HorizontalOnVine > 0 && transform.rotation == Quaternion.Euler(0, -180, 0) && !canChangeToReach && canFlip && !IsThereBoundaryAsObstacle() && !IsThereGroundAsObstacle())
             {
                 if (IsOnVineChecker() && facingRight && isTwoHanded)
                 {
@@ -85,7 +85,7 @@ namespace PlayerSpace
 
                 }
             }
-            else if (HorizontalOnVine < 0 && transform.rotation == Quaternion.Euler(0, 0, 0) && !canChangeToReach && canFlip && !IsThereBoundaryAsObstacle())
+            else if (HorizontalOnVine < 0 && transform.rotation == Quaternion.Euler(0, 0, 0) && !canChangeToReach && canFlip && !IsThereBoundaryAsObstacle() && !IsThereGroundAsObstacle())
             {
                 if (IsOnVineChecker() && !facingRight && isTwoHanded)
                 {
@@ -107,7 +107,7 @@ namespace PlayerSpace
 
             //Reaching first time
             //Used for reaching when get on the vine every first time after get off the ground, 9/14/2023 now used for transit to reach
-            if ( /* Input.GetKeyDown(KeyCode.LeftArrow */ HorizontalOnVine < -0.32f   && transform.rotation == Quaternion.Euler(0, -180, 0) && canReachFirstGetOnVine && !canChangeToReach && !IsThereGroundAsObstacle())
+            if ( /* Input.GetKeyDown(KeyCode.LeftArrow */ HorizontalOnVine < -0.32f   && transform.rotation == Quaternion.Euler(0, -180, 0) && canReachFirstGetOnVine && !canChangeToReach)
             {
                 if(IsThereBoundaryAsObstacle() && !IsThereKeyAsObstacle())
                 {

@@ -6,7 +6,7 @@ namespace PlayerSpace{
 public partial class Player 
 {
     #region Check enemy to earn point
-    private Enemy_Collision enemy_Collision;
+    private Enemy_Collide_Player enemy_Collision;
     void CallEnemyStack()
     {
         if(canGetPointFromEnemy)
@@ -55,7 +55,7 @@ public partial class Player
             if(hit == 1 && enemyList.Count == 0)
             {
                 enemy01 = collider2Ds[0].gameObject.GetComponent<Enemy_Score>();     //out of index --> learn how to use RaycastHit2D[]
-                enemy_Collision = collider2Ds[0].gameObject.GetComponent<Enemy_Collision>();
+                enemy_Collision = collider2Ds[0].gameObject.GetComponent<Enemy_Collide_Player>();
                 enemyList.Add(enemy01);
                 print(enemyList);
                 
@@ -64,7 +64,7 @@ public partial class Player
             {
                 //Try to check use this method for 2 objs at once(hits 2 enemies at the same time)
                 enemy01 = collider2Ds[0].gameObject.GetComponent<Enemy_Score>(); 
-                enemy_Collision = collider2Ds[0].gameObject.GetComponent<Enemy_Collision>();
+                enemy_Collision = collider2Ds[0].gameObject.GetComponent<Enemy_Collide_Player>();
                 enemyList.Add(enemy01);
                 enemy02 = collider2Ds[0].gameObject.gameObject.GetComponent<Enemy_Score>();
                 enemyList.Add(enemy02);

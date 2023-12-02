@@ -14,12 +14,12 @@
 			"path": "Assets/Scripts/Player/Player_TakeDamage.cs",
 			"bookmarks": [
 				{
-					"line": 25,
+					"line": 26,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 26,
+					"line": 27,
 					"column": 25,
 					"label": ""
 				}
@@ -44,17 +44,17 @@
 					"label": ""
 				},
 				{
-					"line": 381,
+					"line": 385,
 					"column": 28,
 					"label": ""
 				},
 				{
-					"line": 495,
+					"line": 499,
 					"column": 8,
 					"label": ""
 				},
 				{
-					"line": 496,
+					"line": 500,
 					"column": 79,
 					"label": ""
 				}
@@ -91,7 +91,7 @@
 			]
 		},
 		{
-			"path": "Assets/Scripts/Enemy/Enemy_Collision.cs",
+			"path": "Assets/Scripts/Enemy/Enemy_Collide_Player.cs",
 			"bookmarks": [
 				{
 					"line": 15,

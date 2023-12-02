@@ -92,7 +92,8 @@ sealed public partial class Player
         return Physics2D.OverlapBox(groundCheckPos01.position, new Vector2(xLengthGroundCheck, yLengthGroundCheck), 0, groundLayerMask);
     }
     
-    private bool IsThereGroundOrWaterInRange()
+    //For what?
+    private bool IsThereGroundInRange()
     {
         if(Physics2D.Raycast(groundCheckPos01.position, -groundCheckPos01.up, 1f, groundLayerMask))
         {
@@ -102,13 +103,16 @@ sealed public partial class Player
         {
             return true;
         }
-        else if(Physics2D.Raycast(groundCheckPos01.position, -groundCheckPos01.up, 0.1f, waterLayerMask))      //layer 4 = water
+        return false;
+    }
+    private bool IsThereWaterInRange()
+    {
+        if(Physics2D.Raycast(groundCheckPos01.position, -groundCheckPos01.up, 0.1f, waterLayerMask))      //layer 4 = water
         {
             return true;
         }
         return false;
     }
-    
     private bool IsThereGroundAsObstacle()
     {
         Collider2D collideGround = Physics2D.OverlapBox(obstacleCheckPos01.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, groundLayerMask);
@@ -147,7 +151,7 @@ sealed public partial class Player
         if(CurrentState == PlayerState.TwoHanded && animator.GetBool("TwoHanded") && !IsGroundedChecker() && !CollideGroundOnHead())
         {
             //used to check on the back if flip and colldie w/ ground
-            if (Physics2D.OverlapBox(obstacleCheckPos02.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, groundLayerMask) && IsOnVine && SceneManager.GetActiveScene().buildIndex == 6)
+            if (Physics2D.OverlapBox(obstacleCheckPos02.position , new Vector2(xLengthObstacleCheck, yLengthObstacleCheck), 0, groundLayerMask) && IsOnVine)
             {
                 Flip();
             }
@@ -576,11 +580,17 @@ sealed public partial class Player
     
     private void HandleCollider()
     {
-        if(IsThereGroundOrWaterInRange() || IsOnVine)
+        if(IsThereGroundInRange() || IsOnVine)
         {
             dkCol.enabled = true;
         }
-        else if(!IsThereGroundOrWaterInRange())
+        else if (IsThereWaterInRange() && !IsThereGroundInRange())  //used this instead of IsThereGroundOrWaterInRange() which is its old version to fix when it should fall into water 
+                                                                    //but collider of the ground and the water collides each other which makes player won't fall into water and jolting, fro example, the first platform in level 1 
+        {
+            dkCol.enabled = true;
+            dkCol.isTrigger = true;
+        }
+        else if(!IsThereGroundInRange())
         {
             //maybe add groundCheckPos03 and check IsThereGroundOrWaterInRange() w/ groundCheckPos03 not groundCheckPos01 because DK's sprite still on the ground and fall too soon 
             if(!IsJumped)   //if jump and is closer to the edge of ground collider, player 
@@ -726,6 +736,7 @@ sealed public partial class Player
         Gizmos.DrawWireCube(obstacleCheckPos01.position, new Vector3(xLengthObstacleCheck, yLengthObstacleCheck, 0));
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(obstacleCheckPos02.position, new Vector3(xLengthObstacleCheck, yLengthObstacleCheck, 0));
+
         
         //Enemy check to get score
         //Gizmos.DrawWireSphere(groundCheckPos01.position, CircleRadius);
