@@ -10,9 +10,10 @@ public class SBird_Controlleer : MonoBehaviour, IEnemyController
     //Timer
     public float Timeremain = 2;
     //Animation
-    public Animation anim;
+    public Animator anim;
     //variable
     public GameObject SpawnEgg;
+    public GameObject Sprite;
     private int dirX;
     private int dirY;
     public float WalkSpeed;
@@ -24,6 +25,7 @@ public class SBird_Controlleer : MonoBehaviour, IEnemyController
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = Sprite.GetComponent<Animator>();
     }
 
     void Update()
@@ -65,15 +67,18 @@ public class SBird_Controlleer : MonoBehaviour, IEnemyController
         {
             isDown = true;
             isMoveR = false;
-            
+            anim.SetBool("Down", true);
+            anim.SetBool("Walk", false);
         }
 
         if (collision.CompareTag("TopRope"))
         {
+
             isDown = false;
             isMoveL = true;
             collision.gameObject.SetActive(false);
-            
+            anim.SetBool("Walk", true);
+            anim.SetBool("Down", false);
         }
 
         if (collision.CompareTag("BottRope"))
@@ -81,6 +86,8 @@ public class SBird_Controlleer : MonoBehaviour, IEnemyController
             isDown = false;
             isMoveL = true;
             Instantiate(SpawnEgg, transform.position, Quaternion.identity);
+            anim.SetBool("Walk", true);
+            anim.SetBool("Down", false);
         }
         if (collision.CompareTag("End"))
         {

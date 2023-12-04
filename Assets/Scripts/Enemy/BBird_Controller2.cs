@@ -10,7 +10,8 @@ public class BBird_Controller2 : MonoBehaviour, IEnemyController
     //Timer
     public float Timeremain = 2;
     //Animation
-    public Animation anim;
+    public Animator anim;
+    public GameObject Sprite;
     //variable
     public float WalkSpeed;
     private bool flip;
@@ -24,6 +25,7 @@ public class BBird_Controller2 : MonoBehaviour, IEnemyController
     private void Start()
     {
         mc = FindObjectOfType<Mario_Controller>();
+        anim = Sprite.GetComponent<Animator>();
     }
 
     private void Update()
@@ -35,16 +37,21 @@ public class BBird_Controller2 : MonoBehaviour, IEnemyController
 
         if (flip == false && this.transform.position.x >= waypoint2[currentWaypointIndex].transform.position.x)
         {
+            anim.SetBool("Down", false);
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             flip = true;
         }
 
         if (flip == true && this.transform.position.x <= waypoint2[currentWaypointIndex].transform.position.x)
         {
+            anim.SetBool("Down", false);
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             flip = false;
         }
-
+        if (this.transform.position.y >= (waypoint2[currentWaypointIndex].transform.position.y + 0.5))
+        {
+            anim.SetBool("Down", true);
+        }
         if (waypoint2.Length > 0)
         {
 

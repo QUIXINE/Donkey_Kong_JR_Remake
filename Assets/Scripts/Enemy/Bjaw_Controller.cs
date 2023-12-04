@@ -12,13 +12,14 @@ public class Bjaw_Controller : MonoBehaviour, IEnemyController
     //Box
     public BoxCollider2D box2d;
     //Rigidbody
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     //Timer
     public float Timeremain = 2;
     //Animation
-    public Animation anim;
+    public Animator anim;
     //variable
     private GameObject ObjectRope;
+    public GameObject Sprite;
     private int dirX;
     private float TimeLaunch;
     public float WalkSpeed;
@@ -32,7 +33,7 @@ public class Bjaw_Controller : MonoBehaviour, IEnemyController
 
     void Start()
     {
-        anim = GetComponent<Animation>();
+        anim = Sprite.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -84,7 +85,9 @@ public class Bjaw_Controller : MonoBehaviour, IEnemyController
     {
 
         {
-
+            anim.SetBool("Down", false);
+            anim.SetBool("Up", false);
+            anim.SetBool("Walk", true);
             if (RndNumLF == 1)
             {
                 dirX = 1;
@@ -104,6 +107,9 @@ public class Bjaw_Controller : MonoBehaviour, IEnemyController
 
     private void UpDown()
     {
+        anim.SetBool("Down", true);
+        anim.SetBool("Up", false);
+        anim.SetBool("Walk", false);
         isMove = false;
         transform.position = new Vector3(ObjectRope.transform.position.x, transform.position.y + (-1.5f * (WalkSpeed * Time.deltaTime)), transform.position.z);
 

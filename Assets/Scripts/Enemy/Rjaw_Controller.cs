@@ -15,9 +15,10 @@ public class Rjaw_Controller : MonoBehaviour, IEnemyController
     //Timer
     public float Timeremain = 2;
     //Animation
-    public Animation anim;
+    public Animator anim;
     //variable
     private int dirX ;
+    public GameObject Sprite;
     private GameObject ObjectRope;
     private float TimeLaunch;
     public float WalkSpeed;
@@ -33,7 +34,7 @@ public class Rjaw_Controller : MonoBehaviour, IEnemyController
 
     void Start()
     {
-        anim = GetComponent<Animation>();
+        anim = Sprite.GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         RndLF();
     }
@@ -95,8 +96,10 @@ public class Rjaw_Controller : MonoBehaviour, IEnemyController
     {
 
         {
-
-                if (RndNumLF == 1)
+            anim.SetBool("Walk", true);
+            anim.SetBool("Up", false);
+            anim.SetBool("Down", false);
+            if (RndNumLF == 1)
                 {
                 dirX = 1;
                  rb.velocity = new Vector2 (dirX * WalkSpeed, rb.velocity.y);
@@ -114,10 +117,13 @@ public class Rjaw_Controller : MonoBehaviour, IEnemyController
     }
 
     private void Down()
-    {   
-
+    {
+        
         if (isBott == false)
         {
+            anim.SetBool("Down", true);
+            anim.SetBool("Up", false);
+            anim.SetBool("Walk", false);
             isMove = false;
             transform.position = new Vector2(ObjectRope.transform.position.x, transform.position.y + (-1.5f * (WalkSpeed * Time.deltaTime)));
         }
@@ -128,6 +134,9 @@ public class Rjaw_Controller : MonoBehaviour, IEnemyController
     {
         if (isBott == true || isUp == true)
         {
+            anim.SetBool("Up", true);
+            anim.SetBool("Down", false);
+            anim.SetBool("Walk", false);
             isMove = false;
             transform.position = new Vector3(ObjectRope.transform.position.x, transform.position.y + (1f * (WalkSpeed * Time.deltaTime)), transform.position.z);
         }

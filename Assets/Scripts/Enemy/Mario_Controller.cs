@@ -20,10 +20,12 @@ public class Mario_Controller : MonoBehaviour
     public bool Active1;
     public bool Active2;
     public bool Active4;
+    private Animator anim;
+
 
     private void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
