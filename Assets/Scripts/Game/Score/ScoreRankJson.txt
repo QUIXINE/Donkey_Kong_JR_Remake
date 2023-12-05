@@ -1,1 +1,0 @@
-{"ScoreRank":[{"Name":"","Score":54700},{"Name":"JUG","Score":9200},{"Name":"","Score":9000},{"Name":"","Score":9000},{"Name":"AAA","Score":400}]}
