@@ -2887,8 +2887,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.02792846, y: -0.065132916, z: 0}
-    m_Extent: {x: 0.10252847, y: 0.22951382, z: 0}
+    m_Center: {x: -0.02814579, y: -0.06565955, z: 0}
+    m_Extent: {x: 0.102311134, y: 0.23004046, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3390,8 +3390,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.019749999, y: 0.031100005, z: 0}
-    m_Extent: {x: 0.56485, y: 0.6529, z: 0}
+    m_Center: {x: 0.019000024, y: 0.036599994, z: 0}
+    m_Extent: {x: 0.55079997, y: 0.6544, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3640,8 +3640,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0019500256, y: 0.00015002489, z: 0}
-    m_Extent: {x: 1.00235, y: 1.00425, z: 0}
+    m_Center: {x: 0.0061000288, y: 0.00090000033, z: 0}
+    m_Extent: {x: 1.0021, y: 0.99300003, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -3750,8 +3750,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.018049985, y: 0.031350017, z: 0}
-    m_Extent: {x: 0.55365, y: 0.64935, z: 0}
+    m_Center: {x: 0.0167, y: 0.036349982, z: 0}
+    m_Extent: {x: 0.5566, y: 0.64814997, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4491,8 +4491,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.040950008, y: -0.084350005, z: 0}
-    m_Extent: {x: 0.27215, y: 0.05225, z: 0}
+    m_Center: {x: -0.039500006, y: -0.085, z: 0}
+    m_Extent: {x: 0.2768, y: 0.0506, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5524,8 +5524,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.000050008297, y: -0.0032500029, z: 0}
-    m_Extent: {x: 1.00285, y: 0.99735, z: 0}
+    m_Center: {x: -0.004099995, y: -0.0023500025, z: 0}
+    m_Extent: {x: 0.99880004, y: 1.00115, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5909,8 +5909,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0016499758, y: 0.0060500205, z: 0}
-    m_Extent: {x: 1.00555, y: 1.00275, z: 0}
+    m_Center: {x: 0.0039999783, y: 0.004099965, z: 0}
+    m_Extent: {x: 1.003, y: 1.0057, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -6758,8 +6758,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.016949981, y: 0.028149992, z: 0}
-    m_Extent: {x: 0.56515, y: 0.64575005, z: 0}
+    m_Center: {x: 0.027149975, y: 0.0397, z: 0}
+    m_Extent: {x: 0.55965, y: 0.64760005, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -7753,8 +7753,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00424999, y: -0.0014500022, z: 0}
-    m_Extent: {x: 0.99834996, y: 1.00285, z: 0}
+    m_Center: {x: 0.0037499666, y: 0.00034999847, z: 0}
+    m_Extent: {x: 1.00025, y: 0.99965, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -8333,8 +8333,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.020750016, y: 0.031349987, z: 0}
-    m_Extent: {x: 0.55805004, y: 0.65174997, z: 0}
+    m_Center: {x: 0.015950024, y: 0.035250008, z: 0}
+    m_Extent: {x: 0.55355, y: 0.65805, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -8667,8 +8667,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.023149997, y: 0.0282, z: 0}
-    m_Extent: {x: 0.56345, y: 0.6515, z: 0}
+    m_Center: {x: 0.018849999, y: 0.03705001, z: 0}
+    m_Extent: {x: 0.56585, y: 0.65365, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9279,6 +9279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 908046587}
   - component: {fileID: 908046586}
+  - component: {fileID: 908046588}
   m_Layer: 0
   m_Name: torch_0
   m_TagString: Untagged
@@ -9353,6 +9354,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 574019300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &908046588
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908046585}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77b7d69608b7c3448bb68e4c6ded8f88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &908298563
 GameObject:
   m_ObjectHideFlags: 0
@@ -9419,8 +9441,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.013749987, y: 0.03729999, z: 0}
-    m_Extent: {x: 0.56125, y: 0.6437, z: 0}
+    m_Center: {x: 0.020200014, y: 0.03524998, z: 0}
+    m_Extent: {x: 0.5621, y: 0.64065003, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9501,8 +9523,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.018150002, y: 0.037499994, z: 0}
-    m_Extent: {x: 0.56345, y: 0.6543, z: 0}
+    m_Center: {x: 0.0176, y: 0.039949983, z: 0}
+    m_Extent: {x: 0.5663, y: 0.64895, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -9741,6 +9763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935027630}
   - component: {fileID: 935027629}
+  - component: {fileID: 935027631}
   m_Layer: 0
   m_Name: torch_0 (2)
   m_TagString: Untagged
@@ -9815,6 +9838,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 574019300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &935027631
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935027628}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77b7d69608b7c3448bb68e4c6ded8f88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &938781587
 GameObject:
   m_ObjectHideFlags: 0
@@ -10163,6 +10207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 995344417}
   - component: {fileID: 995344416}
+  - component: {fileID: 995344418}
   m_Layer: 0
   m_Name: torch_0 (3)
   m_TagString: Untagged
@@ -10237,6 +10282,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 574019300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &995344418
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995344415}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77b7d69608b7c3448bb68e4c6ded8f88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1008874649
 GameObject:
   m_ObjectHideFlags: 0
@@ -13196,8 +13262,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00060001016, y: 0.00050002337, z: 0}
-    m_Extent: {x: 0.99970007, y: 0.9968, z: 0}
+    m_Center: {x: 0.00039997697, y: -0.004150003, z: 0}
+    m_Extent: {x: 0.9941, y: 1.00375, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -13390,8 +13456,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.109, y: 0.1123, z: 0}
-    m_Extent: {x: 0.057099998, y: 0.0824, z: 0}
+    m_Center: {x: -0.10545, y: 0.10255, z: 0}
+    m_Extent: {x: 0.060850002, y: 0.08565, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -15916,6 +15982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499587634}
   - component: {fileID: 1499587633}
+  - component: {fileID: 1499587635}
   m_Layer: 0
   m_Name: torch_0 (1)
   m_TagString: Untagged
@@ -15990,6 +16057,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 574019300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1499587635
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499587632}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77b7d69608b7c3448bb68e4c6ded8f88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1507334224
 GameObject:
   m_ObjectHideFlags: 0
@@ -16942,8 +17030,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0021000206, y: -0.0010499954, z: 0}
-    m_Extent: {x: 0.9987, y: 0.99215, z: 0}
+    m_Center: {x: 0.0024999976, y: 0.009599984, z: 0}
+    m_Extent: {x: 0.9964, y: 1.0002999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -17052,8 +17140,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.018299997, y: 0.042649984, z: 0}
-    m_Extent: {x: 0.5623, y: 0.64735, z: 0}
+    m_Center: {x: 0.02520001, y: 0.039649993, z: 0}
+    m_Extent: {x: 0.5617, y: 0.64755, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -17952,8 +18040,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.026200026, y: 0.036000013, z: 0}
-    m_Extent: {x: 0.55799997, y: 0.6434, z: 0}
+    m_Center: {x: 0.025549978, y: 0.03454998, z: 0}
+    m_Extent: {x: 0.56445, y: 0.64715004, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18326,8 +18414,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.021800011, y: 0.0379, z: 0}
-    m_Extent: {x: 0.56490004, y: 0.6508, z: 0}
+    m_Center: {x: 0.021899998, y: 0.039300025, z: 0}
+    m_Extent: {x: 0.5623, y: 0.6476, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -18851,8 +18939,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0011499822, y: -0.0047500134, z: 0}
-    m_Extent: {x: 0.99924994, y: 1.00035, z: 0}
+    m_Center: {x: -0.0066999793, y: -0.0020999908, z: 0}
+    m_Extent: {x: 0.9974, y: 1.0055, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -19025,6 +19113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797297709}
   - component: {fileID: 1797297708}
+  - component: {fileID: 1797297710}
   m_Layer: 0
   m_Name: torch_0 (4)
   m_TagString: Untagged
@@ -19099,6 +19188,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 574019300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1797297710
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797297707}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77b7d69608b7c3448bb68e4c6ded8f88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1803794213
 GameObject:
   m_ObjectHideFlags: 0
