@@ -2806,8 +2806,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00079989433, y: -0.0037498474, z: 0}
-    m_Extent: {x: 6.5446997, y: 6.55195, z: 0}
+    m_Center: {x: 0.0011999607, y: -0.0011999607, z: 0}
+    m_Extent: {x: 6.5479, y: 6.5498, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -5409,6 +5409,10 @@ PrefabInstance:
     - target: {fileID: 7792795203063323391, guid: 3e01bb9a19b6e9c449413469705b70e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973590282181127239, guid: 3e01bb9a19b6e9c449413469705b70e8, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8608242539233164935, guid: 3e01bb9a19b6e9c449413469705b70e8, type: 3}
       propertyPath: m_Sprite
@@ -10368,8 +10372,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00069999695, y: 0.0061000586, z: 0}
-    m_Extent: {x: 2.9958, y: 2.9982, z: 0}
+    m_Center: {x: 0.00395, y: -0.0017999411, z: 0}
+    m_Extent: {x: 2.9934502, y: 2.9973001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -15614,6 +15618,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7973590282181127239, guid: 3e01bb9a19b6e9c449413469705b70e8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8608242539233164935, guid: 3e01bb9a19b6e9c449413469705b70e8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -19209,8 +19217,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

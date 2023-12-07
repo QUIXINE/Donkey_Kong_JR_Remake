@@ -52,7 +52,7 @@ public class Bjaw_Controller : MonoBehaviour, IEnemyController
             {
                 if (!IsGround())
                 {
-                    Back();
+                    //Back();
                 }
             }
 
