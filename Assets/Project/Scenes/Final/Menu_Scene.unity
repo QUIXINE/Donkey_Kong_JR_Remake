@@ -6985,7 +6985,7 @@ MonoBehaviour:
   bonus_Count_Canvas: {fileID: 8941015}
   player01ScoreTextUI: {fileID: 547468962}
   player02ScoreTextUI: {fileID: 1440741940}
-  player02TurnUI: {fileID: 1000126919}
+  player02TurnUI: {fileID: 1000126917}
   bonusScoreTextUI: {fileID: 730375338}
   lapAmountTextUI: {fileID: 643974047}
   highScoreTextUI: {fileID: 1941768018}

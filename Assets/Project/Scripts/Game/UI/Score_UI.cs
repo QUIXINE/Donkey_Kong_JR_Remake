@@ -16,13 +16,13 @@ namespace ScoreManagement
         [SerializeField] private Canvas bonus_Count_Canvas;
         [SerializeField] private TextMeshProUGUI player01ScoreTextUI;
         [SerializeField] private TextMeshProUGUI player02ScoreTextUI;
-        [SerializeField] private TextMeshProUGUI player02TurnUI;
+        [SerializeField] private GameObject player02TurnUI;
         [SerializeField] private TextMeshProUGUI bonusScoreTextUI;
         [SerializeField] private TextMeshProUGUI lapAmountTextUI;
         [SerializeField] private TextMeshProUGUI highScoreTextUI;
         public static TextMeshProUGUI Player01ScoreTextUI;
         public static TextMeshProUGUI Player02ScoreTextUI;
-        public static TextMeshProUGUI Player02TurnUI;
+        public static GameObject Player02TurnUI;
         public static TextMeshProUGUI BonusScoreTextUI;
         public static TextMeshProUGUI LapAmountTextUI;
         public static TextMeshProUGUI HighScoreTextUI;

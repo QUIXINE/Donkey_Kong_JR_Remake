@@ -155,6 +155,7 @@ namespace TakeDamage
                 // capsuleCollider.enabled = false;
                 rb.gravityScale = 2;
             }
+            this.enabled = false;
         }
         
     }

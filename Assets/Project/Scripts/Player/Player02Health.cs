@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using ScoreManagement;
-using UnityEditorInternal;
 
 namespace PlayerSpace
 {
