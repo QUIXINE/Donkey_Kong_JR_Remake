@@ -20,7 +20,7 @@ sealed public partial class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
     private Collider2D dkCol;
-    private Player_TakeDamage playerTakeDamage;
+    private PlayerTakeDamage playerTakeDamage;
 
     //Input
     public float Horizontal         {get; private set;}
@@ -101,7 +101,7 @@ sealed public partial class Player : MonoBehaviour
     [Header("Enemy Check")]
     [SerializeField] private LayerMask enemyLayerMask;
     private bool canGetPointFromEnemy;
-    private List<Enemy_Score> enemyList = new List<Enemy_Score>();    //used to get score from enemy, used w/ PlayerGetScore script
+    private List<EnemyScore> enemyList = new List<EnemyScore>();    //used to get score from enemy, used w/ PlayerGetScore script
     private int scoreOfEnemy;
     //[SerializeField] private float circleRayDis, CircleRadius;    //used if use CirCleCastNonAlloc in EnemyStak();
     [SerializeField] private float sizeX = 1.2f, sizeY = 0.8f;      //used if use OverlapBoxNonAlloc in EnemyStak();
@@ -134,7 +134,7 @@ sealed public partial class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        playerTakeDamage = GetComponent<Player_TakeDamage>();
+        playerTakeDamage = GetComponent<PlayerTakeDamage>();
         dkCol = GetComponent<Collider2D>();
         CurrentState = PlayerState.Idle;
         IsOnVine = false;
@@ -272,18 +272,6 @@ sealed public partial class Player : MonoBehaviour
                     vineFallenLeafParticle.transform.localScale =  shortenScale;
                     Instantiate(vineFallenLeafParticle, vineCheckPosDualHand01.position, Quaternion.identity);
                 }
-                /* if (transform.rotation == Quaternion.Euler(0, -180, 0))
-                {
-                    Vector2 pos = transform.position;
-                    //pos.x += GetDistanceToGetOnVine();
-                    transform.position = pos;
-                }
-                else if (transform.rotation == Quaternion.Euler(0, 0, 0))
-                {
-                    Vector2 pos = transform.position;
-                    //pos.x -= GetDistanceToGetOnVine();
-                    transform.position = pos;
-                } */
                 IsOnVine = true;
                 animator.SetBool("TwoHanded", true);
 
@@ -395,17 +383,3 @@ sealed public partial class Player : MonoBehaviour
     
 }
 }
-
-/*Check layermask
-private LayerMask GetLayerMask()
-{
-    RaycastHit2D hitInfo = Physics2D.Raycast(groundLayerCheckPos.position, groundLayerCheckPos.up * -1, groundCheckRadius);
-    LayerMask mask = new LayerMask();
-    if (hitInfo.collider != null)
-    {
-        mask.value = hitInfo.collider.gameObject.layer;
-        Debug.Log(hitInfo.collider.gameObject.layer);
-        return hitInfo.collider.gameObject.layer;
-    }
-    return mask;
-}*/

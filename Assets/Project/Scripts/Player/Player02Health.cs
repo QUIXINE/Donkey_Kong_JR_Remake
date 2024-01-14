@@ -23,8 +23,7 @@ namespace PlayerSpace
 
         private void Start() 
         {
-            Instance.Health = 3; //used for testing
-            //Instance.Health = 3;
+            Instance.Health = 3;
             Instance.LifeSpriteAmount = Instance.Health;
             
             StartCoroutine(ChangeLifeSpriteAmount());
@@ -62,7 +61,7 @@ namespace PlayerSpace
 
             if(PlayerPrefs.GetInt("Current_Player") == 2 && canIncrease)
             {
-                if(Score_Variables.ScorePlayer02 >= 10000)
+                if(ScoreVariables.ScorePlayer02 >= 10000)
                 {
                     Health++;
                     if(LifeSpriteAmount < 3)

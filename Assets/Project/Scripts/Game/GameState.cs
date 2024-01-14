@@ -73,11 +73,11 @@ public class GameState : MonoBehaviour
         //inactivate Mario, fruits, enemies, DK jr.
         Fruit[] fruits  =   FindObjectsOfType<Fruit>(); 
         Player  player  =   FindObjectOfType<Player>();
-        Mario_Controller mario     =   FindObjectOfType<Mario_Controller>();
+        MarioController mario     =   FindObjectOfType<MarioController>();
 
         //Destroy enemies in scene
-        Enemy_Score[] enemies =   FindObjectsOfType<Enemy_Score>(); 
-        foreach(Enemy_Score enemy in enemies)
+        EnemyScore[] enemies =   FindObjectsOfType<EnemyScore>(); 
+        foreach(EnemyScore enemy in enemies)
         {
             enemy.gameObject.SetActive(false);
         }
@@ -95,19 +95,18 @@ public class GameState : MonoBehaviour
     #region Scene Loading
     public static IEnumerator LoadSceneAfterWin()
     {
-        Bonus_Score_Manager bonus_Score_Manager = FindObjectOfType<Bonus_Score_Manager>();
+        BonusScoreManager bonus_Score_Manager = FindObjectOfType<BonusScoreManager>();
         bonus_Score_Manager.StopBonusDecreasement();                       //Stop decreasing bonus when get to dying state (dying animation played)
         int currentScene =  SceneManager.GetActiveScene().buildIndex;
 
         //Destroy enemies in scene
-        Mario_Controller mario_Controller = FindObjectOfType<Mario_Controller>();
+        MarioController mario_Controller = FindObjectOfType<MarioController>();
         if(mario_Controller != null)
         {
-            print("disable MarioController");
             mario_Controller.enabled = false;
         }
-        Enemy_Score[] enemyArray = FindObjectsOfType<Enemy_Score>();
-        foreach(Enemy_Score enemy in enemyArray)
+        EnemyScore[] enemyArray = FindObjectsOfType<EnemyScore>();
+        foreach(EnemyScore enemy in enemyArray)
         {
             Destroy(enemy.gameObject);
         }
@@ -119,15 +118,15 @@ public class GameState : MonoBehaviour
                 default:
                     yield return new WaitForSeconds(10f);                           //How long to wait before changing scene (wait until all changing level animation finish)
                                                                                     //Wait to finish clear stage animation 10 sec
-                    Score_Variables.ScorePlayer01 += Score_Variables.bonusScore;
+                    ScoreVariables.ScorePlayer01 += ScoreVariables.bonusScore;
                     SceneManager.LoadScene(currentScene + 1);
                     PlayerPrefs.SetInt("Player01_Scene", currentScene + 1);
                     break;
                 
                 case 6:
                     yield return new WaitForSeconds(16);                            //Wait animation after clear stage level04 to finish
-                    Score_Variables.ScorePlayer01 += Score_Variables.bonusScore;
-                    Score_Variables.lapAmountPlayer01++;
+                    ScoreVariables.ScorePlayer01 += ScoreVariables.bonusScore;
+                    ScoreVariables.lapAmountPlayer01++;
                     SceneManager.LoadScene(2);                                      //Load scene _Level01 index 2
                     PlayerPrefs.SetInt("Player01_Scene", 2);
                     break;
@@ -140,15 +139,15 @@ public class GameState : MonoBehaviour
                 default:
                     yield return new WaitForSeconds(10f);                           //How long to wait before changing scene (wait until all changing level animation finish)
                                                                                     //Wait to finish clear stage animation 10 sec
-                    Score_Variables.ScorePlayer02 += Score_Variables.bonusScore;   
+                    ScoreVariables.ScorePlayer02 += ScoreVariables.bonusScore;   
                     SceneManager.LoadScene(currentScene + 1);
                     PlayerPrefs.SetInt("Player02_Scene", currentScene + 1);
                     break;
                 
                 case 6:
                     yield return new WaitForSeconds(16);                            //Wait animation after clear stage level04 to finish
-                    Score_Variables.ScorePlayer02 += Score_Variables.bonusScore;    
-                    Score_Variables.lapAmountPlayer02++;
+                    ScoreVariables.ScorePlayer02 += ScoreVariables.bonusScore;    
+                    ScoreVariables.lapAmountPlayer02++;
                     SceneManager.LoadScene(2);                                      //Load scene _Level01 index 2
                     PlayerPrefs.SetInt("Player02_Scene", 2);
                     break;
@@ -158,7 +157,7 @@ public class GameState : MonoBehaviour
 
     public static IEnumerator LoadSceneAfterDead()
     {
-        Bonus_Score_Manager bonus_Score_Manager = FindObjectOfType<Bonus_Score_Manager>();
+        BonusScoreManager bonus_Score_Manager = FindObjectOfType<BonusScoreManager>();
         bonus_Score_Manager.StopBonusDecreasement();                     //Stop decreasing bonus when get to dying state (dying animation played)
         yield return new WaitForSeconds(4f);
 
@@ -204,20 +203,20 @@ public class GameState : MonoBehaviour
     
     private IEnumerator LoadSceneAfterGameOver()
     {
-        Bonus_Score_Manager bonus_Score_Manager = FindObjectOfType<Bonus_Score_Manager>();
+        BonusScoreManager bonus_Score_Manager = FindObjectOfType<BonusScoreManager>();
         bonus_Score_Manager.StopBonusDecreasement();                     //Stop decreasing bonus when get to dying state (dying animation played)
         yield return new WaitForSeconds(3f);
         //Load to score storing scene if player has score that is more than one of the 5 ranks
-        PlayerPrefs.SetInt("Player01_Score", Score_Variables.ScorePlayer01);
-        PlayerPrefs.SetInt("Player02_Score", Score_Variables.ScorePlayer02);
+        PlayerPrefs.SetInt("Player01_Score", ScoreVariables.ScorePlayer01);
+        PlayerPrefs.SetInt("Player02_Score", ScoreVariables.ScorePlayer02);
         
         //if(highScore > Top5) => SceneManager.LoadScene("Rank_Scene");   //maybe use LoadSceneMode.Additive so that the last scene still load and highscore still works then compare the score
 
         if(PlayerPrefs.GetInt("Player_Amount") == 1)
         {
-            for(int i = 0; i < Load_And_Save_Score.player_list.Count; i++)
+            for(int i = 0; i < LoadAndSaveScore.player_list.Count; i++)
             {
-                if(PlayerPrefs.GetInt("Player01_Score") > Load_And_Save_Score.player_list[i].Score)  
+                if(PlayerPrefs.GetInt("Player01_Score") > LoadAndSaveScore.player_list[i].Score)  
                 {
                     SceneManager.LoadScene("Rank_Scene");  
                     yield break;
@@ -231,14 +230,13 @@ public class GameState : MonoBehaviour
             //use player health to set condition if player 1/2 dies another player can still play the game
             if(Player01Health.Instance.Health <= 0 && Player02Health.Instance.Health <= 0)
             {
-                if(Load_And_Save_Score.player_list.All(player => PlayerPrefs.GetInt("Player01_Score") < player.Score) && Load_And_Save_Score.player_list.Any(player => PlayerPrefs.GetInt("Player02_Score") > player.Score))
+                if(LoadAndSaveScore.player_list.All(player => PlayerPrefs.GetInt("Player01_Score") < player.Score) && LoadAndSaveScore.player_list.Any(player => PlayerPrefs.GetInt("Player02_Score") > player.Score))
                 {
-                    print("player01 all less");
                     SceneManager.LoadScene("Rank_Scene");
                     PlayerPrefs.SetInt("CurrentPlayer", 2);
                     yield break;
                 }
-                else if(Load_And_Save_Score.player_list.All(player => PlayerPrefs.GetInt("Player01_Score") < player.Score) && Load_And_Save_Score.player_list.All(player => PlayerPrefs.GetInt("Player02_Score") < player.Score))
+                else if(LoadAndSaveScore.player_list.All(player => PlayerPrefs.GetInt("Player01_Score") < player.Score) && LoadAndSaveScore.player_list.All(player => PlayerPrefs.GetInt("Player02_Score") < player.Score))
                 {
                     //if(highScore < Top5) => SceneManager.LoadScene("Menu_Scene");
                     SceneManager.LoadScene("Menu_Scene");  
@@ -273,49 +271,3 @@ public class GameState : MonoBehaviour
     #endregion
 }
 
-//Add bonus score to ScorePlayer01 (player finish in time gets bonus score)
-//use lapAmount as a condition because i don't want bonusScore in Score to be static, if it is it'll be harder to coontrol
-//Is there a problem like add over amount of boonus score at a time? - Yes
-/* switch (Score.lapAmount)
-        {
-            case 1:
-                bonusScore = 5000;
-                break;
-            case 2:
-                bonusScore = 6000;
-                break;
-            case 3:
-                bonusScore = 7000;
-                break;
-            default:
-                bonusScore = 8000;
-                break;
-        } */
-        
-
-/* public static IEnumerator LoadSceneAfterWin()
-{
-print("change scene");
-Score score = FindObjectOfType<Score>();
-score.StopBonusIncrement();                     //Stop decreasing bonus when get to dying state (dying animation played)
-yield return new WaitForSeconds(4f);            //How long to wait before changing scene (wait until all changing level animation finish)
-int currentScene =  SceneManager.GetActiveScene().buildIndex;
-
-switch(currentScene)
-{
-    default:
-        Score.ScorePlayer01 += Score.bonusScore;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        break;
-    /* case 1: //for testing
-        Score.ScorePlayer01 += bonusScore;
-        Score.lapAmount++;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        break;
-    case 4:
-        Score.ScorePlayer01 += Score.bonusScore;
-        Score.lapAmount++;
-        SceneManager.LoadScene(1);
-        break;
-}   
-*/

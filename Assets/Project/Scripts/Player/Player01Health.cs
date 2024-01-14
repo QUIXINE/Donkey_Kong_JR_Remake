@@ -23,10 +23,8 @@ namespace PlayerSpace
 
         private void Start() 
         {
-            Instance.Health = 3; //used for testing
-            //Instance.Health = 3;
+            Instance.Health = 3;
             Instance.LifeSpriteAmount = Instance.Health;
-            
             StartCoroutine(ChangeLifeSpriteAmount());
         }
 
@@ -45,15 +43,6 @@ namespace PlayerSpace
         {
             if (SceneManager.GetActiveScene().buildIndex == 7) // Rank scene (7)
             {
-                /* Player02Health player02Health = FindObjectOfType<Player02Health>();
-                if (player02Health != null)
-                {
-                    print("Foynd Playerhealth02");
-                    GameObject player02HealthObject = new GameObject("Player Health");
-                    player02HealthObject.name = player02Health.GetType().Name;
-                    player02Health.transform.parent = player02HealthObject.transform;
-                    Destroy(player02HealthObject);     //used to destroy Player02Health beacause it will be hidden if not show it
-                } */
                 if (Player02Health.Instance != null)
                 {
                     if(!Player02Health.Instance.gameObject.activeInHierarchy)
@@ -63,10 +52,6 @@ namespace PlayerSpace
                 transform.parent = newObject.transform;
                 Destroy(newObject);
             }
-            /* else if(SceneManager.GetActiveScene().buildIndex == 0)
-            {
-                Destroy(gameObject);
-            } */
         }
 
         //Increase health if score reach 10000
@@ -74,7 +59,7 @@ namespace PlayerSpace
         {
             if(PlayerPrefs.GetInt("Current_Player") == 1 && canIncrease)
             {
-                if(Score_Variables.ScorePlayer01 >= 10000)
+                if(ScoreVariables.ScorePlayer01 >= 10000)
                 {
                     Health++;
                     if(LifeSpriteAmount < 3)
