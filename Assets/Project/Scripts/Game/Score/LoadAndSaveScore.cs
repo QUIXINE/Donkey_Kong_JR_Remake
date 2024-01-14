@@ -40,8 +40,6 @@ namespace ScoreManagement
             //string json = File.ReadAllText(filePath);
             if(File.Exists(newPath))
             {
-                print("new File exits");
-                print(newPath);
                 string jsonFile = File.ReadAllText(newPath);
                 playerList = JsonUtility.FromJson<PlayerList>(jsonFile);
             }
@@ -54,9 +52,7 @@ namespace ScoreManagement
             {
                 Debug.LogWarning("File not found: " + originalPath);
             }
-            // print("Get access to json");
-            // PlayerList playerList = JsonUtility.FromJson<PlayerList>(ScoreRankJson.text);
-            print(json);
+            
             player_list = playerList.ScoreRank;
             // Sort the high scores by score in descending order.
             player_list.Sort((x, y) => y.Score.CompareTo(x.Score));
@@ -67,10 +63,7 @@ namespace ScoreManagement
             PlayerList playerList = new PlayerList{ ScoreRank = player_list};
             string json = JsonUtility.ToJson(playerList);
             File.WriteAllText(newPath, json);
-            
-            
             // File.WriteAllText(Application.persistentDataPath + "ScoreRankJson.txt", json);
-            
             // File.WriteAllText(ScoreRankJson.text, json);
         }
 
