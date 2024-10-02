@@ -6,5 +6,5 @@
 This [link](https://www.figma.com/design/ogJkyPInVhVBUwinXHgVPH/Donkey-Kong-JR-Remake?node-id=0-1&t=ML37rKhEGWqZvVFc-1) shows how we plan to remake the game. I am responsible for breaking down and as I said programming most of the mechanics
 
 
-## Gameplay Video
+## [Gameplay Video](https://youtu.be/6q3jmukaqF8?si=2No8jw-oh-Hx9jsD)
 [![Donkey Kong Jr Gameplay (Remake) Cover](https://github.com/user-attachments/assets/7b867a75-6f81-4254-b8f6-e0ca45c67b6b)](https://youtu.be/6q3jmukaqF8?si=2No8jw-oh-Hx9jsD)
